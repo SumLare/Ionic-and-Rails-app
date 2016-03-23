@@ -1,4 +1,4 @@
-angular.module('starter', ['ionic', 'starter.controllers', 'starter.services','ngResource'])
+angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', 'ngResource'])
 
 .config(function($ionicConfigProvider) {
     $ionicConfigProvider.tabs.position('bottom');
@@ -25,13 +25,12 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services','n
 
 .config(function($stateProvider, $urlRouterProvider, $locationProvider) {
   $stateProvider
-    .state('app', {
+  .state('app', {
     url: '/app',
     abstract: true,
     templateUrl: 'templates/menu.html',
     controller: 'AppCtrl'
   })
-
   .state('app.login',{
     url: '/login',
     views: {
@@ -40,7 +39,6 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services','n
       }
     }
   })
-
   .state('app.settings', {
     url: '/settings',
     views: {
@@ -49,7 +47,6 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services','n
       }
     }
   })
-
   .state('app.friends', {
       url: '/friends',
       views: {
@@ -67,7 +64,6 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services','n
         }
       }
     })
-
   .state('app.dream', {
     url: '/dreams/:id',
     views: {
@@ -81,8 +77,13 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services','n
     url: '/dreams/new',
     templateUrl: 'templates/create.html',
     controller: 'DreamCreateCtrl'
+  })
+  .state('edit',{
+    url: '/dreams/:id/edit',
+    templateUrl: 'templates/edit.html',
+    controller: 'DreamEditCtrl'
   });
   
-  $urlRouterProvider.otherwise('/app/login');
+  $urlRouterProvider.otherwise('/app/dreams');
 
 });

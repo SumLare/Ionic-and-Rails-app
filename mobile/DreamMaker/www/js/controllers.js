@@ -1,4 +1,4 @@
-angular.module('starter.controllers', ['angular-svg-round-progress', 'counter'])
+angular.module('starter.controllers', ['angular-svg-round-progress', 'countTo'])
 
 .controller('AppCtrl', function($scope, $ionicModal, $timeout) {
 
@@ -22,19 +22,31 @@ angular.module('starter.controllers', ['angular-svg-round-progress', 'counter'])
 
 })
 
-.controller('DreamsListCtrl', function($scope, Dream) {
+.controller('DreamsListCtrl', function($scope, $ionicPopup, $window, Dream) {
   Dream.query(function(result){
     $scope.dreams = result;
   }); 
+  $scope.deleteDream = function(dream){
+      console.log("delete");
+      var confirmPopup = $ionicPopup.confirm({
+         title: 'Отказываешься от своей мечты?',
+      });
+
+      confirmPopup.then(function(res) {
+        if(res) {
+            dream.$delete(function () {
+            $window.location.href = '';
+          })
+        } 
+      });
+    };
 })
-.controller('DreamShowCtrl', function ($scope, $stateParams, Dream) {
-   
+.controller('DreamShowCtrl', function ($scope, $stateParams, $window, Dream) {
   $scope.dream = Dream.get({ id: $stateParams.id });
   $scope.dream.$promise.then(function(data) {
     $scope.dream = data;
     $scope.getprogress = function(){
-      var result = 0;
-      var count = 0;
+      var result, count = 0;
       var number = $scope.dream;
       for (var i = 0; i < number.steps.length; i++) {
         if(number.steps[i].finished == true)
@@ -43,14 +55,27 @@ angular.module('starter.controllers', ['angular-svg-round-progress', 'counter'])
       result = count / number.steps.length * 100;
       return result;
     };
+
   });
-   
 })
-.controller('DreamCreateCtrl', function($scope){
-  $scope.steps = [{
-    "value": ""
-  }];
+.controller('DreamCreateCtrl', function($scope, $state, $stateParams, Dream){
+  $scope.dream = new Dream();
+  $scope.steps = [{}];
   $scope.addStep = function () {
     $scope.steps.push({});
+  };
+
+  $scope.createDream = function(){
+    $scope.dream.$save(function(){
+      $state.go('dreams');
+    });
+  };
+
+})
+.controller('DreamEditCtrl', function($scope, $state, $stateParams, Dream){
+  $scope.updateDream = function () {
+    $scope.dream.$update(function () {
+      
+    })
   }
 });

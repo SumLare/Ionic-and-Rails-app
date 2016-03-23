@@ -3,6 +3,7 @@
     <ion-list>
       <ion-item ng-repeat="dream in dreams" href="#/app/dreams/{{dream.id}}">
         {{dream.title}}
+        <i class="icon ion-close" style="float: right;" ng-click="deleteDream(dream)"></i>
       </ion-item>
     </ion-list>
   </ion-content>
