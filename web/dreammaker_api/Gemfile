@@ -1,0 +1,22 @@
+source 'https://rubygems.org'
+
+
+gem 'rails', '4.2.5'
+gem 'puma'
+gem 'rails-api'
+
+gem 'spring', :group => :development
+
+gem 'rack-cors', :require => 'rack/cors'
+gem 'pg'
+gem 'active_model_serializers'
+gem 'devise'
+
+
+group :test do
+  gem 'guard-rspec'
+  gem 'rspec-rails'
+  gem 'capybara'
+  gem 'factory_girl_rails'
+  gem "shoulda-matchers"
+end

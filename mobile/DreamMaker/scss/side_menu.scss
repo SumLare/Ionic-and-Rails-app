@@ -1,0 +1,23 @@
+.sideList{
+  padding-top:40px;
+  background: #3A4852; 
+}
+.sideItem{
+  background-color: transparent;
+  border: none;
+  color:white;
+  a{
+    background-color: transparent !important;
+    border: none;
+  }
+  .activated {
+    background-color: transparent !important;
+    border: none;
+  }
+} 
+
+.closeLogin{
+  background-color:white;
+  opacity:0.5;
+  top:5px !important;
+}

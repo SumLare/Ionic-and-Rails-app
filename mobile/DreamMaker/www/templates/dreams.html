@@ -1,0 +1,14 @@
+<ion-view view-title="Dream Maker">
+  <ion-content>
+    <ion-list>
+      <ion-item ng-repeat="dream in dreams" href="#/app/dreams/{{dream.id}}">
+        {{dream.title}}
+      </ion-item>
+    </ion-list>
+  </ion-content>
+  <div class="tabs tabs-balanced ">
+    <a class="button button-clear button-dark" href="#/dreams/new">
+      <i class="icon ion-ios-plus"></i> Create a dream
+    </a>
+  </div>
+</ion-view>

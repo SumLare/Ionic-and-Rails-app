@@ -1,0 +1,41 @@
+<ion-view>
+  <ion-nav-bar class="bar-royal">
+    <ion-nav-back-button side="left" class="button-clear" style="display: block;">
+      <i class="ion-arrow-left-c"></i> Back
+    </ion-nav-back-button>
+  </ion-nav-bar>
+    <ion-content >
+      <div class="list createList">
+        <label class="item item-input">
+          <input type="text" placeholder="Название..">
+        </label>
+        <ion-list>
+          <ion-item ng-repeat="step in steps" class="fade">
+          Шаг {{$index+1}}
+            <label class="item item-input ">
+              <input type="text" placeholder="Название шага" ng-model="steps.value">
+            </label>
+            <label class="item item-input">
+              <input type="text" placeholder="Краткое описание.." ></input>
+            </label>
+            <label class="item item-input">
+              <span class="input-label">Дата окончания</span>
+              <input type="date">
+            </label>
+          </ion-item>
+        </ion-list>
+        <div class="addStep">
+          <a class="button button-clear button-dark " ng-click="addStep()" >
+            <i class="icon ion-ios-plus"></i> Добавить шаг
+          </a>
+        </div>
+        <label class="item item-input">
+          <span class="input-label">Дата окончания</span>
+          <input type="date">
+        </label>
+      </div>
+    </ion-content>
+    <div class="tabs tabs-balanced createBut" type="submit" ng-click="">
+        Создать мечту
+    </div>
+</ion-view>

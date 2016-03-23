@@ -1,0 +1,69 @@
+@mixin footerLogin{
+  position:absolute;
+  bottom:20px;
+  font-size: 1.15em;
+}
+.logIn{
+  margin: 0 auto;
+  background: url(../img/login.jpg) no-repeat center center fixed;
+  background-size: cover;
+}
+.formLogIn{
+  padding: 20px;
+  margin-top:200px;
+}
+.inputLogIn{
+  background: #3B4954;
+  opacity:0.7;
+  margin-bottom:10px;
+  border-radius:3px;
+  border:0;
+}
+.inputLogIn span{
+  color:white;
+}
+.inputLogIn input{
+  color:white;
+}
+.butLogIn{
+  position:relative;
+  padding:0;
+  background: #00bfa5;
+  top:50px;
+  border-radius:25px;
+  color: white;
+  height:47px;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 1.42857;
+  border:0;
+  &:active{
+    -webkit-box-shadow: 0px 0px 24px 5px rgba(0,0,0,0.64);
+    -moz-box-shadow: 0px 0px 24px 5px rgba(0,0,0,0.64);
+    box-shadow: 0px 0px 24px 5px rgba(0,0,0,0.64);
+    color:white;
+    border:0;
+  }  
+}
+
+.footerForget{
+  @include footerLogin;
+  left:30px;
+  color:rgb(69, 204, 206);
+  text-decoration:none;
+  &:active{
+    color:#FDF9ED;
+  }
+}
+.footerLogInRight{
+  right:30px;
+  @include footerLogin;
+  color:#FDF9ED;
+}
+.footerSignUp{
+  color:rgb(69, 204, 206);
+  text-decoration:none;
+  &:active{
+    color:#FDF9ED;
+  }
+}

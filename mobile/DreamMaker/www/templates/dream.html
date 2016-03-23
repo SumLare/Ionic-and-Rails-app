@@ -1,0 +1,46 @@
+<ion-view view-title="Dream">
+  <ion-content >
+    <ion-list >
+      <ion-item >
+        <h2>{{dream.title}}</h2> 
+      </ion-item>
+
+       <ion-item class="progressBar">
+        <div  class="numbers counter" 
+              value="progressBarVar"
+              to="getprogress()"
+              effect="'easeOutQuint'" 
+              duration="800">{{progressBarVar | number: 0}}/100
+        </div>
+        <div   
+              round-progress
+              max="100"
+              current="getprogress()"
+              color="#45ccce"
+              bgcolor="#eaeaea"
+              radius="80"
+              stroke="7"
+              rounded="false"
+              clockwise="true"
+              responsive="false"
+              duration="800"
+              animation="easeOutCubic"
+              animation-delay="0"
+              offset="0">
+        </div>
+        
+</ion-item>
+      
+        <ion-item ng-repeat="step in dream.steps ">
+        <label>
+          <ion-checkbox ng-model="step.finished" class="checkbox-balanced checkboxDream" >Сделано</ion-checkbox>
+        </label>
+          Шаг {{step.id}}</br>
+          Название: {{step.title}}</br>
+          Дата окончания: {{step.date}}</br>
+          Описание: {{step.description}}
+        </ion-item>
+    </ion-list>
+    <h3>Окончание срока: {{dream.last_date}}</h3>
+  </ion-content>
+</ion-view>

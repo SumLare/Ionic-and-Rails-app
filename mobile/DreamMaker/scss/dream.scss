@@ -1,0 +1,51 @@
+.checkboxDream{
+  border:none;
+  float:right;
+  position:absolute;
+  right:0;
+  top:0;
+}
+
+.progressBar{
+  padding:0;
+  padding-bottom:30px;
+  text-align:center;
+}
+.numbers{
+  text-align:center;
+  position:relative;
+  top:100px;
+  font-size: 35px; 
+  color: #bbb;
+  font-weight: 100;
+  line-height: 1;
+}
+.addStep{
+  text-align:center;
+  background-color: #33CD5F;
+}
+.createBut{
+  font-size:1.2em;
+  cursor: pointer;
+  &:active{
+    background-color:green;
+  }
+}
+.createList{
+  padding-bottom:50px;
+}
+.fade{
+  overflow-y: hidden;
+  max-height: 200px; 
+  transition-property: all;
+  transition-duration: 1s;
+  transition-timing-function: cubic-bezier(0, 1, 0.5, 1);
+  .ng-enter{
+    position: absolute;
+    bottom: 100px;
+  }
+  .ng-enter.ng-enter-active {
+    position: relative;
+    bottom: 0px;
+  }
+}
