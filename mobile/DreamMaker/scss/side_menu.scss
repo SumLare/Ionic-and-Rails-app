@@ -1,11 +1,11 @@
 .sideList{
   padding-top:40px;
-  background: #3A4852; 
+  background-color: #3A4852 !important; 
 }
 .sideItem{
   background-color: transparent;
   border: none;
-  color:white;
+  color:white !important;
   a{
     background-color: transparent !important;
     border: none;
@@ -16,8 +16,3 @@
   }
 } 
 
-.closeLogin{
-  background-color:white;
-  opacity:0.5;
-  top:5px !important;
-}
