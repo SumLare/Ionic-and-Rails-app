@@ -1,8 +1,12 @@
 <ion-view>
   <ion-nav-bar class="bar-royal">
-    <ion-nav-back-button side="left" class="button-clear" style="display: block;">
+  <ion-nav-buttons side="left">
+        <button class="button button-icon button-clear ion-navicon" menu-toggle="left">
+        </button>
+      </ion-nav-buttons>
+    <!-- <ion-nav-back-button side="left" class="button-clear" style="display: block;">
       <i class="ion-arrow-left-c"></i> Back
-    </ion-nav-back-button>
+    </ion-nav-back-button> -->
   </ion-nav-bar>
   <form  role="form" ng-submit="createDream()">
     <ion-content>
@@ -21,7 +25,7 @@
             </label>
             <label class="item item-input">
               <span class="input-label">Дата окончания</span>
-              <input type="date" ng-model="steps.date">
+              <input type="date" ng-model="steps.date" min="{{date}}">
             </label>
           </ion-item>
         </ion-list>
@@ -32,7 +36,7 @@
         </div>
         <label class="item item-input">
           <span class="input-label">Дата окончания</span>
-          <input type="date" ng-model="dream.last_date">
+          <input type="date" ng-model="dream.last_date" min="{{date }}">
         </label>
       </div>
     </ion-content>

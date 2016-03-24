@@ -1,4 +1,4 @@
-angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', 'ngResource'])
+angular.module('starter', ['ionic',  'starter.controllers', 'starter.services', 'ngResource'])
 
 .config(function($ionicConfigProvider) {
     $ionicConfigProvider.tabs.position('bottom');
@@ -78,10 +78,14 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
     templateUrl: 'templates/create.html',
     controller: 'DreamCreateCtrl'
   })
-  .state('edit',{
+  .state('app.edit',{
     url: '/dreams/:id/edit',
-    templateUrl: 'templates/edit.html',
-    controller: 'DreamEditCtrl'
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/edit.html',
+        controller: 'DreamEditCtrl'
+      }
+    }
   });
   
   $urlRouterProvider.otherwise('/app/dreams');

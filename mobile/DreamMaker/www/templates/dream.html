@@ -1,9 +1,9 @@
 <ion-view view-title="Dream">
-  <ion-nav-bar class="bar-royal">
-    <a class="button button-clear " href="#/dreams/:id/edit">
-      <i class="icon ion-edit"></i> Edit
+  <ion-nav-buttons side="right">
+    <a class="button button-icon button-clear ion-edit" href="#/app/dreams/{{dream.id}}/edit">
+       Edit
     </a>
-  </ion-nav-bar>
+  </ion-nav-buttons>
   <ion-content >
     <ion-list >
       <ion-item >
@@ -11,7 +11,7 @@
       </ion-item>
        <ion-item class="progressBar">
         <span class="numbers counter" count-to="{{getprogress()}}" value="{{progressBarVar}}" count-from="{{progressBarVar}}" duration="0.5">
-          {{progressBarVar | number: 0}} / 100
+          {{progressBarVar | number: 0}}
         </span>
        <!-- <div   
               value="progressBarVar"
@@ -29,7 +29,7 @@
 </ion-item>
         <ion-item ng-repeat="step in dream.steps ">
         <label>
-          <ion-checkbox ng-model="step.finished" class="checkbox-balanced checkboxDream" >Сделано</ion-checkbox>
+          <ion-checkbox ng-model="step.finished" class="checkbox-balanced checkboxDream" ng-change="finish()">Сделано</ion-checkbox>
         </label>
           Шаг {{step.id}}</br>
           Название: {{step.title}}</br>

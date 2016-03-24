@@ -8,19 +8,20 @@
         <button class="button button-icon button-clear ion-navicon" menu-toggle="left">
         </button>
       </ion-nav-buttons>
+
     </ion-nav-bar>
     <ion-nav-view name="menuContent"></ion-nav-view>
   </ion-side-menu-content>
 
-  <ion-side-menu side="left">
+  <ion-side-menu side="left" class="sideList">
     
-    <ion-content class="sideList">
+    <div class="sideList">
       <ion-list class="sideItem">
         <ion-item menu-close href="#/app/login" class="sideItem">
           <i class="icon ion-ios-unlocked"></i> Login
         </ion-item>
         <ion-item menu-close href="#/app/settings" class="sideItem">
-          <i class="icon ion-ios-gear"></i> Settings
+          <i class="icon ion-gear-a"></i> Settings
         </ion-item>
         <ion-item menu-close href="#/app/dreams" class="sideItem">
           <i class="icon ion-ios-cloud"></i>  My Dreams
@@ -30,5 +31,12 @@
         </ion-item>
       </ion-list>
     </ion-content>
+    <!-- <div class="list ">
+      <a class="item sideItem" href="#/app/login"><i class="icon ion-ios-unlocked"></i> Login</a>
+      <a class="item sideItem" href="#/app/settings"><i class="icon ion-gear-a"></i> Settings</a>
+      <a class="item sideItem" href="#/app/dreams"><i class="icon ion-ios-cloud"></i> My Dreams</a>
+      <a class="item sideItem" href="#/app/friends"><i class="icon ion-person-stalker"></i> Friends</a>
+    </div> -->
+    
   </ion-side-menu>
 </ion-side-menus>
