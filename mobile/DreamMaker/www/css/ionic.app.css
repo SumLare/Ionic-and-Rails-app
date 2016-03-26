@@ -9781,9 +9781,6 @@ a.button {
     position: relative;
     bottom: 0px; }
 
-.platform-android ion-content {
-  overflow: hidden; }
-
 i.icon::before {
   font-size: 20px; }
 

@@ -4,4 +4,5 @@ class User < ActiveRecord::Base
   has_many :dreams
   has_many :steps
   validates :name, :password, presence: true
+  validates :email, :name, uniqueness: { case_sensitive: true }
 end

@@ -1,13 +1,13 @@
 <ion-view view-title="Dream">
   <ion-nav-buttons side="right">
-    <a class="button button-icon button-clear ion-edit" href="#/app/dreams/{{dream.id}}/edit">
+    <a class="button button-icon button-clear ion-edit" href="#/app/dreams/{{dream.data.id}}/edit">
        Edit
     </a>
   </ion-nav-buttons>
   <ion-content >
     <ion-list >
       <ion-item >
-        <h2>{{dream.title}}</h2> 
+        <h2>{{dream.data.attributes.title}}</h2> 
       </ion-item>
        <ion-item class="progressBar">
         <span class="numbers counter" count-to="{{getprogress()}}" value="{{progressBarVar}}" count-from="{{progressBarVar}}" duration="0.5">
@@ -21,22 +21,22 @@
               {{progressBarVar | number: 0}}/100
         </div> -->
 
-        <div  round-progress max="100" current="getprogress()" color="#45ccce"
+        <div  round-progress max="100" current="getprogress()" color="#00bfa5"
               bgcolor="#eaeaea" radius="80" stroke="7" rounded="false"
               clockwise="true" responsive="false" duration="800"
               animation="easeOutCubic" animation-delay="0" offset="0">
         </div>
 </ion-item>
-        <ion-item ng-repeat="step in dream.steps ">
+        <ion-item ng-repeat="step in dream.included ">
         <label>
-          <ion-checkbox ng-model="step.finished" class="checkbox-balanced checkboxDream" ng-change="finish()">Сделано</ion-checkbox>
+          <ion-checkbox ng-model="step.attributes.finished" class="checkbox-balanced checkboxDream" >Сделано</ion-checkbox>
         </label>
           Шаг {{step.id}}</br>
-          Название: {{step.title}}</br>
-          Дата окончания: {{step.date}}</br>
-          Описание: {{step.description}}
+          Название: {{step.attributes.title}}</br>
+          Дата окончания: {{step.attributes.date}}</br>
+          Описание: {{step.attributes.description}}
         </ion-item>
     </ion-list>
-    <h3>Окончание срока: {{dream.last_date}}</h3>
+    <h3>Окончание срока: {{dream.data.attributes["last-date"]}}</h3>
   </ion-content>
 </ion-view>

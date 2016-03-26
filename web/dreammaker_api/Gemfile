@@ -9,11 +9,13 @@ gem 'spring', :group => :development
 
 gem 'rack-cors', :require => 'rack/cors'
 gem 'pg'
-gem 'active_model_serializers'
+gem 'active_model_serializers', git: 'git://github.com/rails-api/active_model_serializers.git', branch: 'master'
 gem 'devise'
-
+gem 'foreman'
+gem 'guard-rails'
 
 group :test do
+  gem 'database_cleaner'
   gem 'guard-rspec'
   gem 'rspec-rails'
   gem 'capybara'

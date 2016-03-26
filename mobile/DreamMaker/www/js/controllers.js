@@ -9,14 +9,6 @@ angular.module('starter.controllers', ['angular-svg-round-progress', 'countTo'])
   //$scope.$on('$ionicView.enter', function(e) {
   //});
 
-  // Create the login modal that we will use later
-  $ionicModal.fromTemplateUrl('templates/login.html', {
-    scope: $scope
-  }).then(function(modal) {
-    $scope.modal = modal;
-  });
-
-
 })
 
 .controller('DreamsListCtrl', function($scope, $ionicPopup, $window, Dream) {
@@ -45,20 +37,18 @@ angular.module('starter.controllers', ['angular-svg-round-progress', 'countTo'])
     $scope.dream = data;
     $scope.getprogress = function(){
       var result, count = 0;
-      var number = $scope.dream;
-      for (var i = 0; i < number.steps.length; i++) {
-        if(number.steps[i].finished == true)
+      var number = $scope.dream.included;
+      for (var i = 0; i < number.length; i++) {
+        if(number[i].attributes.finished == true)
           count++;
         }
-      result = count / number.steps.length * 100;
+      result = count / number.length * 100;
       return result;
     };
 
   });
 })
 .controller('DreamCreateCtrl', function($scope, $state, $stateParams, Dream){
-  $scope.date = new Date().toISOString().split("T")[0];
-
   $scope.dream = new Dream();
 
   $scope.steps = [{}];
@@ -75,21 +65,24 @@ angular.module('starter.controllers', ['angular-svg-round-progress', 'countTo'])
 
 })
 .controller('DreamEditCtrl', function($scope, $state, $stateParams, Dream){
+  $scope.dream = Dream.get({ id: $stateParams.id });
+  var dream = $scope.dream;
 
-  $scope.updateDream = function () {
-    $scope.dream.$update(function () {
-      $state.go('dreams');
-    });
+  $scope.updateDream = function () { 
+    $id = $scope.dream.data.id
+    Dream.update({id: $id}, dream.data);
   };
 
   $scope.loadDream = function() { 
-    $scope.dream = Dream.get({ id: $stateParams.id });
-    $scope.dream.$promise.then(function(data) {
+    dream.$promise.then(function(data) {
       $scope.dream = data;
-      $scope.dream.last_date = new Date().toISOString().split("T")[0];
+      for (var i = 0; i < $scope.dream.included.length; i++) {
+        $scope.dream.included[i].attributes.date = new Date($scope.dream.included[i].attributes.date);
+      }
+      $scope.last_date = new Date($scope.dream.data.attributes['last-date']);
     });
-    
   };
 
-  $scope.loadDream(); 
+  $scope.loadDream();
+
 });
