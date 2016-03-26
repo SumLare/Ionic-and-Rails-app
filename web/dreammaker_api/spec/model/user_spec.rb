@@ -9,7 +9,9 @@ RSpec.describe User, type: :model do
 
   it { expect(user).to validate_presence_of(:name) }
   it { expect(user).to validate_presence_of(:email)}
+  it { expect(user).to validate_uniqueness_of(:email).case_insensitive }
   it { expect(user).to validate_presence_of(:password)}
+  it { expect(user).to validate_confirmation_of(:password)}
   it { expect(user).to be_valid }
 
 end
