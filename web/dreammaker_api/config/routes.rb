@@ -1,11 +1,12 @@
 Rails.application.routes.draw do
-  devise_for :users, :controllers => {sessions: 'user/sessions', registrations: 'user/registrations', passwords: 'user/passwords' }
+  devise_for :users
 
-  scope module: 'api', defaults: { format: :json } do
-    namespace :v1 do
-      resources :dreams
+    namespace :api, defaults: { format: :json },
+        constraints: { subdomain: 'api' }, path: '/' do
+      scope module: :v1 do
+        resources :dreams
+        resources :users, only: [:show, :create, :update, :destroy]
+      end
     end
-  end
-
 
 end
