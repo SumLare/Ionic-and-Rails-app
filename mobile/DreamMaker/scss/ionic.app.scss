@@ -6,10 +6,11 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
 @import "www/lib/ionic/scss/ionic";
 
 
-@import 'side_menu';
-@import 'dream';
-@import 'main';
-@import 'login';
+@import 'side_menu',
+'dream',
+'main',
+'login',
+'settings';
 
 // $RobotoDraftFontPath: "../lib/robotodraft/fonts";
 // $RobotoDraftFontName: "RobotoDraft";
