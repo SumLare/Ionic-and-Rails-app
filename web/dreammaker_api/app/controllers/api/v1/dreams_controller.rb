@@ -1,6 +1,6 @@
 class Api::V1::DreamsController < ApplicationController
   respond_to :json
-
+  #before_action :authenticate_api_user!, only: [:create]
   before_filter :find_dream, only: [:show, :update, :destroy, :edit]
 
   def index
@@ -17,7 +17,6 @@ class Api::V1::DreamsController < ApplicationController
 
   def create
     @dream = Dream.new(dream_params)
-
     if @dream.save
       render json: @dream, status: :created, location: [:api, @dream]
     else
@@ -50,7 +49,7 @@ private
   end
 
   def dream_params
-    params.require(:dream).permit(:title, :last_date)
+    ActiveModelSerializers::Deserialization.jsonapi_parse(params, only: [:title, :last_date])
   end
 
 end
