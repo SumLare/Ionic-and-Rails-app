@@ -3,11 +3,12 @@
   <form  role="form" ng-submit="updateDream()">
     <ion-content>
       <div class="list createList">
-<ion-md-input class="mdInput"  placeholder="" highlight-color="balanced" type="text" ng-model="dream.data.attributes.title"></ion-md-input>
-
+        <label class="item item-input">
+          <input type="text" placeholder="Название.." ng-model="dream.data.attributes.title">
+        </label>
 
         <ion-list>
-          <ion-item ng-repeat="step in dream.included" class="fade">
+          <ion-item ng-repeat="step in dream.included" class="addStep">
           Шаг {{$index+1}}
             <label class="item item-input ">
               <input type="text" placeholder="Название шага" ng-model="step.attributes.title">

@@ -1,10 +1,24 @@
 <ion-view view-title="Friends">
   <ion-content>
-    <ion-list>
-      <ion-item class="item-text-wrap item-icon-right item-avatar">
-        <img  ng-src="http://placehold.it/20x20" alt="Photo">
-        Посмотри мои последние достижения в моем профиле
-      </ion-item>
-    </ion-list>
+    <div class="list ">
+            <a ui-sref="app.friends" class="item item-avatar item-icon-right">
+                <img src="img/jon-snow.jpg">
+                <h2>Jon Snow</h2>
+                <p>Some info</p>
+                <i class="icon ion-chatbubble muted"></i>
+            </a>
+            <a ui-sref="app.friends" class="item item-avatar item-icon-right">
+                <img src="img/sansa.jpg">
+                <h2>Sansa Stark</h2>
+                <p>Some info</p>
+                <i class="icon ion-chatbubble muted"></i>
+            </a>
+            <a ui-sref="app.friends" class="item item-avatar item-icon-right">
+                <img src="img/tyrion.jpg">
+                <h2>Tyrion Lannister</h2>
+                <p>Some info</p>
+                <i class="icon ion-chatbubble muted"></i>
+            </a>
+        </div>
   </ion-content>
 </ion-view>

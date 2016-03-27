@@ -9777,16 +9777,16 @@ a.button {
 .createList {
   padding-bottom: 50px; }
 
-.fade {
+.addStep {
   overflow-y: hidden;
   max-height: 200px;
   transition-property: all;
   transition-duration: 1s;
   transition-timing-function: cubic-bezier(0, 1, 0.5, 1); }
-  .fade .ng-enter {
+  .addStep .ng-enter {
     position: absolute;
     bottom: 100px; }
-  .fade .ng-enter.ng-enter-active {
+  .addStep .ng-enter.ng-enter-active {
     position: relative;
     bottom: 0px; }
 
@@ -9800,9 +9800,6 @@ a.button {
 
 i.icon::before {
   font-size: 20px; }
-
-.no_material .item, .item-complex .item-content {
-  background-color: #fff; }
 
 .logIn {
   margin: 0 auto;

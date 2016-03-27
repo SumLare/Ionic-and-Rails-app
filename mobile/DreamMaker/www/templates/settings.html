@@ -1,6 +1,6 @@
 <ion-view view-title="Settings">
   <ion-content>
-    <ion-list>
+    <div class="list">
       <ion-item class="item item-toggle">
        Присылать оповещения
        <label class="toggle toggle-balanced">
@@ -10,9 +10,9 @@
          </div>
        </label>
       </ion-item>
-      <ion-item  ng-click="SignOut()">
-        Выход
-      </ion-item>
-    </ion-list>
+        <a class="item" href="#" ng-click="signOut()">
+          Выход
+        </a>
+      </div>
   </ion-content>
 </ion-view>

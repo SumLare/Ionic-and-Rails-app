@@ -8,15 +8,13 @@ angular.module('starter.controllers', ['angular-svg-round-progress', 'countTo'])
   //$scope.$on('$ionicView.enter', function(e) {
   //});
     ionicMaterialMotion.fadeSlideInRight();
+    ionicMaterialInk.displayEffect();
 
-    $scope.$on('ngLastRepeat.mylist',function(e) {
-      ionicMaterialInk.displayEffect();
-    });
 
 })
 
-.controller('DreamsListCtrl', function($scope, $ionicPopup, $window, Dream) {
-
+.controller('DreamsListCtrl', function($scope, ionicMaterialInk, $ionicPopup, $window, Dream) {
+  ionicMaterialInk.displayEffect();
 
   Dream.query(function(result){
     $scope.dreams = result;
@@ -53,17 +51,21 @@ angular.module('starter.controllers', ['angular-svg-round-progress', 'countTo'])
 
   });
 })
-.controller('DreamCreateCtrl', function($scope, $state, $stateParams, Dream){
+.controller('DreamCreateCtrl', function($scope, $state, $stateParams, $ionicHistory, Dream){
   $scope.dream = new Dream();
 
+  $scope.date = new Date().toISOString().split("T")[0];
   $scope.steps = [{}];
   $scope.addStep = function () {
-    $scope.steps.push({});
+    $scope.dream.push({});
   };
 
   $scope.createDream = function(){
     $scope.dream.$save(function(){
-
+      $ionicHistory.nextViewOptions({
+          disableBack: true
+        });
+        $state.go('app.dreams');
       $state.go('dreams');
     });
   };
@@ -72,7 +74,6 @@ angular.module('starter.controllers', ['angular-svg-round-progress', 'countTo'])
 .controller('DreamEditCtrl', function($scope, $state, $stateParams, Dream){
   $scope.dream = Dream.get({ id: $stateParams.id });
   var dream = $scope.dream;
-
   $scope.updateDream = function () { 
     $id = $scope.dream.data.id
     Dream.update({id: $id}, dream.data);
@@ -91,24 +92,21 @@ angular.module('starter.controllers', ['angular-svg-round-progress', 'countTo'])
   $scope.loadDream();
 
 })
-.controller('LoginCtrl', function ($scope, $state, $auth) {
+.controller('LoginCtrl', function ($scope, $state, $auth, $ionicHistory) {
   $scope.loginForm = {};
-  $scope.$on('auth:login-error', function(ev, reason) {
-    $scope.error = reason.errors[0];
-  });
   $scope.doLogin = function(){
     $auth.submitLogin($scope.loginForm)
       .then(function(resp) { 
+        $ionicHistory.nextViewOptions({
+          disableBack: true
+        });
         $state.go('app.dreams');
       })
       .catch(function(resp) { 
-        console.log(resp);
+
       });
   };
-
-  $scope.signOut = function(){
-
-  }
+  
 })
 .controller('RegCtrl', function ($scope, $auth, $state) {
   $scope.registrationForm = {};
@@ -121,4 +119,31 @@ angular.module('starter.controllers', ['angular-svg-round-progress', 'countTo'])
           });
         });
     };
+})
+
+.controller('SettingsCtrl', function ($scope, $state, $auth, ionicMaterialInk) {
+  ionicMaterialInk.displayEffect();
+  $scope.signOut = function(){
+   $auth.signOut()
+      .then(function(resp) {
+        $state.go('app.login');
+      })
+      .catch(function(resp) {
+        
+      });
+  }
+})
+.controller('ProfileCtrl', function($scope, $stateParams, $timeout, ionicMaterialMotion, ionicMaterialInk){
+    $timeout(function() {
+        ionicMaterialMotion.slideUp({
+            selector: '.slide-up'
+        });
+    }, 300);
+
+    $timeout(function() {
+        ionicMaterialMotion.fadeSlideInRight({
+            startVelocity: 3000
+        });
+    }, 700);
+    ionicMaterialInk.displayEffect();
 });

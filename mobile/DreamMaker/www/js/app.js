@@ -6,18 +6,6 @@ angular.module('starter', ['ionic', 'ionic-material', 'ionMdInput', 'starter.con
     $ionicConfigProvider.navBar.alignTitle('center');
     //$ionicConfigProvider.backButton.previousTitleText(false);
 })
-.directive('ngLastRepeat', function ($timeout) {
-    return {
-        restrict: 'A',
-        link: function (scope, element, attr) {
-            if (scope.$last === true) {
-                $timeout(function () {
-                    scope.$emit('ngLastRepeat'+ (attr.ngLastRepeat ? '.'+attr.ngLastRepeat : ''));
-                });
-            }
-        }
-    }
-})
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
@@ -36,7 +24,6 @@ angular.module('starter', ['ionic', 'ionic-material', 'ionMdInput', 'starter.con
 .config(function($authProvider){
   $authProvider.configure({
     apiUrl: 'http://api.dreammaker_api.dev:3000/api/v1',
-
     storage: 'localStorage'
   });
 })
@@ -75,10 +62,20 @@ angular.module('starter', ['ionic', 'ionic-material', 'ionMdInput', 'starter.con
     url: '/settings',
     views: {
       'menuContent': {
-        templateUrl: 'templates/settings.html'
+        templateUrl: 'templates/settings.html',
+        controller: 'SettingsCtrl'
       }
     }
   })
+  .state('app.profile', {
+      url: '/profile',
+      views: {
+        'menuContent': {
+          templateUrl: 'templates/profile.html',
+          controller: 'ProfileCtrl'
+        }
+      }
+    })
   .state('app.friends', {
       url: '/friends',
       views: {
