@@ -1,6 +1,10 @@
 .deleteBut{
   background-color:white !important;
   margin: 0 auto;
+  padding:0 !important;
+  i {
+    margin-left: 15px;
+  }
 }
 
 .checkboxDream{
@@ -10,11 +14,10 @@
   right:0;
   top:0;
 }
-
 .progressBar{
   padding:0;
   padding-bottom:30px;
-  text-align:center;
+  text-align:center !important;
 }
 .numbers{
   text-align:center;
@@ -25,9 +28,15 @@
   font-weight: 100;
   line-height: 1;
 }
+.dreamItem label.checkboxDream{
+  width: auto !important;
+}
 .addStep{
   text-align:center;
   background-color: #33CD5F;
+}
+.addBut::before{
+  margin-top:6px !important;
 }
 .createBut{
   font-size:1.2em;
@@ -53,4 +62,12 @@
     position: relative;
     bottom: 0px;
   }
+}
+.lastDate{
+  text-align: center;
+  position:relative;
+  padding-top: 30%;
+}
+.editBut{
+  padding-top:5px !important;
 }
