@@ -14,4 +14,12 @@ RSpec.describe User, type: :model do
   it { expect(user).to validate_confirmation_of(:password)}
   it { expect(user).to be_valid }
 
+  it 'gets uid assigned' do
+    user.save!
+    expect(user).not_to be_blank
+  end
+
+  it "doesn't send confirm email" do
+    expect { user.save! }.not_to change { ActionMailer::Base.deliveries.count }
+  end
 end

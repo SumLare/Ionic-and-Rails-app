@@ -1,6 +1,6 @@
 class Api::V1::DreamsController < ApplicationController
-  #skip_before_action :verify_authenticity_token
   respond_to :json
+
   before_filter :find_dream, only: [:show, :update, :destroy, :edit]
 
   def index
