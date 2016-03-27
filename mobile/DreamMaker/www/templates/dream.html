@@ -1,14 +1,11 @@
-<ion-view view-title="Dream">
+<ion-view view-title="{{dream.data.attributes.title}}">
   <ion-nav-buttons side="right">
-    <a class="button button-icon button-clear ion-edit" href="#/app/dreams/{{dream.data.id}}/edit">
-       Edit
+    <a class="button button-icon button-clear editBut" href="#/app/dreams/{{dream.data.id}}/edit">
+   Edit   
     </a>
   </ion-nav-buttons>
   <ion-content >
     <ion-list >
-      <ion-item >
-        <h2>{{dream.data.attributes.title}}</h2> 
-      </ion-item>
        <ion-item class="progressBar">
         <span class="numbers counter" count-to="{{getprogress()}}" value="{{progressBarVar}}" count-from="{{progressBarVar}}" duration="0.5">
           {{progressBarVar | number: 0}}
@@ -27,7 +24,7 @@
               animation="easeOutCubic" animation-delay="0" offset="0">
         </div>
 </ion-item>
-        <ion-item ng-repeat="step in dream.included ">
+        <ion-item ng-repeat="step in dream.included" class="dreamItem">
         <label>
           <ion-checkbox ng-model="step.attributes.finished" class="checkbox-balanced checkboxDream" >Сделано</ion-checkbox>
         </label>
@@ -37,6 +34,6 @@
           Описание: {{step.attributes.description}}
         </ion-item>
     </ion-list>
-    <h3>Окончание срока: {{dream.data.attributes["last-date"]}}</h3>
+    <h3 class="lastDate">Окончание срока: {{dream.data.attributes["last-date"]}}</h3>
   </ion-content>
 </ion-view>

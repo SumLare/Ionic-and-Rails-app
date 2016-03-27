@@ -3,9 +3,9 @@
   <form  role="form" ng-submit="updateDream()">
     <ion-content>
       <div class="list createList">
-        <label class="item item-input">
-          <input type="text" placeholder="Название.." ng-model="dream.data.attributes.title">
-        </label>
+<ion-md-input class="mdInput"  placeholder="" highlight-color="balanced" type="text" ng-model="dream.data.attributes.title"></ion-md-input>
+
+
         <ion-list>
           <ion-item ng-repeat="step in dream.included" class="fade">
           Шаг {{$index+1}}

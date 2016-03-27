@@ -1,12 +1,23 @@
-angular.module('starter', ['ionic',  'starter.controllers', 'starter.services', 'ngResource'])
+angular.module('starter', ['ionic', 'ionic-material', 'ionMdInput', 'starter.controllers', 'starter.services', 'ngResource', 'ng-token-auth'])
 
-.config(function($ionicConfigProvider) {
+. config(function($ionicConfigProvider) {
     $ionicConfigProvider.tabs.position('bottom');
     $ionicConfigProvider.form.toggle('large').checkbox('circle');
-    if(ionic.Platform.isAndroid())
-        $ionicConfigProvider.scrolling.jsScrolling(false);  
+    $ionicConfigProvider.navBar.alignTitle('center');
+    //$ionicConfigProvider.backButton.previousTitleText(false);
 })
-
+.directive('ngLastRepeat', function ($timeout) {
+    return {
+        restrict: 'A',
+        link: function (scope, element, attr) {
+            if (scope.$last === true) {
+                $timeout(function () {
+                    scope.$emit('ngLastRepeat'+ (attr.ngLastRepeat ? '.'+attr.ngLastRepeat : ''));
+                });
+            }
+        }
+    }
+})
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
@@ -22,7 +33,18 @@ angular.module('starter', ['ionic',  'starter.controllers', 'starter.services', 
     }
   });
 })
+.config(function($authProvider){
+  $authProvider.configure({
+    apiUrl: 'http://api.dreammaker_api.dev:3000/api/v1',
 
+    storage: 'localStorage'
+  });
+})
+.run(['$rootScope', '$location', function($rootScope, $location) {
+  $rootScope.$on('auth:login-success', function() {
+    $location.path('/');
+  });
+}])
 .config(function($stateProvider, $urlRouterProvider, $locationProvider) {
   $stateProvider
   .state('app', {
@@ -35,7 +57,17 @@ angular.module('starter', ['ionic',  'starter.controllers', 'starter.services', 
     url: '/login',
     views: {
       'menuContent': {
-        templateUrl: 'templates/login.html'
+        templateUrl: 'templates/login.html',
+        controller: 'LoginCtrl'
+      }
+    }
+  })
+  .state('app.registration',{
+    url: '/registration',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/registration.html',
+        controller: 'RegCtrl'
       }
     }
   })
@@ -73,10 +105,14 @@ angular.module('starter', ['ionic',  'starter.controllers', 'starter.services', 
       }
     }
   })
-  .state('create',{
-    url: '/dreams/new',
-    templateUrl: 'templates/create.html',
-    controller: 'DreamCreateCtrl'
+  .state('app.create',{
+    url: '/new',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/create.html',
+        controller: 'DreamCreateCtrl'
+      }
+    }
   })
   .state('app.edit',{
     url: '/dreams/:id/edit',

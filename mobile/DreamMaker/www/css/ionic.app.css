@@ -9732,7 +9732,10 @@ a.button {
 
 .deleteBut {
   background-color: white !important;
-  margin: 0 auto; }
+  margin: 0 auto;
+  padding: 0 !important; }
+  .deleteBut i {
+    margin-left: 15px; }
 
 .checkboxDream {
   border: none;
@@ -9744,7 +9747,7 @@ a.button {
 .progressBar {
   padding: 0;
   padding-bottom: 30px;
-  text-align: center; }
+  text-align: center !important; }
 
 .numbers {
   text-align: center;
@@ -9755,9 +9758,15 @@ a.button {
   font-weight: 100;
   line-height: 1; }
 
+.dreamItem label.checkboxDream {
+  width: auto !important; }
+
 .addStep {
   text-align: center;
   background-color: #33CD5F; }
+
+.addBut::before {
+  margin-top: 6px !important; }
 
 .createBut {
   font-size: 1.2em;
@@ -9781,8 +9790,19 @@ a.button {
     position: relative;
     bottom: 0px; }
 
+.lastDate {
+  text-align: center;
+  position: relative;
+  padding-top: 30%; }
+
+.editBut {
+  padding-top: 5px !important; }
+
 i.icon::before {
   font-size: 20px; }
+
+.no_material .item, .item-complex .item-content {
+  background-color: #fff; }
 
 .logIn {
   margin: 0 auto;
@@ -9791,26 +9811,19 @@ i.icon::before {
 
 .formLogIn {
   padding: 20px;
-  margin-top: 200px; }
+  margin-top: 130px; }
 
-.inputLogIn {
-  background: #3B4954 !important;
-  opacity: 0.7;
-  margin-bottom: 10px;
-  border-radius: 3px;
-  border: 0; }
-
-.inputLogIn span {
-  color: white; }
-
-.inputLogIn input {
-  color: white; }
+.mdInput {
+  width: auto !important; }
+  .mdInput input {
+    padding: 10px !important;
+    height: 40px !important; }
 
 .butLogIn {
   position: relative;
   padding: 0;
   background: #00bfa5;
-  top: 50px;
+  top: 40px;
   border-radius: 25px;
   color: white;
   height: 47px;
@@ -9824,6 +9837,10 @@ i.icon::before {
     box-shadow: 0px 0px 24px 5px rgba(0, 0, 0, 0.64);
     color: white;
     border: 0; }
+
+.social {
+  margin-top: 80px;
+  padding: 20px; }
 
 .footerForget {
   position: absolute;

@@ -1,17 +1,20 @@
 <ion-view view-title="Dream Maker">
-  <ion-content>
-    <ion-list>
-      <ion-item ng-repeat="dream in dreams.data" href="#/app/dreams/{{dream.id}}">
+  <ion-content >
+    <ion-list can-swipe="true" class="no_material">
+      <ion-item  ng-repeat="dream in dreams.data" href="#/app/dreams/{{dream.id}}">
         {{dream.attributes.title}}
         <ion-option-button class="deleteBut" ng-click="deleteDream(dream)">
         <i class="icon ion-close"></i>
         </ion-option-button>
       </ion-item>
     </ion-list>
+  <!-- <div class="list" ng-repeat="dream in dreams.data" ng-last-repeat="mylist">
+      <a class="item"  href="#/app/dreams/{{dream.id}}"> {{dream.attributes.title}}
+      </a>
+      </div> -->
+
   </ion-content>
-  <div class="tabs tabs-balanced ">
-    <a class="button button-clear button-dark" href="#/dreams/new">
-      <i class="icon ion-ios-plus"></i> Create a dream
-    </a>
-  </div>
+
+<a class="addBut button button-fab button-fab-bottom-right button-assertive icon ion-android-add waves-effect waves-button waves-light " href="#/app/new"></a>
+
 </ion-view>

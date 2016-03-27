@@ -1,18 +1,23 @@
 angular.module('starter.controllers', ['angular-svg-round-progress', 'countTo'])
 
-.controller('AppCtrl', function($scope, $ionicModal, $timeout) {
-  //ionicMaterialInk.displayEffect();
+.controller('AppCtrl', function($scope, $timeout, ionicMaterialInk, ionicMaterialMotion) {
   // With the new view caching in Ionic, Controllers are only called
   // when they are recreated or on app start, instead of every page change.
   // To listen for when this page is active (for example, to refresh data),
   // listen for the $ionicView.enter event:
   //$scope.$on('$ionicView.enter', function(e) {
   //});
+    ionicMaterialMotion.fadeSlideInRight();
+
+    $scope.$on('ngLastRepeat.mylist',function(e) {
+      ionicMaterialInk.displayEffect();
+    });
 
 })
 
 .controller('DreamsListCtrl', function($scope, $ionicPopup, $window, Dream) {
-  //ionicMaterialInk.displayEffect();
+
+
   Dream.query(function(result){
     $scope.dreams = result;
   }); 
@@ -85,4 +90,35 @@ angular.module('starter.controllers', ['angular-svg-round-progress', 'countTo'])
 
   $scope.loadDream();
 
+})
+.controller('LoginCtrl', function ($scope, $state, $auth) {
+  $scope.loginForm = {};
+  $scope.$on('auth:login-error', function(ev, reason) {
+    $scope.error = reason.errors[0];
+  });
+  $scope.doLogin = function(){
+    $auth.submitLogin($scope.loginForm)
+      .then(function(resp) { 
+        $state.go('app.dreams');
+      })
+      .catch(function(resp) { 
+        console.log(resp);
+      });
+  };
+
+  $scope.signOut = function(){
+
+  }
+})
+.controller('RegCtrl', function ($scope, $auth, $state) {
+  $scope.registrationForm = {};
+  $scope.handleRegBtnClick = function() {
+      $auth.submitRegistration($scope.registrationForm)
+        .then(function(resp) {
+          $auth.submitLogin({
+            email: $scope.registrationForm.email,
+            password: $scope.registrationForm.password
+          });
+        });
+    };
 });
