@@ -1,13 +1,13 @@
-<ion-view view-title="{{dream.data.attributes.title}}">
+<ion-view view-title="{{dreamshow.dream.data.attributes.title}}">
   <ion-nav-buttons side="right">
-    <a class="button button-icon button-clear editBut" href="#/app/dreams/{{dream.data.id}}/edit">
+    <a class="button button-icon button-clear editBut" href="#/app/dreams/{{dreamshow.dream.data.id}}/edit">
    Edit   
     </a>
   </ion-nav-buttons>
   <ion-content >
     <ion-list >
        <ion-item class="progressBar">
-        <span class="numbers counter" count-to="{{getprogress()}}" value="{{progressBarVar}}" count-from="{{progressBarVar}}" duration="0.5">
+        <span class="numbers counter" count-to="{{dreamshow.getProgress()}}" value="{{progressBarVar}}" count-from="{{progressBarVar}}" duration="0.5">
           {{progressBarVar | number: 0}}
         </span>
        <!-- <div   
@@ -18,22 +18,25 @@
               {{progressBarVar | number: 0}}/100
         </div> -->
 
-        <div  round-progress max="100" current="getprogress()" color="#00bfa5"
+        <div  round-progress max="100" current="dreamshow.getProgress()" color="#00bfa5"
               bgcolor="#eaeaea" radius="80" stroke="7" rounded="false"
               clockwise="true" responsive="false" duration="800"
               animation="easeOutCubic" animation-delay="0" offset="0">
         </div>
 </ion-item>
-        <ion-item ng-repeat="step in dream.included" class="dreamItem">
-        <label>
+        <ion-item ng-repeat="step in dreamshow.dream.included" class="dreamItem">
+        
           <ion-checkbox ng-model="step.attributes.finished" class="checkbox-balanced checkboxDream" >Сделано</ion-checkbox>
-        </label>
+        
           Шаг {{step.id}}</br>
           Название: {{step.attributes.title}}</br>
           Дата окончания: {{step.attributes.date}}</br>
           Описание: {{step.attributes.description}}
+          <ion-option-button class="deleteBut button-assertive" ng-click="deleteStep(step)">
+            <i class="icon ion-trash-a "></i>
+          </ion-option-button>
         </ion-item>
+        <h3 class="lastDate">Окончание срока: {{dreamshow.dream.data.attributes["last-date"]}}</h3>
     </ion-list>
-    <h3 class="lastDate">Окончание срока: {{dream.data.attributes["last-date"]}}</h3>
   </ion-content>
 </ion-view>

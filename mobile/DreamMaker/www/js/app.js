@@ -1,3 +1,5 @@
+'use strict';
+
 angular.module('starter', ['ionic', 'ionic-material', 'ionMdInput', 'starter.controllers', 'starter.services', 'ngResource', 'ng-token-auth'])
 
 . config(function($ionicConfigProvider) {
@@ -39,13 +41,15 @@ angular.module('starter', ['ionic', 'ionic-material', 'ionMdInput', 'starter.con
     abstract: true,
     templateUrl: 'templates/menu.html',
     controller: 'AppCtrl'
+    //controllerAs: 'main'
   })
   .state('app.login',{
     url: '/login',
     views: {
       'menuContent': {
         templateUrl: 'templates/login.html',
-        controller: 'LoginCtrl'
+        controller: 'LoginCtrl',
+        controllerAs: 'login'
       }
     }
   })
@@ -54,7 +58,8 @@ angular.module('starter', ['ionic', 'ionic-material', 'ionMdInput', 'starter.con
     views: {
       'menuContent': {
         templateUrl: 'templates/registration.html',
-        controller: 'RegCtrl'
+        controller: 'RegCtrl',
+        controllerAs: 'registr'
       }
     }
   })
@@ -63,7 +68,8 @@ angular.module('starter', ['ionic', 'ionic-material', 'ionMdInput', 'starter.con
     views: {
       'menuContent': {
         templateUrl: 'templates/settings.html',
-        controller: 'SettingsCtrl'
+        controller: 'SettingsCtrl',
+        controllerAs: 'settings'
       }
     }
   })
@@ -72,7 +78,8 @@ angular.module('starter', ['ionic', 'ionic-material', 'ionMdInput', 'starter.con
       views: {
         'menuContent': {
           templateUrl: 'templates/profile.html',
-          controller: 'ProfileCtrl'
+          controller: 'ProfileCtrl',
+          controllerAs: 'profile'
         }
       }
     })
@@ -89,7 +96,8 @@ angular.module('starter', ['ionic', 'ionic-material', 'ionMdInput', 'starter.con
       views: {
         'menuContent': {
           templateUrl: 'templates/dreams.html',
-          controller: 'DreamsListCtrl'
+          controller: 'DreamsListCtrl',
+          controllerAs: 'dreamlist'
         }
       }
     })
@@ -98,7 +106,8 @@ angular.module('starter', ['ionic', 'ionic-material', 'ionMdInput', 'starter.con
     views: {
       'menuContent': {
         templateUrl: 'templates/dream.html',
-        controller: 'DreamShowCtrl'
+        controller: 'DreamShowCtrl',
+        controllerAs: 'dreamshow'
       }
     }
   })
@@ -107,7 +116,8 @@ angular.module('starter', ['ionic', 'ionic-material', 'ionMdInput', 'starter.con
     views: {
       'menuContent': {
         templateUrl: 'templates/create.html',
-        controller: 'DreamCreateCtrl'
+        controller: 'DreamCreateCtrl',
+        controllerAs: 'dreamcreate'
       }
     }
   })
@@ -116,7 +126,8 @@ angular.module('starter', ['ionic', 'ionic-material', 'ionMdInput', 'starter.con
     views: {
       'menuContent': {
         templateUrl: 'templates/edit.html',
-        controller: 'DreamEditCtrl'
+        controller: 'DreamEditCtrl',
+        controllerAs: 'dreamedit'
       }
     }
   });

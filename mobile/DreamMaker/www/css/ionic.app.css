@@ -9731,7 +9731,7 @@ a.button {
     border: none; }
 
 .deleteBut {
-  background-color: white !important;
+  background-color: white;
   margin: 0 auto;
   padding: 0 !important; }
   .deleteBut i {
@@ -9741,7 +9741,7 @@ a.button {
   border: none;
   float: right;
   position: absolute;
-  right: 0;
+  right: -3em;
   top: 0; }
 
 .progressBar {
@@ -9793,10 +9793,20 @@ a.button {
 .lastDate {
   text-align: center;
   position: relative;
-  padding-top: 30%; }
+  bottom: 0.5em; }
 
 .editBut {
-  padding-top: 5px !important; }
+  padding: 0.25em !important;
+  margin-right: 0.3em !important; }
+
+.closeStep {
+  float: right;
+  position: relative;
+  top: 0;
+  right: 0;
+  cursor: pointer; }
+  .closeStep:hover {
+    color: #ccc; }
 
 i.icon::before {
   font-size: 20px; }
@@ -9819,8 +9829,8 @@ i.icon::before {
 .butLogIn {
   position: relative;
   padding: 0;
-  background: #00bfa5;
   top: 40px;
+  background: #00bfa5;
   border-radius: 25px;
   color: white;
   height: 47px;
@@ -9836,7 +9846,8 @@ i.icon::before {
     border: 0; }
 
 .social {
-  margin-top: 80px;
+  position: relative;
+  top: 50px;
   padding: 20px; }
 
 .footerForget {

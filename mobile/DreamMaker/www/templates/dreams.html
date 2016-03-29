@@ -1,9 +1,9 @@
 <ion-view view-title="Dream Maker">
   <ion-content >
     <ion-list can-swipe="true" class="no_material">
-      <ion-item  ng-repeat="dream in dreams.data" href="#/app/dreams/{{dream.id}}">
+      <ion-item  ng-repeat="dream in dreamlist.dreams.data" href="#/app/dreams/{{dream.id}}">
         {{dream.attributes.title}}
-        <ion-option-button class="deleteBut" ng-click="deleteDream(dream)">
+        <ion-option-button class="deleteBut" ng-click="dreamlist.deleteDream(dream)">
         <i class="icon ion-close"></i>
         </ion-option-button>
       </ion-item>

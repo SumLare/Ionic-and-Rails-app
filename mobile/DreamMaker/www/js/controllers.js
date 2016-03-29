@@ -1,46 +1,65 @@
+(function(){
+'use strict';
+
 angular.module('starter.controllers', ['angular-svg-round-progress', 'countTo'])
+.controller('AppCtrl', AppCtrl)
+.controller('DreamsListCtrl', DreamsListCtrl)
+.controller('DreamShowCtrl', DreamShowCtrl)
+.controller('DreamCreateCtrl', DreamCreateCtrl)
+.controller('DreamEditCtrl', DreamEditCtrl)
+.controller('LoginCtrl', LoginCtrl)
+.controller('RegCtrl', RegCtrl)
+.controller('SettingsCtrl', SettingsCtrl)
+.controller('ProfileCtrl', ProfileCtrl);
+DreamsListCtrl.$inject = ['ionicMaterialInk', '$ionicPopup', '$window', 'Dream'];
+DreamShowCtrl.$inject = ['ionicMaterialInk', '$stateParams', '$ionicPopup', '$window', 'Dream'];
+DreamCreateCtrl.$inject = ['$state', '$stateParams', '$ionicHistory', 'Dream', 'Step'];
+DreamEditCtrl.$inject = ['$state', '$stateParams', 'Dream'];
+LoginCtrl.$inject = ['$state', '$auth', '$ionicHistory'];
+RegCtrl.$inejct = ['$auth', '$state'];
+SettingsCtrl.$inject = ['$auth', '$state', 'ionicMaterialInk'];
+ProfileCtrl.$inject = ['$stateParams', 'ionicMaterialInk'];
 
-.controller('AppCtrl', function($scope, $timeout, ionicMaterialInk, ionicMaterialMotion) {
-  // With the new view caching in Ionic, Controllers are only called
-  // when they are recreated or on app start, instead of every page change.
-  // To listen for when this page is active (for example, to refresh data),
-  // listen for the $ionicView.enter event:
-  //$scope.$on('$ionicView.enter', function(e) {
-  //});
-    ionicMaterialMotion.fadeSlideInRight();
-    ionicMaterialInk.displayEffect();
 
-
-})
-
-.controller('DreamsListCtrl', function($scope, ionicMaterialInk, $ionicPopup, $window, Dream) {
+function AppCtrl($scope, $timeout, ionicMaterialInk, ionicMaterialMotion) {
+  ionicMaterialMotion.fadeSlideInRight();
   ionicMaterialInk.displayEffect();
+};
+function DreamsListCtrl(ionicMaterialInk, $ionicPopup, $window, Dream) {
+  ionicMaterialInk.displayEffect();
+  var vm = this;
+  vm.deleteDream = deleteDream;
 
   Dream.query(function(result){
-    $scope.dreams = result;
+    vm.dreams = result;
   }); 
-  $scope.deleteDream = function(dream){
-      console.log("delete");
-      var confirmPopup = $ionicPopup.confirm({
+  
+  function deleteDream(dream){
+      $ionicPopup.confirm({
          title: 'Отказываешься от своей мечты?',
-      });
-
-      confirmPopup.then(function(res) {
+      }).then(function(res) {
         if(res) {
             dream.$delete(function () {
             $window.location.href = '';
           })
-        } 
+        }
       });
-    };
-})
-.controller('DreamShowCtrl', function ($scope, $stateParams, $window, Dream) {
-  $scope.dream = Dream.get({ id: $stateParams.id });
-  $scope.dream.$promise.then(function(data) {
-    $scope.dream = data;
-    $scope.getprogress = function(){
+  };
+};
+
+function DreamShowCtrl(ionicMaterialInk, $stateParams, $ionicPopup, $window, Dream) {
+  ionicMaterialInk.displayEffect();
+  var vm = this;
+
+  vm.dream = Dream.get({ id: $stateParams.id });
+  vm.dream.$promise.then(function(data) {
+    vm.dream = data;
+    vm.getProgress = getProgress;
+    vm.deleteStep = deleteStep;
+
+    function getProgress(){
       var result, count = 0;
-      var number = $scope.dream.included;
+      var number = vm.dream.included;
       for (var i = 0; i < number.length; i++) {
         if(number[i].attributes.finished == true)
           count++;
@@ -49,19 +68,38 @@ angular.module('starter.controllers', ['angular-svg-round-progress', 'countTo'])
       return result;
     };
 
-  });
-})
-.controller('DreamCreateCtrl', function($scope, $state, $stateParams, $ionicHistory, Dream){
-  $scope.dream = new Dream();
+    function deleteStep(step){
+      $ionicPopup.confirm({
+         title: 'Точно удалить?',
+      }).then(function(res) {
+        if(res) {
+            step.$delete(function () {
+            $window.location.href = '';
+          })
+        };
+      });
+    };
 
-  $scope.date = new Date().toISOString().split("T")[0];
-  $scope.steps = [{}];
-  $scope.addStep = function () {
-    $scope.dream.push({});
+  });
+};
+function DreamCreateCtrl($state, $stateParams, $ionicHistory, Dream, Step) {
+  var vm = this;
+  vm.addStep = addStep;
+  vm.rmStep = rmStep;
+  vm.createDream = createDream;
+  vm.dream = new Dream();
+  vm.date = new Date().toISOString().split("T")[0];
+  vm.step = new Step();
+
+  function addStep() {
+    vm.step.push({title: '', description: '', date: ''});
+  };
+  function rmStep(step) {
+    vm.step.splice(vm.step.indexOf(step), 1);
   };
 
-  $scope.createDream = function(){
-    $scope.dream.$save(function(){
+  function createDream(){
+    vm.dream.$save(function(){
       $ionicHistory.nextViewOptions({
           disableBack: true
         });
@@ -69,81 +107,85 @@ angular.module('starter.controllers', ['angular-svg-round-progress', 'countTo'])
       $state.go('dreams');
     });
   };
+};
+function DreamEditCtrl($state, $stateParams, Dream) {
+  var vm = this;
+  vm.dream = Dream.get({ id: $stateParams.id });
+  vm.updateDream = updateDream;
+  vm.loadDream = loadDream;
+  vm.rmStep = rmStep;
+  
 
-})
-.controller('DreamEditCtrl', function($scope, $state, $stateParams, Dream){
-  $scope.dream = Dream.get({ id: $stateParams.id });
-  var dream = $scope.dream;
-  $scope.updateDream = function () { 
-    $id = $scope.dream.data.id
-    Dream.update({id: $id}, dream.data);
+  function updateDream() {
+    $id = vm.dream.data.id
+    Dream.update({id: $id}, vm.dream.data);
   };
 
-  $scope.loadDream = function() { 
-    dream.$promise.then(function(data) {
-      $scope.dream = data;
-      for (var i = 0; i < $scope.dream.included.length; i++) {
-        $scope.dream.included[i].attributes.date = new Date($scope.dream.included[i].attributes.date);
+  function loadDream() { 
+    vm.dream.$promise.then(function(data) {
+      vm.dream = data;
+      for (var i = 0; i < vm.dream.included.length; i++) {
+        vm.dream.included[i].attributes.date = new Date(vm.dream.included[i].attributes.date);
       }
-      $scope.last_date = new Date($scope.dream.data.attributes['last-date']);
+      vm.dream.data.attributes['last-date'] = new Date(vm.dream.data.attributes['last-date']);
     });
   };
 
-  $scope.loadDream();
+  function rmStep (step) {
+    //vm.dream.included[step].$delete();
+    vm.dream.included.splice(vm.dream.included.indexOf(step), 1);
 
-})
-.controller('LoginCtrl', function ($scope, $state, $auth, $ionicHistory) {
-  $scope.loginForm = {};
-  $scope.doLogin = function(){
-    $auth.submitLogin($scope.loginForm)
+  };
+
+  vm.loadDream();
+
+};
+
+function LoginCtrl($state, $auth, $ionicHistory) {
+  var vm = this;
+  vm.loginForm = {};
+  vm.doLogin = doLogin;
+
+  function doLogin(){
+    $auth.submitLogin(vm.loginForm)
       .then(function(resp) { 
         $ionicHistory.nextViewOptions({
           disableBack: true
         });
         $state.go('app.dreams');
-      })
-      .catch(function(resp) { 
-
       });
   };
-  
-})
-.controller('RegCtrl', function ($scope, $auth, $state) {
-  $scope.registrationForm = {};
-  $scope.handleRegBtnClick = function() {
-      $auth.submitRegistration($scope.registrationForm)
-        .then(function(resp) {
-          $auth.submitLogin({
-            email: $scope.registrationForm.email,
-            password: $scope.registrationForm.password
-          });
-        });
-    };
-})
+};
+function RegCtrl($auth, $state) {
+  var vm = this;
+  vm.registrationForm = {};
+  vm.handleRegBtnClick = handleRegBtnClick;
 
-.controller('SettingsCtrl', function ($scope, $state, $auth, ionicMaterialInk) {
+  function handleRegBtnClick() {
+    $auth.submitRegistration(vm.registrationForm)
+      .then(function(resp) {
+        $auth.submitLogin({
+          email: vm.registrationForm.email,
+          password: vm.registrationForm.password
+        });
+      });
+    }; 
+};
+function SettingsCtrl($auth, $state, ionicMaterialInk) {
+  var vm = this;
   ionicMaterialInk.displayEffect();
-  $scope.signOut = function(){
+  vm.signOut = signOut;
+
+  function signOut(){
    $auth.signOut()
       .then(function(resp) {
         $state.go('app.login');
-      })
-      .catch(function(resp) {
-        
       });
-  }
-})
-.controller('ProfileCtrl', function($scope, $stateParams, $timeout, ionicMaterialMotion, ionicMaterialInk){
-    $timeout(function() {
-        ionicMaterialMotion.slideUp({
-            selector: '.slide-up'
-        });
-    }, 300);
+  };
+};
+function ProfileCtrl($stateParams, ionicMaterialInk) {
+  var vm = this;
+  ionicMaterialInk.displayEffect();
+};
 
-    $timeout(function() {
-        ionicMaterialMotion.fadeSlideInRight({
-            startVelocity: 3000
-        });
-    }, 700);
-    ionicMaterialInk.displayEffect();
-});
+})();

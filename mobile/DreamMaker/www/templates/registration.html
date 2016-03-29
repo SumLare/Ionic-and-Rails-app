@@ -1,12 +1,12 @@
 <ion-view hide-nav-bar="true">
 <ion-content class="logIn">
-  <form ng-submit="handleRegBtnClick()" class="formLogIn" >
+  <form ng-submit="registr.handleRegBtnClick()" class="formLogIn" >
     <div class="list">
-      <ion-md-input class="mdInput"  placeholder="Username" highlight-color="positive" type="text" ng-model="registrationForm.name" ng-required="registrationForm.name"></ion-md-input>
-        <ion-md-input class="mdInput"  placeholder="Email" highlight-color="balanced" type="email" ng-model="registrationForm.email" ng-required="registrationForm.email"></ion-md-input>
-        <ion-md-input class="mdInput" placeholder="Password" highlight-color="energized" type="password" ng-model="registrationForm.password" ng-required="registrationForm.password"></ion-md-input>
-      <ion-md-input class="mdInput" placeholder="Password Confirmation" highlight-color="energized" type="password" ng-model="registrationForm.password_confirmation" ng-required="registrationForm.password_confirmation"></ion-md-input>
-      <div class="padding">
+      <ion-md-input class="mdInput"  placeholder="Username" highlight-color="positive" type="text" ng-model="registr.registrationForm.name" ng-required="registr.registrationForm.name"></ion-md-input>
+        <ion-md-input class="mdInput"  placeholder="Email" highlight-color="balanced" type="email" ng-model="registr.registrationForm.email" ng-required="registr.registrationForm.email"></ion-md-input>
+        <ion-md-input class="mdInput" placeholder="Password" highlight-color="energized" type="password" ng-model="registr.registrationForm.password" ng-required="registr.registrationForm.password"></ion-md-input>
+      <ion-md-input class="mdInput" placeholder="Password Confirmation" highlight-color="energized" type="password" ng-model="registr.registrationForm.password_confirmation" ng-required="registr.registrationForm.password_confirmation"></ion-md-input>
+      <div >
         <button class="button-block butLogIn" type="submit">Sign Up</button>
       </div>
     </div>
