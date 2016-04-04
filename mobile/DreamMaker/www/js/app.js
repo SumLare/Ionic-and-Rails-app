@@ -6,19 +6,14 @@ angular.module('starter', ['ionic', 'ionic-material', 'ionMdInput', 'starter.con
     $ionicConfigProvider.tabs.position('bottom');
     $ionicConfigProvider.form.toggle('large').checkbox('circle');
     $ionicConfigProvider.navBar.alignTitle('center');
-    //$ionicConfigProvider.backButton.previousTitleText(false);
 })
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
-    // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
-    // for form inputs)
     if (window.cordova && window.cordova.plugins.Keyboard) {
       cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
       cordova.plugins.Keyboard.disableScroll(true);
-
     }
     if (window.StatusBar) {
-      // org.apache.cordova.statusbar required
       StatusBar.styleDefault();
     }
   });
@@ -40,8 +35,11 @@ angular.module('starter', ['ionic', 'ionic-material', 'ionMdInput', 'starter.con
     url: '/app',
     abstract: true,
     templateUrl: 'templates/menu.html',
-    controller: 'AppCtrl'
+    controller: 'AppCtrl',
     //controllerAs: 'main'
+    data: {
+        requireLogin: true 
+      }
   })
   .state('app.login',{
     url: '/login',
@@ -67,17 +65,17 @@ angular.module('starter', ['ionic', 'ionic-material', 'ionMdInput', 'starter.con
     url: '/settings',
     views: {
       'menuContent': {
-        templateUrl: 'templates/settings.html',
+        templateUrl: 'settings/settings.html',
         controller: 'SettingsCtrl',
         controllerAs: 'settings'
       }
     }
   })
   .state('app.profile', {
-      url: '/profile',
+      url: '/profile/:id',
       views: {
         'menuContent': {
-          templateUrl: 'templates/profile.html',
+          templateUrl: 'profile/profile.html',
           controller: 'ProfileCtrl',
           controllerAs: 'profile'
         }
@@ -87,7 +85,7 @@ angular.module('starter', ['ionic', 'ionic-material', 'ionMdInput', 'starter.con
       url: '/friends',
       views: {
         'menuContent': {
-          templateUrl: 'templates/friends.html'
+          templateUrl: 'friends/friends.html'
         }
       }
     })
@@ -130,6 +128,12 @@ angular.module('starter', ['ionic', 'ionic-material', 'ionMdInput', 'starter.con
         controllerAs: 'dreamedit'
       }
     }
+  })
+  .state('search',{
+    url: '/search',
+    templateUrl: 'templates/search.html',
+    controller: 'DreamsListCtrl',
+    controllerAs: 'dreamlist'
   });
   
   $urlRouterProvider.otherwise('/app/dreams');

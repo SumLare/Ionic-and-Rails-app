@@ -9,7 +9,7 @@
         </button>
       </ion-nav-buttons>
       <ion-nav-buttons side="right">
-        <button class="button button-icon button-clear ion-android-more-vertical" >
+        <button class="button button-icon button-clear ion-android-more-vertical" ng-click="popover.show($event)">
         </button>
       </ion-nav-buttons>
     </ion-nav-bar>
@@ -29,7 +29,7 @@
         <ion-item menu-close href="#/app/friends" class="sideItem">
          <i class="icon ion-person-stalker"></i> Friends
         </ion-item>
-        <ion-item menu-close href="#/app/profile" class="sideItem">
+        <ion-item menu-close href="#/app/profile/{{user.data.id}}" class="sideItem">
           <i class="icon ion-person"></i> Profile
         </ion-item>
         <ion-item menu-close href="#/app/settings" class="sideItem">

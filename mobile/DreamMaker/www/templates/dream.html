@@ -7,17 +7,9 @@
   <ion-content >
     <ion-list >
        <ion-item class="progressBar">
-        <span class="numbers counter" count-to="{{dreamshow.getProgress()}}" value="{{progressBarVar}}" count-from="{{progressBarVar}}" duration="0.5">
-          {{progressBarVar | number: 0}}
-        </span>
-       <!-- <div   
-              value="progressBarVar"
-              to="getprogress()"
-              effect="'easeOutQuint'" 
-              duration="800">
-              {{progressBarVar | number: 0}}/100
-        </div> -->
-
+        <span class="numbers counter" count-to="{{dreamshow.getProgress()}}" value="{{progressBarVar}}" duration="0.5">
+          {{progressBarVar }}
+        </span><span class="numbers">/100</span>
         <div  round-progress max="100" current="dreamshow.getProgress()" color="#00bfa5"
               bgcolor="#eaeaea" radius="80" stroke="7" rounded="false"
               clockwise="true" responsive="false" duration="800"

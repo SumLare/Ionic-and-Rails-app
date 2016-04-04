@@ -9,26 +9,32 @@ angular.module('starter.controllers', ['angular-svg-round-progress', 'countTo'])
 .controller('DreamEditCtrl', DreamEditCtrl)
 .controller('LoginCtrl', LoginCtrl)
 .controller('RegCtrl', RegCtrl)
-.controller('SettingsCtrl', SettingsCtrl)
 .controller('ProfileCtrl', ProfileCtrl);
-DreamsListCtrl.$inject = ['ionicMaterialInk', '$ionicPopup', '$window', 'Dream'];
+AppCtrl.$inject = ['$scope', '$timeout', 'ionicMaterialInk', 'ionicMaterialMotion', '$ionicPopover'];
+DreamsListCtrl.$inject = ['$scope', 'ionicMaterialInk', '$ionicPopup', '$window', 'Dream'];
 DreamShowCtrl.$inject = ['ionicMaterialInk', '$stateParams', '$ionicPopup', '$window', 'Dream'];
 DreamCreateCtrl.$inject = ['$state', '$stateParams', '$ionicHistory', 'Dream', 'Step'];
 DreamEditCtrl.$inject = ['$state', '$stateParams', 'Dream'];
 LoginCtrl.$inject = ['$state', '$auth', '$ionicHistory'];
 RegCtrl.$inejct = ['$auth', '$state'];
-SettingsCtrl.$inject = ['$auth', '$state', 'ionicMaterialInk'];
-ProfileCtrl.$inject = ['$stateParams', 'ionicMaterialInk'];
+ProfileCtrl.$inject = ['$stateParams', 'ionicMaterialInk', 'User'];
 
 
-function AppCtrl($scope, $timeout, ionicMaterialInk, ionicMaterialMotion) {
+function AppCtrl($scope, $timeout, ionicMaterialInk, ionicMaterialMotion, $ionicPopover) {
   ionicMaterialMotion.fadeSlideInRight();
   ionicMaterialInk.displayEffect();
+
+  $ionicPopover.fromTemplateUrl('templates/popover.html', {
+    scope: $scope,
+  }).then(function(popover) {
+    $scope.popover = popover;
+  });
 };
-function DreamsListCtrl(ionicMaterialInk, $ionicPopup, $window, Dream) {
+function DreamsListCtrl($scope, ionicMaterialInk, $ionicPopup, $window, Dream) {
   ionicMaterialInk.displayEffect();
   var vm = this;
   vm.deleteDream = deleteDream;
+  vm.refresh = refresh;
 
   Dream.query(function(result){
     vm.dreams = result;
@@ -45,14 +51,21 @@ function DreamsListCtrl(ionicMaterialInk, $ionicPopup, $window, Dream) {
         }
       });
   };
+  function refresh(){
+    Dream.query(function(result){
+      vm.dreams = result;
+      $scope.$broadcast('scroll.refreshComplete');
+    });  
+  }
 };
 
 function DreamShowCtrl(ionicMaterialInk, $stateParams, $ionicPopup, $window, Dream) {
   ionicMaterialInk.displayEffect();
   var vm = this;
 
-  vm.dream = Dream.get({ id: $stateParams.id });
-  vm.dream.$promise.then(function(data) {
+  vm.dream = Dream.get({ id: $stateParams.id })
+                  .$promise
+                  .then(function(data) {
     vm.dream = data;
     vm.getProgress = getProgress;
     vm.deleteStep = deleteStep;
@@ -90,12 +103,12 @@ function DreamCreateCtrl($state, $stateParams, $ionicHistory, Dream, Step) {
   vm.dream = new Dream();
   vm.date = new Date().toISOString().split("T")[0];
   vm.step = new Step();
-
+  vm.steps = [{}];
   function addStep() {
-    vm.step.push({title: '', description: '', date: ''});
+    vm.steps.push({title: '', description: '', date: ''});
   };
   function rmStep(step) {
-    vm.step.splice(vm.step.indexOf(step), 1);
+    vm.steps.splice(vm.steps.indexOf(step), 1);
   };
 
   function createDream(){
@@ -160,7 +173,6 @@ function RegCtrl($auth, $state) {
   var vm = this;
   vm.registrationForm = {};
   vm.handleRegBtnClick = handleRegBtnClick;
-
   function handleRegBtnClick() {
     $auth.submitRegistration(vm.registrationForm)
       .then(function(resp) {
@@ -171,21 +183,15 @@ function RegCtrl($auth, $state) {
       });
     }; 
 };
-function SettingsCtrl($auth, $state, ionicMaterialInk) {
+function ProfileCtrl($stateParams, ionicMaterialInk, User) {
   var vm = this;
   ionicMaterialInk.displayEffect();
-  vm.signOut = signOut;
-
-  function signOut(){
-   $auth.signOut()
-      .then(function(resp) {
-        $state.go('app.login');
-      });
-  };
-};
-function ProfileCtrl($stateParams, ionicMaterialInk) {
-  var vm = this;
-  ionicMaterialInk.displayEffect();
+  vm.user = User.get({ id: $stateParams.id })
+                .$promise
+                .then(function (data) {
+                  vm.user = data;
+                  console.log(vm.user.id);
+                });
 };
 
 })();
