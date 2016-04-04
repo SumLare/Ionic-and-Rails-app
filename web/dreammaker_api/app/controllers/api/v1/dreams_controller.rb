@@ -1,14 +1,10 @@
 class Api::V1::DreamsController < ApplicationController
   respond_to :json
   #before_action :authenticate_api_user!, only: [:create]
-  before_filter :find_dream, only: [:show, :update, :destroy, :edit]
-
+  before_filter :find_dream, only: [:show, :update, :destroy]
+  
   def index
-    respond_with Dream.all  , include:  ['steps'] 
-  end
-
-  def new
-    @dream = Dream.new
+    respond_with Dream.all  , include:  ['steps']
   end
 
   def show
@@ -22,10 +18,6 @@ class Api::V1::DreamsController < ApplicationController
     else
       render json: { errors: @dream.errors }, status: 422
     end
-  end
-
-  def edit
-    
   end
 
   def update
