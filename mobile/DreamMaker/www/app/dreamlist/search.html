@@ -7,25 +7,15 @@
       <button class="button button-icon button-clear ion-ios-search" ng-click="">
       </button>
     </ion-nav-buttons>
-
   </ion-nav-bar>
 
   <ion-content >
     <ion-refresher on-refresh ="dreamlist.refresh()" spinner="bubbles">
     </ion-refresher>
-<!--     <ion-list can-swipe="true">
-      <ion-item ng-repeat="dream in dreamlist.dreams.data | filter: dreamlist.query" href="#/app/dreams/{{dream.id}}" class="dreamItem">
-        {{dream.attributes.title}}
-        <i class="icon ion-heart rating"></i>
-      </ion-item>
-    </ion-list> -->
+
   <div class="list dreamList" ng-repeat="dream in dreamlist.dreams.data | filter: dreamlist.query">
       <a class="item dreamItem"  href="#/app/dreams/{{dream.id}}"> {{dream.attributes.title}}<i class="icon ion-heart rating"></i>
       </a>
-
   </div>
-
   </ion-content>
-
-
 </ion-view>

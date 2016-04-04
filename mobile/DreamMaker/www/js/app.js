@@ -1,13 +1,37 @@
 'use strict';
 
-angular.module('starter', ['ionic', 'ionic-material', 'ionMdInput', 'starter.controllers', 'starter.services', 'ngResource', 'ng-token-auth'])
+angular.module('starter', ['ionic', 
+                          'ionic-material',
+                          'angular-svg-round-progress', 
+                          'countTo',
+                          'ionMdInput', 
+                          'starter.services', 
+                          'ngResource', 
+                          'ng-token-auth',
+                          'starter.app',
+                          'starter.settings',
+                          'starter.profile',
+                          'starter.dreamlist',
+                          'starter.dreamshow',
+                          'starter.friends',
+                          'starter.registration',
+                          'starter.login',
+                          'starter.create',
+                          'starter.update'])
 
-. config(function($ionicConfigProvider) {
+.config(function($ionicConfigProvider, $authProvider) {
     $ionicConfigProvider.tabs.position('bottom');
     $ionicConfigProvider.form.toggle('large').checkbox('circle');
     $ionicConfigProvider.navBar.alignTitle('center');
+    $authProvider.configure({
+    apiUrl: 'http://api.dreammaker_api.dev:3000/api/v1',
+    storage: 'localStorage'
+  });
 })
-.run(function($ionicPlatform) {
+.run(['$rootScope', '$location', '$ionicPlatform', function($rootScope, $location, $ionicPlatform) {
+  $rootScope.$on('auth:login-success', function() {
+    $location.path('/');
+  });
   $ionicPlatform.ready(function() {
     if (window.cordova && window.cordova.plugins.Keyboard) {
       cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
@@ -17,26 +41,14 @@ angular.module('starter', ['ionic', 'ionic-material', 'ionMdInput', 'starter.con
       StatusBar.styleDefault();
     }
   });
-})
-.config(function($authProvider){
-  $authProvider.configure({
-    apiUrl: 'http://api.dreammaker_api.dev:3000/api/v1',
-    storage: 'localStorage'
-  });
-})
-.run(['$rootScope', '$location', function($rootScope, $location) {
-  $rootScope.$on('auth:login-success', function() {
-    $location.path('/');
-  });
 }])
 .config(function($stateProvider, $urlRouterProvider, $locationProvider) {
   $stateProvider
   .state('app', {
     url: '/app',
     abstract: true,
-    templateUrl: 'templates/menu.html',
-    controller: 'AppCtrl',
-    //controllerAs: 'main'
+    templateUrl: 'app/menu/menu.html',
+    controller: 'App',
     data: {
         requireLogin: true 
       }
@@ -45,8 +57,8 @@ angular.module('starter', ['ionic', 'ionic-material', 'ionMdInput', 'starter.con
     url: '/login',
     views: {
       'menuContent': {
-        templateUrl: 'templates/login.html',
-        controller: 'LoginCtrl',
+        templateUrl: 'app/login/login.html',
+        controller: 'Login',
         controllerAs: 'login'
       }
     }
@@ -55,9 +67,9 @@ angular.module('starter', ['ionic', 'ionic-material', 'ionMdInput', 'starter.con
     url: '/registration',
     views: {
       'menuContent': {
-        templateUrl: 'templates/registration.html',
-        controller: 'RegCtrl',
-        controllerAs: 'registr'
+        templateUrl: 'app/registration/registration.html',
+        controller: 'Registration',
+        controllerAs: 'reg'
       }
     }
   })
@@ -65,8 +77,8 @@ angular.module('starter', ['ionic', 'ionic-material', 'ionMdInput', 'starter.con
     url: '/settings',
     views: {
       'menuContent': {
-        templateUrl: 'settings/settings.html',
-        controller: 'SettingsCtrl',
+        templateUrl: 'app/settings/settings.html',
+        controller: 'Settings',
         controllerAs: 'settings'
       }
     }
@@ -75,8 +87,8 @@ angular.module('starter', ['ionic', 'ionic-material', 'ionMdInput', 'starter.con
       url: '/profile/:id',
       views: {
         'menuContent': {
-          templateUrl: 'profile/profile.html',
-          controller: 'ProfileCtrl',
+          templateUrl: 'app/profile/profile.html',
+          controller: 'Profile',
           controllerAs: 'profile'
         }
       }
@@ -85,7 +97,9 @@ angular.module('starter', ['ionic', 'ionic-material', 'ionMdInput', 'starter.con
       url: '/friends',
       views: {
         'menuContent': {
-          templateUrl: 'friends/friends.html'
+          templateUrl: 'app/friends/friends.html',
+          controller: 'Friends',
+          controllerAs: 'friends'
         }
       }
     })
@@ -93,8 +107,8 @@ angular.module('starter', ['ionic', 'ionic-material', 'ionMdInput', 'starter.con
       url: '/dreams',
       views: {
         'menuContent': {
-          templateUrl: 'templates/dreams.html',
-          controller: 'DreamsListCtrl',
+          templateUrl: 'app/dreamlist/dreams.html',
+          controller: 'DreamList',
           controllerAs: 'dreamlist'
         }
       }
@@ -103,8 +117,8 @@ angular.module('starter', ['ionic', 'ionic-material', 'ionMdInput', 'starter.con
     url: '/dreams/:id',
     views: {
       'menuContent': {
-        templateUrl: 'templates/dream.html',
-        controller: 'DreamShowCtrl',
+        templateUrl: 'app/dreamshow/dream.html',
+        controller: 'DreamShow',
         controllerAs: 'dreamshow'
       }
     }
@@ -113,8 +127,8 @@ angular.module('starter', ['ionic', 'ionic-material', 'ionMdInput', 'starter.con
     url: '/new',
     views: {
       'menuContent': {
-        templateUrl: 'templates/create.html',
-        controller: 'DreamCreateCtrl',
+        templateUrl: 'app/CRUD/create.html',
+        controller: 'DreamCreate',
         controllerAs: 'dreamcreate'
       }
     }
@@ -123,16 +137,16 @@ angular.module('starter', ['ionic', 'ionic-material', 'ionMdInput', 'starter.con
     url: '/dreams/:id/edit',
     views: {
       'menuContent': {
-        templateUrl: 'templates/edit.html',
-        controller: 'DreamEditCtrl',
-        controllerAs: 'dreamedit'
+        templateUrl: 'app/CRUD/update.html',
+        controller: 'DreamUpdate',
+        controllerAs: 'dreamupdate'
       }
     }
   })
   .state('search',{
     url: '/search',
-    templateUrl: 'templates/search.html',
-    controller: 'DreamsListCtrl',
+    templateUrl: 'app/dreamlist/search.html',
+    controller: 'DreamList',
     controllerAs: 'dreamlist'
   });
   
