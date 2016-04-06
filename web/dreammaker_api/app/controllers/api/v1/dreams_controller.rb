@@ -1,10 +1,10 @@
 class Api::V1::DreamsController < ApplicationController
   respond_to :json
-  #before_action :authenticate_api_user!, only: [:create]
+  #before_action :authenticate_api_user!
   before_filter :find_dream, only: [:show, :update, :destroy]
   
   def index
-    respond_with Dream.all  , include:  ['steps']
+    respond_with Dream.all, include:  ['steps', 'user']
   end
 
   def show
