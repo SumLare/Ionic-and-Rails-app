@@ -47,7 +47,6 @@ RSpec.describe Api::V1::UsersController, type: :controller do
 
     context "when isn't created" do
       before(:each) do
-        # Without email
         @invalid_user_attributes = { password: "12345678",
                                      password_confirmation: "12345678" }
         post :create, { user: @invalid_user_attributes }, format: :json
@@ -93,7 +92,7 @@ RSpec.describe Api::V1::UsersController, type: :controller do
       end
 
       it "renders the json errors on whye the user could not be created" do
-        expect(json_resp[:errors][:email]).to include "is invalid"
+        expect(json_resp[:errors][:email]).to include "is not an email"
       end
 
       it { expect(response.code).to eq "422" }

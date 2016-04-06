@@ -13,13 +13,11 @@ module.exports = function(config) {
     frameworks: ['jasmine'],
 
 
-    // list of files / patterns to load in the browser
     files: [
-      
       
     //Angular source
     '../lib/angular/angular.js',
-    '../../node_modules/angular-mocks/angular-mocks.js',
+    '../lib/angular-mocks/angular-mocks.js',
     '../lib/ionic/js/ionic.bundle.js',
     '../lib/angular-local-storage/dist/angular-local-storage.js',
     '../lib/ngCordova/dist/ng-cordova.js',
@@ -28,7 +26,11 @@ module.exports = function(config) {
     '../lib/angular-sanitize/angular-sanitize.js',
 
     //App code
+    '../app/*.js',
     '../js/*.js',
+    '../app/**/*.module.js',
+    '../app/**/*.js',
+
 
     //Test files
     'controllers/*.js'
@@ -52,7 +54,6 @@ module.exports = function(config) {
     reporters: ['progress'],
 
 
-    // web server port
     port: 9876,
 
 
@@ -71,7 +72,7 @@ module.exports = function(config) {
 
     // start these browsers
     // available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
-    browsers: ['PhantomJS', 'Chrome'],
+    browsers: ['PhantomJS'],
 
 
     // Continuous Integration mode

@@ -1,24 +1,12 @@
 <ion-view view-title="Friends">
   <ion-content>
-    <div class="list ">
-            <a ui-sref="app.friends" class="item item-avatar item-icon-right">
-                <img src="img/jon-snow.jpg">
-                <h2>Jon Snow</h2>
-                <p>Some info</p>
-                <i class="icon ion-chatbubble muted"></i>
-            </a>
-            <a ui-sref="app.friends" class="item item-avatar item-icon-right">
-                <img src="img/sansa.jpg">
-                <h2>Sansa Stark</h2>
-                <p>Some info</p>
-                <i class="icon ion-chatbubble muted"></i>
-            </a>
-            <a ui-sref="app.friends" class="item item-avatar item-icon-right">
-                <img src="img/tyrion.jpg">
-                <h2>Tyrion Lannister</h2>
-                <p>Some info</p>
-                <i class="icon ion-chatbubble muted"></i>
-            </a>
-        </div>
+    <div class="list" ng-repeat="friend in friends.user.included">
+      <a ng-href="#/app/profile/{{friend.id}}" class="item item-avatar item-icon-right" ng-if="friend.type == 'users'">
+          <img src="img/default-user.png">
+          <button class="button button-calm followBut" ng-click="$event.preventDefault(); $event.stopPropagation(); friends.follow(friend)">Follow</button>
+          <h2>{{friend.attributes.name}}</h2>
+          <p>{{friend.attributes.email}}</p>
+      </a>
+    </div>
   </ion-content>
 </ion-view>

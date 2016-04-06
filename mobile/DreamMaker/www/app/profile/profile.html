@@ -11,7 +11,7 @@
             <a ui-sref="app.activity" class="tab-item">
                 <i class="icon ion-arrow-graph-up-right"></i> Activity
             </a>
-            <a ui-sref="app.friends" class="tab-item">
+            <a href="#/app/friends/{{user.id}}" class="tab-item">
                 <i class="icon ion-android-people"></i> Friends
             </a>
 
@@ -19,22 +19,11 @@
         <h4 class="content padding double-padding-x">Following</h4>
         <div class="list">
             <a ui-sref="app.friends" class="item item-avatar item-icon-right">
-                <img src="img/jon-snow.jpg">
+                <img src="img/default-user.png">
+                <button class="button button-positive followBut">Follow</button>
                 <h2>Jon Snow</h2>
                 <p>Some info</p>
-                <i class="icon ion-chatbubble muted"></i>
-            </a>
-            <a ui-sref="app.friends" class="item item-avatar item-icon-right">
-                <img src="img/sansa.jpg">
-                <h2>Sansa Stark</h2>
-                <p>Some info</p>
-                <i class="icon ion-chatbubble muted"></i>
-            </a>
-            <a ui-sref="app.friends" class="item item-avatar item-icon-right">
-                <img src="img/tyrion.jpg">
-                <h2>Tyrion Lannister</h2>
-                <p>Some info</p>
-                <i class="icon ion-chatbubble muted"></i>
+                
             </a>
         </div>
     </ion-content>

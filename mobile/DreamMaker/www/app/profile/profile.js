@@ -11,6 +11,7 @@
                   .$promise
                   .then(function (data) {
                     vm.user = data;
+                    console.log(vm.user.data.relationships.friendships.data[0]);
                   });
   };
 
