@@ -12,7 +12,6 @@
     function doLogin(){
       $auth.submitLogin(vm.loginForm)
         .then(function(resp) {
-          vm.currentUser = resp;
           $ionicHistory.nextViewOptions({
             disableBack: true
           });

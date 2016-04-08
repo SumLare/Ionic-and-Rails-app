@@ -32,6 +32,10 @@ angular.module('starter.services', ['ngResource'])
     });
   };
   function friend($resource) {
-    return $resource('http://api.dreammaker_api.dev:3000/friendships');
+    return $resource('http://api.dreammaker_api.dev:3000/friendships/:id',
+    {id: '@id'},
+    {
+      'query':  { method:'GET', isArray:false}
+    });
   };
 })();

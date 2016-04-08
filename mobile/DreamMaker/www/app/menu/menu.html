@@ -20,16 +20,16 @@
     
     <div class="sideList">
       <ion-list class="sideItem">
-        <ion-item menu-close href="#/app/login" class="sideItem" ng-show="!user.id">
+        <ion-item menu-close href="#/app/login" class="sideItem" ng-show="!currentUser.id">
           <i class="icon ion-ios-unlocked"></i> Login
         </ion-item>
         <ion-item menu-close href="#/app/dreams" class="sideItem">
           <i class="icon ion-ios-cloud"></i>  My Dreams
         </ion-item>
-        <ion-item menu-close href="#/app/friends/{{user.id}}" class="sideItem">
+        <ion-item menu-close href="#/app/friends/{{currentUser.id}}" class="sideItem">
          <i class="icon ion-person-stalker"></i> Friends
         </ion-item>
-        <ion-item menu-close href="#/app/profile/{{user.id}}" class="sideItem">
+        <ion-item menu-close href="#/app/profile/{{currentUser.id}}" class="sideItem">
           <i class="icon ion-person"></i> Profile
         </ion-item>
         <ion-item menu-close href="#/app/settings" class="sideItem">

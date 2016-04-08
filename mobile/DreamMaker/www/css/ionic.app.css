@@ -9915,7 +9915,9 @@ i.icon::before {
 .followBut {
   position: absolute !important;
   float: right;
-  right: 1em; }
+  right: 1em;
+  top: 1em;
+  z-index: 9999; }
 
 /* BEGIN Thin */
 @font-face {
