@@ -11,7 +11,7 @@
 
     function doLogin(){
       $auth.submitLogin(vm.loginForm)
-        .then(function(resp) { 
+        .then(function(resp) {
           $ionicHistory.nextViewOptions({
             disableBack: true
           });

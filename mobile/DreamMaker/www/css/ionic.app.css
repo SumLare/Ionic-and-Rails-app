@@ -9733,7 +9733,8 @@ a.button {
 .deleteBut {
   background-color: white;
   margin: 0 auto;
-  padding: 0 !important; }
+  padding: 0 !important;
+  z-index: 1; }
   .deleteBut i {
     margin-left: 15px; }
 
@@ -9814,6 +9815,9 @@ a.button {
 .platform-android ion-popover-view {
   top: 3.8em !important; }
 
+.list {
+  margin-bottom: 0 !important; }
+
 ion-popover-view {
   height: 13em !important; }
 
@@ -9826,11 +9830,12 @@ i.icon::before {
   background-color: transparent;
   position: relative;
   left: 2em;
-  border-bottom: 1px solid #fff !important;
+  border-bottom: 1px solid #ccc !important;
   top: 0.35em;
   z-index: 9999; }
   .searchInput:focus {
-    border-bottom: 2px solid black !important; }
+    border-bottom: 1px solid #fff !important;
+    color: #fff; }
 
 .rating {
   position: absolute;
@@ -9906,6 +9911,13 @@ i.icon::before {
   text-decoration: none; }
   .footerSignUp:active {
     color: #FDF9ED; }
+
+.followBut {
+  position: absolute !important;
+  float: right;
+  right: 1em;
+  top: 1em;
+  z-index: 9999; }
 
 /* BEGIN Thin */
 @font-face {

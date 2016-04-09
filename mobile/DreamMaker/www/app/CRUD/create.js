@@ -26,7 +26,6 @@
             disableBack: true
           });
           $state.go('app.dreams');
-        $state.go('dreams');
       });
     };
 };

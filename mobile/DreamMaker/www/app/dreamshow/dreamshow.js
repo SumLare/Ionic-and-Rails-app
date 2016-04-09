@@ -31,9 +31,7 @@
          title: 'Точно удалить?',
       }).then(function(res) {
         if(res) {
-            step.$delete(function () {
-            $window.location.href = '';
-          })
+          Dream.delete(step);
         };
       });
     };

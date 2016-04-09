@@ -1,6 +1,12 @@
 <ion-view view-title="Profile">
     <ion-content>
         <div class="hero" style="background-image: url('img/background-profile.jpg');">
+                <div ng-repeat="f in profile.friends.data" >
+                  <button ng-hide="currentUser.id == profile.user.data.id" class="button button-balanced-100 followBut" ng-click="$event.preventDefault(); $event.stopPropagation(); f.attributes['friend-id'] == profile.user.data.id ? profile.unfollow(f) : profile.follow(f)">{{f.attributes["friend-id"] == profile.user.data.id ? 'Unfollow' : 'Follow'}}</button>
+                </div>
+                <div ng-show="profile.friends.data.length == 0" >
+                  <button ng-hide="currentUser.id == profile.user.data.id" class="button button-balanced-100 followBut" ng-click="$event.preventDefault(); $event.stopPropagation(); profile.friends.data[0].attributes['friend-id'] == profile.user.data.id ? profile.unfollow(profile.friends.data[0]) : profile.follow(profile.friends.data[0])">{{profile.friends.data[0].attributes["friend-id"] == profile.user.data.id ? 'Unfollow' : 'Follow'}}</button>
+                </div>
             <div class="content">
                 <div class="avatar" style="background-image: url('img/default-user.png');"></div>
                 <h3><a class="light">{{profile.user.data.attributes.name}}</a></h3>
@@ -11,31 +17,13 @@
             <a ui-sref="app.activity" class="tab-item">
                 <i class="icon ion-arrow-graph-up-right"></i> Activity
             </a>
-            <a ui-sref="app.friends" class="tab-item">
+            <a href="#/app/friends/{{profile.user.data.id}}" class="tab-item">
                 <i class="icon ion-android-people"></i> Friends
             </a>
 
         </div>
-        <h4 class="content padding double-padding-x">Following</h4>
-        <div class="list">
-            <a ui-sref="app.friends" class="item item-avatar item-icon-right">
-                <img src="img/jon-snow.jpg">
-                <h2>Jon Snow</h2>
-                <p>Some info</p>
-                <i class="icon ion-chatbubble muted"></i>
-            </a>
-            <a ui-sref="app.friends" class="item item-avatar item-icon-right">
-                <img src="img/sansa.jpg">
-                <h2>Sansa Stark</h2>
-                <p>Some info</p>
-                <i class="icon ion-chatbubble muted"></i>
-            </a>
-            <a ui-sref="app.friends" class="item item-avatar item-icon-right">
-                <img src="img/tyrion.jpg">
-                <h2>Tyrion Lannister</h2>
-                <p>Some info</p>
-                <i class="icon ion-chatbubble muted"></i>
-            </a>
-        </div>
+        <h4 class="content padding double-padding-x">Id: {{profile.user.data.id}}</h4>
+        <h4 class="content padding double-padding-x">Email: {{profile.user.data.attributes.email}}</h4>
+
     </ion-content>
 </ion-view>

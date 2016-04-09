@@ -1,14 +1,13 @@
-describe('DreamListCtrl', function(){
-    var scope;
+describe('starter.dreamlist', function(){
+    var scope, ionicMaterialInk, $ionicPopup, $window, Dream;
 
-    beforeEach(module('starter.controllers'));
+    beforeEach(module('starter.dreamlist'));
 
-    beforeEach(inject(function($rootScope, $controller) {
+    beforeEach(inject(function($rootScope, $controller, ionicMaterialInk, $ionicPopup, $window, Dream) {
         scope = $rootScope.$new();
-        $controller('DreamListCtrl', {$scope: scope});
+        $controller('DreamList', {$scope: scope, });
     }));
 
-    // tests start here
     it('should have get query', function(){
        expect($scope).toBeDefined();
     });

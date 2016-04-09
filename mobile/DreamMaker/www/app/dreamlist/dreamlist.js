@@ -7,24 +7,22 @@
   function DreamList($scope, ionicMaterialInk, $ionicPopup, $window, Dream) {
     ionicMaterialInk.displayEffect();
     var vm = this;
-    vm.deleteDream = deleteDream;
-    vm.refresh = refresh;
-
     Dream.query(function(result){
       vm.dreams = result;
     }); 
-    
+    vm.deleteDream = deleteDream;
+    vm.refresh = refresh;
+
     function deleteDream(dream){
-        $ionicPopup.confirm({
-           title: 'Отказываешься от своей мечты?',
-        }).then(function(res) {
+      $ionicPopup.confirm({
+        title: 'Отказываешься от своей мечты?',
+      }).then(function(res) {
           if(res) {
-              dream.$delete(function () {
-              $window.location.href = '';
-            })
+            Dream.delete(dream);
           }
-        });
+      });
     };
+
     function refresh(){
       Dream.query(function(result){
         vm.dreams = result;

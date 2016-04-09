@@ -3,7 +3,8 @@ class User < ActiveRecord::Base
           :recoverable, :rememberable, :trackable, :validatable,
           :confirmable, :omniauthable
   include DeviseTokenAuth::Concerns::User
-
+  has_many :friendships
+  has_many :friends, through: :friendships
   has_many :dreams
   validates :name, presence: true
   validates :email, uniqueness: { case_sensitive: true }

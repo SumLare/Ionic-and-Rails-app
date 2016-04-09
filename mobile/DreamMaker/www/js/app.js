@@ -1,31 +1,17 @@
-'use strict';
+(function(){
+  'use strict';
 
-angular.module('starter', ['ionic', 
-                          'ionic-material',
-                          'angular-svg-round-progress', 
-                          'countTo',
-                          'ionMdInput', 
-                          'starter.services', 
-                          'ngResource', 
-                          'ng-token-auth',
-                          'starter.app',
-                          'starter.settings',
-                          'starter.profile',
-                          'starter.dreamlist',
-                          'starter.dreamshow',
-                          'starter.friends',
-                          'starter.registration',
-                          'starter.login',
-                          'starter.create',
-                          'starter.update'])
-
+angular.module('starter')
 .config(function($ionicConfigProvider, $authProvider) {
     $ionicConfigProvider.tabs.position('bottom');
     $ionicConfigProvider.form.toggle('large').checkbox('circle');
     $ionicConfigProvider.navBar.alignTitle('center');
     $authProvider.configure({
     apiUrl: 'http://api.dreammaker_api.dev:3000/api/v1',
-    storage: 'localStorage'
+    storage: 'localStorage',
+    handleLoginResponse: function(resp) {
+        return resp.data;
+    },
   });
 })
 .run(['$rootScope', '$location', '$ionicPlatform', function($rootScope, $location, $ionicPlatform) {
@@ -51,7 +37,12 @@ angular.module('starter', ['ionic',
     controller: 'App',
     data: {
         requireLogin: true 
+      },
+    resolve: {
+      auth: function($auth) {
+        return $auth.validateUser();
       }
+    }
   })
   .state('app.login',{
     url: '/login',
@@ -94,7 +85,7 @@ angular.module('starter', ['ionic',
       }
     })
   .state('app.friends', {
-      url: '/friends',
+      url: '/friends/:id',
       views: {
         'menuContent': {
           templateUrl: 'app/friends/friends.html',
@@ -150,6 +141,7 @@ angular.module('starter', ['ionic',
     controllerAs: 'dreamlist'
   });
   
-  $urlRouterProvider.otherwise('/app/dreams');
+  $urlRouterProvider.otherwise('/app/login');
 
 });
+})();
