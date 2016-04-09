@@ -13,8 +13,8 @@
     <ion-refresher on-refresh ="dreamlist.refresh()" spinner="bubbles">
     </ion-refresher>
 
-  <div class="list dreamList" ng-repeat="dream in dreamlist.dreams.data | filter: dreamlist.query">
-      <a class="item dreamItem"  href="#/app/dreams/{{dream.id}}"> {{dream.attributes.title}}<i class="icon ion-heart rating"></i>
+  <div class="list dreamList" ng-repeat="dream in dreamlist.dreams.data | filter: dreamlist.query | orderBy:'attributes.rate':true">
+      <a class="item dreamItem"  href="#/app/dreams/{{dream.id}}"> {{dream.attributes.title}}<i class="icon ion-star rating">{{dream.attributes.rate > 0 ? dream.attributes.rate : 0}}</i>
       </a>
   </div>
   </ion-content>

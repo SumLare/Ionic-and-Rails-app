@@ -15,6 +15,7 @@
               clockwise="true" responsive="false" duration="800"
               animation="easeOutCubic" animation-delay="0" offset="0">
         </div>
+        <i class="icon ion-star large">{{dreamshow.dream.data.attributes.rate > 0 ? dreamshow.dream.data.attributes.rate : 0}}</i>
 </ion-item>
         <ion-item ng-repeat="step in dreamshow.dream.included" class="dreamItem">
         

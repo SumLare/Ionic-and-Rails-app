@@ -4,7 +4,7 @@
         .module('starter.update')
         .controller('DreamUpdate', DreamUpdate);
 
-  function DreamUpdate($state, $stateParams, Dream) {
+  function DreamUpdate($state, $stateParams, $ionicHistory, Dream) {
     var vm = this;
     vm.dream = Dream.get({ id: $stateParams.id });
     vm.updateDream = updateDream;
@@ -12,8 +12,12 @@
     vm.rmStep = rmStep;
     
     function updateDream() {
-      $id = vm.dream.data.id
-      Dream.update({id: $id}, vm.dream.data);
+      vm.id = vm.dream.data.id
+      Dream.update({id: vm.id},vm.dream);
+      $ionicHistory.nextViewOptions({
+        disableBack: true
+      });
+      $state.go('app.dreams');
     };
 
     function loadDream() { 

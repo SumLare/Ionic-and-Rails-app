@@ -14,7 +14,9 @@
     vm.step = new Step();
     vm.steps = [{}];
     function addStep() {
-      vm.steps.push({title: '', description: '', date: ''});
+      angular.forEach(vm.step, function(el){
+        vm.steps.push(el);
+      })
     };
     function rmStep(step) {
       vm.steps.splice(vm.steps.indexOf(step), 1);

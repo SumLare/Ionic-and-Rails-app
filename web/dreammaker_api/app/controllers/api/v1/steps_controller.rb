@@ -40,7 +40,7 @@ class Api::V1::StepsController < ApplicationController
     end
 
     def step_param
-      ActiveModelSerializers::Deserialization.jsonapi_parse(params, only: [:title, :date, :description])
+      params.require(:data).permit(:id, attributes: [:title, :date, :description])
     end
     
 end

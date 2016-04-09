@@ -141,7 +141,7 @@ angular.module('starter')
     controllerAs: 'dreamlist'
   });
   
-  $urlRouterProvider.otherwise('/app/login');
+ //$urlRouterProvider.otherwise('/app/login');
 
 });
 })();

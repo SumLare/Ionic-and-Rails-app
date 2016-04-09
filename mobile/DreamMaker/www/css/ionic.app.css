@@ -9738,6 +9738,14 @@ a.button {
   .deleteBut i {
     margin-left: 15px; }
 
+.dreamList {
+  margin: 0; }
+
+.dreamItem {
+  position: relative;
+  margin: 0 auto;
+  border-bottom: 1px solid #c2c2c2 !important; }
+
 .checkboxDream {
   border: none;
   float: right;
@@ -9842,13 +9850,14 @@ i.icon::before {
   float: right;
   right: 2em; }
 
-.dreamList {
-  margin: 0; }
-
-.dreamItem {
+.large {
   position: relative;
-  margin: 0 auto;
-  border-bottom: 1px solid #c2c2c2 !important; }
+  float: right;
+  right: 1em;
+  font-size: 1.7em !important;
+  cursor: pointer; }
+  .large::before {
+    font-size: 1.2em !important; }
 
 .logIn {
   margin: 0 auto;

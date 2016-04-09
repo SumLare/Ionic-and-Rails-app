@@ -13,6 +13,7 @@ class Api::V1::DreamsController < ApplicationController
 
   def create
     @dream = Dream.new(dream_params)
+   # @dream.user_id = current_api_user.id
     if @dream.save
       render json: @dream, status: :created, location: [:api, @dream]
     else
@@ -41,7 +42,7 @@ private
   end
 
   def dream_params
-    ActiveModelSerializers::Deserialization.jsonapi_parse(params, only: [:title, :last_date])
+    params.require(:data).permit(:id, attributes: [:title, :last_date])
   end
 
 end
