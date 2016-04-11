@@ -19,6 +19,7 @@
       }).then(function(res) {
           if(res) {
             Dream.delete(dream);
+            vm.dreams.data.splice(vm.dreams.data.indexOf(dream), 1);
           }
       });
     };

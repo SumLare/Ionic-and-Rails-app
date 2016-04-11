@@ -20,7 +20,7 @@
       function follow(friend) {
         vm.friend = new Friend({user_id: $rootScope.currentUser.id, friend_id: $stateParams.id});
         vm.friend.$save(function(){
-          console.log('saved');
+
         });
       };
       function unfollow(friend) {

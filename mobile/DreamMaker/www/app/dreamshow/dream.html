@@ -1,6 +1,6 @@
 <ion-view view-title="{{dreamshow.dream.data.attributes.title}}">
-  <ion-nav-buttons side="right">
-    <a class="button button-icon button-clear editBut" href="#/app/dreams/{{dreamshow.dream.data.id}}/edit">
+  <ion-nav-buttons side="right" >
+    <a ng-show="currentUser.id == dreamshow.dream.data.relationships.user.data.id" class="button button-icon button-clear editBut" href="#/app/dreams/{{dreamshow.dream.data.id}}/edit">
    Edit   
     </a>
   </ion-nav-buttons>
@@ -15,13 +15,13 @@
               clockwise="true" responsive="false" duration="800"
               animation="easeOutCubic" animation-delay="0" offset="0">
         </div>
-        <i class="icon ion-star large">{{dreamshow.dream.data.attributes.rate > 0 ? dreamshow.dream.data.attributes.rate : 0}}</i>
+        <i class="icon ion-star star" ng-class="{activeStar : dreamshow.star.attributes.status}" ng-click="dreamshow.rateUp()">{{dreamshow.dream.data.attributes.rate}}</i>
 </ion-item>
         <ion-item ng-repeat="step in dreamshow.dream.included" class="dreamItem">
         
           <ion-checkbox ng-model="step.attributes.finished" class="checkbox-balanced checkboxDream" >Сделано</ion-checkbox>
         
-          Шаг {{step.id}}</br>
+          Шаг {{$index+1}}</br>
           Название: {{step.attributes.title}}</br>
           Дата окончания: {{step.attributes.date}}</br>
           Описание: {{step.attributes.description}}
@@ -29,7 +29,7 @@
             <i class="icon ion-trash-a "></i>
           </ion-option-button>
         </ion-item>
-        <h3 class="lastDate">Окончание срока: {{dreamshow.dream.data.attributes["last-date"]}}</h3>
+        <h3 class="lastDate">Окончание срока: {{dreamshow.dream.data.attributes.lastDate}}</h3>
     </ion-list>
   </ion-content>
 </ion-view>

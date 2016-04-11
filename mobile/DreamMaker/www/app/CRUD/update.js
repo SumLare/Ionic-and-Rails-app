@@ -4,16 +4,19 @@
         .module('starter.update')
         .controller('DreamUpdate', DreamUpdate);
 
-  function DreamUpdate($state, $stateParams, $ionicHistory, Dream) {
+  function DreamUpdate($state, $stateParams, $ionicHistory, Dream, Step) {
     var vm = this;
-    vm.dream = Dream.get({ id: $stateParams.id });
+
+    Dream.get({ id: $stateParams.id }).$promise
+                  .then(function(data) {
+    vm.dream = data;
     vm.updateDream = updateDream;
     vm.loadDream = loadDream;
     vm.rmStep = rmStep;
-    
+    vm.dreamId = vm.dream.data.id;
+   
     function updateDream() {
-      vm.id = vm.dream.data.id
-      Dream.update({id: vm.id},vm.dream);
+      Dream.update({id: vm.dreamId},vm.dream);
       $ionicHistory.nextViewOptions({
         disableBack: true
       });
@@ -26,17 +29,17 @@
         for (var i = 0; i < vm.dream.included.length; i++) {
           vm.dream.included[i].attributes.date = new Date(vm.dream.included[i].attributes.date);
         }
-        vm.dream.data.attributes['last-date'] = new Date(vm.dream.data.attributes['last-date']);
+        vm.dream.data.attributes.lastDate = new Date(vm.dream.data.attributes.lastDate);
       });
     };
 
     function rmStep (step) {
-      //vm.dream.included[step].$delete();
       vm.dream.included.splice(vm.dream.included.indexOf(step), 1);
 
     };
 
     vm.loadDream();
-  };
+  });
+};
 
 })();

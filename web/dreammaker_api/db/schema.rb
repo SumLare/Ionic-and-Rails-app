@@ -11,18 +11,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160409133834) do
+ActiveRecord::Schema.define(version: 20160410202314) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "dreams", force: :cascade do |t|
     t.string   "title"
-    t.date     "last_date"
+    t.date     "lastDate"
+    t.integer  "rate"
     t.integer  "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer  "rate"
   end
 
   add_index "dreams", ["user_id"], name: "index_dreams_on_user_id", using: :btree
@@ -36,6 +36,17 @@ ActiveRecord::Schema.define(version: 20160409133834) do
 
   add_index "friendships", ["friend_id"], name: "index_friendships_on_friend_id", using: :btree
   add_index "friendships", ["user_id"], name: "index_friendships_on_user_id", using: :btree
+
+  create_table "rating_statuses", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "dream_id"
+    t.boolean  "status"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "rating_statuses", ["dream_id"], name: "index_rating_statuses_on_dream_id", using: :btree
+  add_index "rating_statuses", ["user_id"], name: "index_rating_statuses_on_user_id", using: :btree
 
   create_table "steps", force: :cascade do |t|
     t.string   "title"
@@ -74,7 +85,6 @@ ActiveRecord::Schema.define(version: 20160409133834) do
     t.json     "tokens"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "rate_status"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", using: :btree

@@ -90,3 +90,21 @@
       color:#ccc;
     }
 }
+.rating{
+  position: absolute;
+  float:right;
+  right:2em;
+}
+.star {
+  position: relative;
+  float:right;
+  right:1em;
+  font-size: 1.7em ! important;
+  &::before{
+    font-size: 1.2em ! important;
+  }
+  cursor: pointer;
+}
+.activeStar{
+  color: $energized;
+}

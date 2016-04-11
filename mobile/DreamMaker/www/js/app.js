@@ -37,12 +37,7 @@ angular.module('starter')
     controller: 'App',
     data: {
         requireLogin: true 
-      },
-    resolve: {
-      auth: function($auth) {
-        return $auth.validateUser();
       }
-    }
   })
   .state('app.login',{
     url: '/login',
@@ -141,7 +136,7 @@ angular.module('starter')
     controllerAs: 'dreamlist'
   });
   
- //$urlRouterProvider.otherwise('/app/login');
+ $urlRouterProvider.otherwise('/app/login');
 
 });
 })();
