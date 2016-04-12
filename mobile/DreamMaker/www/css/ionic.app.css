@@ -9817,6 +9817,23 @@ a.button {
   .closeStep:hover {
     color: #ccc; }
 
+.rating {
+  position: absolute;
+  float: right;
+  right: 2em; }
+
+.star {
+  position: relative;
+  float: right;
+  right: 1em;
+  font-size: 1.7em !important;
+  cursor: pointer; }
+  .star::before {
+    font-size: 1.2em !important; }
+
+.activeStar {
+  color: #ffc900; }
+
 .platform-android ion-content {
   overflow-y: hidden; }
 
@@ -9844,20 +9861,6 @@ i.icon::before {
   .searchInput:focus {
     border-bottom: 1px solid #fff !important;
     color: #fff; }
-
-.rating {
-  position: absolute;
-  float: right;
-  right: 2em; }
-
-.large {
-  position: relative;
-  float: right;
-  right: 1em;
-  font-size: 1.7em !important;
-  cursor: pointer; }
-  .large::before {
-    font-size: 1.2em !important; }
 
 .logIn {
   margin: 0 auto;

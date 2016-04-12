@@ -4,7 +4,7 @@
         .module('starter.create')
         .controller('DreamCreate', DreamCreate);
 
-  function DreamCreate($state, $stateParams, $ionicHistory, Dream, Step) {
+  function DreamCreate($state, $stateParams, $ionicHistory, Restangular) {
     var vm = this;
     vm.addStep = addStep;
     vm.rmStep = rmStep;

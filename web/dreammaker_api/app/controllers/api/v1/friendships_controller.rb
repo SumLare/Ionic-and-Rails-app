@@ -29,7 +29,7 @@ private
   end
 
   def friend_params
-    params.require(:data).permit(:id, attributes: [:user_id, :friend_id])
+    params.permit(:id, :user_id, :friend_id)
   end
 
 end

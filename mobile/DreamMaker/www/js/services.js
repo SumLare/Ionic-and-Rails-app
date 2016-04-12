@@ -5,7 +5,8 @@ angular.module('starter.services', ['ngResource'])
   .factory('Dream', dream)
   .factory('Step', step)
   .factory('User', user)
-  .factory('Friend', friend);
+  .factory('Friend', friend)
+  .factory('Status', status);
 
   function dream($resource) {
     return $resource('http://api.dreammaker_api.dev:3000/dreams/:id', 
@@ -16,8 +17,8 @@ angular.module('starter.services', ['ngResource'])
       });
   };
   function step($resource) {
-    return $resource('http://api.dreammaker_api.dev:3000/dreams/:id/steps/:id',
-      {id: '@id'},
+    return $resource('http://api.dreammaker_api.dev:3000/dreams/:dreamId/steps/:id',
+      {dreamId: '@dreamId', id: '@id'},
       {
         'query':  { method:'GET', isArray:true },
         'update': { method: 'PUT'}
@@ -36,6 +37,14 @@ angular.module('starter.services', ['ngResource'])
     {id: '@id'},
     {
       'query':  { method:'GET', isArray:false}
+    });
+  };
+  function status($resource) {
+    return $resource('http://api.dreammaker_api.dev:3000/rating_statuses/:id',
+    {id: '@id'},
+    {
+      'query':  { method:'GET', isArray:false},
+      'update': { method:'PUT' }
     });
   };
 })();

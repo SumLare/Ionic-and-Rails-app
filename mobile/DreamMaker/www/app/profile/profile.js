@@ -4,29 +4,27 @@
         .module('starter.profile')
         .controller('Profile', Profile);
 
-  function Profile($rootScope, $stateParams, ionicMaterialInk, User, Friend) {
+  function Profile($rootScope, $stateParams, ionicMaterialInk, Restangular) {
     ionicMaterialInk.displayEffect();
     var vm = this;
-    Friend.query(function(resp){
-      vm.friends = resp;
+    vm.user = Restangular.one('users', $stateParams.id).get().$object;
+    Restangular.all('friendships').getList().then(function (friends) {
+      vm.friends = friends;
     });
+    
+    vm.follow = follow;
+    vm.unfollow = unfollow;
 
-    User.get({ id: $stateParams.id })
-                  .$promise
-                  .then(function (data) {
-      vm.user = data;
-      vm.follow = follow;
-      vm.unfollow = unfollow;
-      function follow(friend) {
-        vm.friend = new Friend({user_id: $rootScope.currentUser.id, friend_id: $stateParams.id});
-        vm.friend.$save(function(){
-          console.log('saved');
-        });
-      };
-      function unfollow(friend) {
-        Friend.delete(friend);
-      }
-    });
+    function follow() {
+      Restangular.all('friendships')
+                 .customPOST({user_id: $rootScope.currentUser.id, 
+                              friend_id: vm.user.data.id});
+    };
+    function unfollow(friend) {
+      friend.remove();
+    };
+
+    
   };
 
 })();

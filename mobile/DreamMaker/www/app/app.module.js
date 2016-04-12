@@ -8,6 +8,7 @@
                               'starter.services', 
                               'ngResource', 
                               'ng-token-auth',
+                              'restangular',
                               'starter.app',
                               'starter.settings',
                               'starter.profile',

@@ -1,6 +1,7 @@
 FactoryGirl.define do
   factory :dream do
     title "Dream title"
-    last_date DateTime.now.to_date
+    lastDate DateTime.now.to_date
+    rate 0
   end
 end
