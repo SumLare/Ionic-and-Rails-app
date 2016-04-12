@@ -4,12 +4,11 @@
         .module('starter.update')
         .controller('DreamUpdate', DreamUpdate);
 
-  function DreamUpdate($state, $stateParams, $ionicHistory, Dream, Step) {
+  function DreamUpdate($state, $stateParams, $ionicHistory, Restangular) {
     var vm = this;
 
-    Dream.get({ id: $stateParams.id }).$promise
-                  .then(function(data) {
-    vm.dream = data;
+Restangular.one('dreams', $stateParams.id).get().then(function(dream) {
+    vm.dream = dream;
     vm.updateDream = updateDream;
     vm.loadDream = loadDream;
     vm.rmStep = rmStep;

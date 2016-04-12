@@ -1,11 +1,13 @@
 <ion-view view-title="Profile">
     <ion-content>
         <div class="hero" style="background-image: url('img/background-profile.jpg');">
-                <div ng-repeat="f in profile.friends.data" >
-                  <button ng-hide="currentUser.id == profile.user.data.id" class="button button-balanced-100 followBut" ng-click="f.attributes['friend-id'] == profile.user.data.id ? profile.unfollow(f) : profile.follow(f)">{{f.attributes["friend-id"] == profile.user.data.id ? 'Unfollow' : 'Follow'}}</button>
+                <div ng-repeat="f in profile.friends" >
+                 <div ng-if="f.attributes['friend-id'] == profile.user.data.id">
+                  <button ng-hide="currentUser.id == profile.user.data.id" class="button button-balanced-100 followBut" ng-click="f.attributes['friend-id'] == profile.user.data.id ? profile.unfollow(f) : profile.follow()">{{f.attributes["friend-id"] == profile.user.data.id ? 'Unfollow' : 'Follow'}}</button>
+                 </div>
                 </div>
-                <div ng-show="profile.friends.data.length == 0" >
-                  <button ng-hide="currentUser.id == profile.user.data.id" class="button button-balanced-100 followBut" ng-click="profile.friends.data[0].attributes['friend-id'] == profile.user.data.id ? profile.unfollow(profile.friends.data[0]) : profile.follow(profile.friends.data[0])">{{profile.friends.data[0].attributes["friend-id"] == profile.user.data.id ? 'Unfollow' : 'Follow'}}</button>
+                <div ng-if="profile.friends.length == 0" >
+                  <button class="button button-balanced-100 followBut" ng-click="profile.follow(profile.friends)">Follow</button>
                 </div>
             <div class="content">
                 <div class="avatar" style="background-image: url('img/default-user.png');"></div>

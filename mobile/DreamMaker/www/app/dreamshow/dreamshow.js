@@ -4,27 +4,24 @@
         .module('starter.dreamshow')
         .controller('DreamShow', DreamShow);
 
-function DreamShow($rootScope, ionicMaterialInk, $stateParams, $ionicPopup, $window, Dream, Step, Status) {
+function DreamShow($rootScope, ionicMaterialInk, $stateParams, $ionicPopup, Restangular, Dream, Step, Status) {
   ionicMaterialInk.displayEffect();
   var vm = this;
   Status.query(function (resp) {
     vm.rate = resp;
   });
-  Dream.get({ id: $stateParams.id })
-                  .$promise
-                  .then(function(data) {
-    vm.dream = data;
+  Restangular.one('dreams', $stateParams.id).get().then(function(dream) {
+    vm.dream = dream;  
     vm.getProgress = getProgress;
     vm.deleteStep = deleteStep;
     vm.rateUp = rateUp;
-    //vm.newRateUp = newRateUp;
+    vm.newRateUp = newRateUp;
 
     angular.forEach(vm.rate.data, function(obj){
       if ($rootScope.currentUser.id == obj.attributes["user-id"] && 
           vm.dream.data.id == obj.attributes["dream-id"]){
         vm.star = obj;
       }
-      console.log(vm.star.attributes.status);
     });
 
     function getProgress(){
@@ -68,17 +65,15 @@ function DreamShow($rootScope, ionicMaterialInk, $stateParams, $ionicPopup, $win
         }
       });
     };
-    // vm.status = new Status({user_id: $rootScope.currentUser.id, 
-    //                             dream_id: vm.dream.data.id, 
-    //                             status: true});
-    // function newRateUp() {
-        
-    //     vm.status.$save(function(){
-    //       vm.dream.data.attributes.rate++;
-    //       vm.id = vm.dream.data.id
-    //       Dream.update({id: vm.id},vm.dream);
-    //     });
-    //   }
+
+    function newRateUp() {
+      Restangular.all('rating_statuses').customPOST({user_id: $rootScope.currentUser.id, 
+                                dream_id: vm.dream.data.id, 
+                                status: true});
+        vm.dream.data.attributes.rate++;
+        vm.id = vm.dream.data.id
+        Dream.update({id: vm.id},vm.dream);
+      }
   });
 };
 

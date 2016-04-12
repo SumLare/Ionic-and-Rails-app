@@ -15,11 +15,11 @@
               clockwise="true" responsive="false" duration="800"
               animation="easeOutCubic" animation-delay="0" offset="0">
         </div>
-        <i class="icon ion-star star" ng-class="{activeStar : dreamshow.star.attributes.status}" ng-click="dreamshow.rateUp()">{{dreamshow.dream.data.attributes.rate}}</i>
+        <i class="icon ion-star star" ng-class="{activeStar : dreamshow.star.attributes.status}" ng-click="dreamshow.star ? dreamshow.rateUp() : dreamshow.newRateUp()">{{dreamshow.dream.data.attributes.rate}}</i>
 </ion-item>
         <ion-item ng-repeat="step in dreamshow.dream.included" class="dreamItem">
         
-          <ion-checkbox ng-model="step.attributes.finished" class="checkbox-balanced checkboxDream" >Сделано</ion-checkbox>
+          <ion-checkbox ng-show="currentUser.id == dreamshow.dream.data.relationships.user.data.id" ng-model="step.attributes.finished" class="checkbox-balanced checkboxDream" >Сделано</ion-checkbox>
         
           Шаг {{$index+1}}</br>
           Название: {{step.attributes.title}}</br>

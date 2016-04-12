@@ -2,10 +2,20 @@
   'use strict';
 
 angular.module('starter')
-.config(function($ionicConfigProvider, $authProvider) {
+.config(function($ionicConfigProvider, $authProvider, RestangularProvider) {
     $ionicConfigProvider.tabs.position('bottom');
     $ionicConfigProvider.form.toggle('large').checkbox('circle');
     $ionicConfigProvider.navBar.alignTitle('center');
+    RestangularProvider.setBaseUrl('http://api.dreammaker_api.dev:3000/');
+    RestangularProvider.addResponseInterceptor(function(data, operation) {
+      var extractedData;
+      if (operation === "getList") {
+        extractedData = data.data;
+      } else {
+        extractedData = data;
+      }
+      return extractedData;
+    });
     $authProvider.configure({
     apiUrl: 'http://api.dreammaker_api.dev:3000/api/v1',
     storage: 'localStorage',
