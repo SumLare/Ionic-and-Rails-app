@@ -30,7 +30,7 @@ class Api::V1::RatingStatusesController < ApplicationController
 private
 
   def status_params
-    params.permit(:id, attributes: [:status, :user_id, :dream_id])
+    params.permit(:id, :status, :user_id, :dream_id)
   end
 
 end
