@@ -9928,8 +9928,13 @@ i.icon::before {
   position: absolute !important;
   float: right;
   right: 1em;
-  top: 1em;
-  z-index: 9999; }
+  bottom: 1em;
+  z-index: 9999;
+  border: none;
+  padding: 0.3em 0.5em;
+  border-radius: 0.4em;
+  background-color: #8BC34A;
+  color: #fff; }
 
 /* BEGIN Thin */
 @font-face {

@@ -6,7 +6,7 @@
           <input type="text" placeholder="Название.." ng-model="dreamcreate.dream.data.attributes.title">
         </label>
         <ion-list>
-          <ion-item ng-repeat="(key, value) in dreamcreate.step" class="addStep"><i class="icon ion-close closeStep" ng-click="dreamcreate.rmStep($index)"></i>
+          <ion-item ng-repeat="step in dreamcreate.step" class="addStep"><i class="icon ion-close closeStep" ng-click="dreamcreate.rmStep($index)"></i>
           Шаг {{$index+1}}
             <label class="item item-input ">
               <input type="text" placeholder="Название шага" ng-model="steps.title">

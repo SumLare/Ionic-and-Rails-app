@@ -4,12 +4,13 @@
         .module('starter.create')
         .controller('DreamCreate', DreamCreate);
 
-  function DreamCreate($state, $stateParams, $ionicHistory, Restangular) {
+  function DreamCreate($rootScope, $state, $stateParams, $ionicHistory, Restangular, Dream, Step) {
     var vm = this;
     vm.addStep = addStep;
     vm.rmStep = rmStep;
     vm.createDream = createDream;
-    vm.dream = new Dream();
+    //vm.dream = new Dream();
+
     vm.date = new Date().toISOString().split("T")[0];
     vm.step = new Step();
     vm.steps = [{}];
@@ -23,12 +24,12 @@
     };
 
     function createDream(){
-      vm.dream.$save(function(){
+      Restangular.all('dreams').post();
         $ionicHistory.nextViewOptions({
             disableBack: true
           });
           $state.go('app.dreams');
-      });
+      
     };
 };
 

@@ -43,7 +43,7 @@ private
   end
 
   def dream_params
-    params.require(:data).permit(:id, attributes: [:title, :lastDate, :rate])
+    params.permit(:id, :title, :lastDate, :rate)
   end
 
 end

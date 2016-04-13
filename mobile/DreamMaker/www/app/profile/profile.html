@@ -1,9 +1,9 @@
 <ion-view view-title="Profile">
-    <ion-content>
+    <ion-content scroll="false">
         <div class="hero" style="background-image: url('img/background-profile.jpg');">
                 <div ng-repeat="f in profile.friends" >
-                 <div ng-if="f.attributes['friend-id'] == profile.user.data.id">
-                  <button ng-hide="currentUser.id == profile.user.data.id" class="button button-balanced-100 followBut" ng-click="f.attributes['friend-id'] == profile.user.data.id ? profile.unfollow(f) : profile.follow()">{{f.attributes["friend-id"] == profile.user.data.id ? 'Unfollow' : 'Follow'}}</button>
+                 <div>
+                  <button ng-hide="currentUser.id == profile.user.data.id" class="followBut" ng-click="f.attributes['friend-id'] == profile.user.data.id ? profile.unfollow(f) : profile.follow()">{{f.attributes["friend-id"] == profile.user.data.id ? 'Unfollow' : 'Follow'}}</button>
                  </div>
                 </div>
                 <div ng-if="profile.friends.length == 0" >
@@ -16,16 +16,16 @@
             </div>
         </div>
         <div class="tabs tabs-dark tabs-icon-top static">
-            <a ui-sref="app.activity" class="tab-item">
-                <i class="icon ion-arrow-graph-up-right"></i> Activity
-            </a>
-            <a href="#/app/friends/{{profile.user.data.id}}" class="tab-item">
-                <i class="icon ion-android-people"></i> Friends
-            </a>
-
+          <a ui-sref="app.activity" class="tab-item">
+              <i class="icon ion-arrow-graph-up-right"></i> Activity
+          </a>
+          <a href="#/app/friends/{{profile.user.data.id}}" class="tab-item">
+              <i class="icon ion-android-people"></i> Friends
+          </a>
         </div>
-        <h4 class="content padding double-padding-x">Id: {{profile.user.data.id}}</h4>
-        <h4 class="content padding double-padding-x">Email: {{profile.user.data.attributes.email}}</h4>
+    </ion-content>
+    <ion-content>
+
 
     </ion-content>
 </ion-view>
