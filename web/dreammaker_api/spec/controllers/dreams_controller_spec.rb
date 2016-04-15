@@ -18,7 +18,7 @@ RSpec.describe Api::V1::DreamsController, type: :controller do
       it { expect(response).to be_success }
 
       it 'have correct attributes' do
-        expect(dream).to have_attributes(title:"Dream title", last_date: DateTime.now)
+        expect(dream).to have_attributes(title:"Dream title", lastDate: DateTime.now)
       end
     end
 
@@ -29,5 +29,16 @@ RSpec.describe Api::V1::DreamsController, type: :controller do
 
   describe 'POST #create' do
     
+  end
+
+  describe 'PUT #update' do
+    
+  end
+
+  describe 'DELETE #destroy' do
+    before (:each) do
+      delete :dream, {id: dream.id}, format: :json
+    end
+    it { expect(Dream.count).to eq 0 }
   end
 end

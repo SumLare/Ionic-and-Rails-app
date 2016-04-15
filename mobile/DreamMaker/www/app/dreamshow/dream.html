@@ -1,6 +1,6 @@
-<ion-view view-title="{{dreamshow.dream.data.attributes.title}}">
+<ion-view view-title="{{dreamshow.dream.attributes.title}}">
   <ion-nav-buttons side="right" >
-    <a ng-show="currentUser.id == dreamshow.dream.data.relationships.user.data.id" class="button button-icon button-clear editBut" href="#/app/dreams/{{dreamshow.dream.data.id}}/edit">
+    <a ng-show="currentUser.id == dreamshow.dream.relationships.user.data.id" class="button button-icon button-clear editBut" href="#/app/dreams/{{dreamshow.dream.id}}/edit">
    Edit   
     </a>
   </ion-nav-buttons>
@@ -15,21 +15,21 @@
               clockwise="true" responsive="false" duration="800"
               animation="easeOutCubic" animation-delay="0" offset="0">
         </div>
-        <i class="icon ion-star star" ng-class="{activeStar : dreamshow.star.attributes.status}" ng-click="dreamshow.star ? dreamshow.rateUp() : dreamshow.newRateUp()">{{dreamshow.dream.data.attributes.rate}}</i>
+        <i class="icon ion-star star" ng-class="{activeStar : dreamshow.star.attributes.status}" ng-click="dreamshow.star ? dreamshow.rateUp() : dreamshow.newRateUp()">{{dreamshow.dream.attributes.rate}}</i>
 </ion-item>
-        <ion-item ng-repeat="step in dreamshow.dream.included" class="dreamItem">
+        <ion-item ng-repeat="step in dreamshow.steps" class="dreamItem">
         
-          <ion-checkbox ng-show="currentUser.id == dreamshow.dream.data.relationships.user.data.id" ng-model="step.attributes.finished" class="checkbox-balanced checkboxDream" >Сделано</ion-checkbox>
+          <ion-checkbox ng-show="currentUser.id == dreamshow.dream.relationships.user.data.id" ng-model="step.attributes.finished" ng-click="dreamshow.updateStepStatus(step)" class="checkbox-balanced checkboxDream" >Сделано</ion-checkbox>
         
           Шаг {{$index+1}}</br>
           Название: {{step.attributes.title}}</br>
           Дата окончания: {{step.attributes.date}}</br>
           Описание: {{step.attributes.description}}
-          <ion-option-button class="deleteBut button-assertive" ng-click="dreamshow.deleteStep(step)">
+          <ion-option-button ng-show="currentUser.id == dreamshow.dream.relationships.user.data.id" class="deleteBut button-assertive" ng-click="dreamshow.deleteStep(step)">
             <i class="icon ion-trash-a "></i>
           </ion-option-button>
         </ion-item>
-        <h3 class="lastDate">Окончание срока: {{dreamshow.dream.data.attributes.lastDate}}</h3>
+        <h3 class="lastDate">Окончание срока: {{dreamshow.dream.attributes.lastDate}}</h3>
     </ion-list>
   </ion-content>
 </ion-view>

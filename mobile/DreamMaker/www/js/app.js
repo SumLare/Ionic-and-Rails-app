@@ -8,12 +8,7 @@ angular.module('starter')
     $ionicConfigProvider.navBar.alignTitle('center');
     RestangularProvider.setBaseUrl('http://api.dreammaker_api.dev:3000/');
     RestangularProvider.addResponseInterceptor(function(data, operation) {
-      var extractedData;
-      if (operation === "getList") {
-        extractedData = data.data;
-      } else {
-        extractedData = data;
-      }
+      var extractedData = data.data;
       return extractedData;
     });
     $authProvider.configure({
@@ -49,6 +44,16 @@ angular.module('starter')
         requireLogin: true 
       }
   })
+  .state('app.profile', {
+      url: '/profile/:id',
+      views: {
+        'menuContent': {
+          templateUrl: 'app/profile/profile.html',
+          controller: 'Profile',
+          controllerAs: 'profile'
+        }
+      }
+    })
   .state('app.login',{
     url: '/login',
     views: {
@@ -79,18 +84,8 @@ angular.module('starter')
       }
     }
   })
-  .state('app.profile', {
-      url: '/profile/:id',
-      views: {
-        'menuContent': {
-          templateUrl: 'app/profile/profile.html',
-          controller: 'Profile',
-          controllerAs: 'profile'
-        }
-      }
-    })
   .state('app.friends', {
-      url: '/friends/:id',
+      url: '/profile/:id/friends',
       views: {
         'menuContent': {
           templateUrl: 'app/friends/friends.html',

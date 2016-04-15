@@ -4,7 +4,7 @@ class Api::V1::DreamsController < ApplicationController
   before_filter :find_dream, only: [:show, :update, :destroy]
   
   def index
-    respond_with Dream.all, include:  ['steps', 'user']
+    respond_with Dream.all, include:  ['user']
   end
 
   def show
@@ -43,7 +43,7 @@ private
   end
 
   def dream_params
-    params.permit(:id, :title, :lastDate, :rate)
+    params.permit(:id, attributes: [:title, :lastDate, :rate])
   end
 
 end

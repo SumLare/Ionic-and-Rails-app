@@ -3,20 +3,20 @@
     <ion-content>
       <div class="list createList">
         <label class="item item-input">
-          <input type="text" placeholder="Название.." ng-model="dreamcreate.dream.data.attributes.title">
+          <input type="text" placeholder="Название.." ng-model="dreamcreate.title">
         </label>
         <ion-list>
-          <ion-item ng-repeat="step in dreamcreate.step" class="addStep"><i class="icon ion-close closeStep" ng-click="dreamcreate.rmStep($index)"></i>
+          <ion-item ng-repeat="step in dreamcreate.steps" class="addStep"><i class="icon ion-close closeStep" ng-click="dreamcreate.rmStep($index)"></i>
           Шаг {{$index+1}}
             <label class="item item-input ">
-              <input type="text" placeholder="Название шага" ng-model="steps.title">
+              <input type="text" placeholder="Название шага" ng-model="step.stepTitle">
             </label>
             <label class="item item-input">
-              <input type="text" placeholder="Краткое описание.." ng-model="steps.description"></input>
+              <input type="text" placeholder="Краткое описание.." ng-model="step.stepDesc"></input>
             </label>
             <label class="item item-input">
               <span class="input-label">Дата окончания</span>
-              <input type="date" ng-model="steps.date" min="{{date}}">
+              <input type="date" ng-model="step.stepDate" min="{{date}}">
             </label>
           </ion-item>
         </ion-list>
@@ -27,10 +27,10 @@
         </div>
         <label class="item item-input">
           <span class="input-label">Дата окончания</span>
-          <input type="date" ng-model="dreamcreate.dream.data.attributes.lastDate" >
+          <input type="date" ng-model="dreamcreate.lastDate">
         </label>
       </div>
     </ion-content>
-    <input class="tabs tabs-balanced createBut" type="submit" value="Создать мечту">
+    <input class="tabs tabs-balanced createBut" type="submit" value="Записать цель">
     </form>
 </ion-view>

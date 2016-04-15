@@ -2,7 +2,7 @@ class Api::V1::FriendshipsController < ApplicationController
   respond_to :json
     before_filter :find_friend, only: [:show, :destroy]
   def index
-    respond_with Friendship.all
+    respond_with User.find(params[:user_id]).friends
   end
 
   def show
@@ -10,9 +10,10 @@ class Api::V1::FriendshipsController < ApplicationController
   end
 
   def create
-    @frienship = Friendship.new(friend_params)
+    @user = User.find(params[:user_id])
+    @frienship = @user.friendships.build(friend_params)
     if @frienship.save
-      render json: @frienship, status: :created
+      render json: @frienship, status: :created, location: [:api, @user, @frienship]
     else
       render json: { errors: @frienship.errors }, status: 422
     end
@@ -25,7 +26,8 @@ class Api::V1::FriendshipsController < ApplicationController
 private
   
   def find_friend
-    @frienship = Friendship.find(params[:id])
+    @user = User.find(params[:user_id])
+    @friendship = @user.friendships.find(params[:id])
   end
 
   def friend_params

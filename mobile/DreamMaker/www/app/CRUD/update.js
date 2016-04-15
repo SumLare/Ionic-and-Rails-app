@@ -6,39 +6,44 @@
 
   function DreamUpdate($state, $stateParams, $ionicHistory, Restangular) {
     var vm = this;
-
-Restangular.one('dreams', $stateParams.id).get().then(function(dream) {
-    vm.dream = dream;
+  vm.steps = Restangular.one('dreams', $stateParams.id).getList('steps').$object;
+  vm.dream = Restangular.one('dreams', $stateParams.id).get().$object;//.then(function(dream) {
+    //vm.dream = dream;
     vm.updateDream = updateDream;
-    vm.loadDream = loadDream;
+
     vm.rmStep = rmStep;
-    vm.dreamId = vm.dream.data.id;
-   
+
     function updateDream() {
-      Dream.update({id: vm.dreamId},vm.dream);
+      vm.dream.put();
+      // vm.steps.put({title: vm.steps.attributes.title,
+      //               description: vm.steps.attributes.description,
+      //               date: vm.steps.attributes.date});
       $ionicHistory.nextViewOptions({
         disableBack: true
       });
       $state.go('app.dreams');
     };
-
+  Restangular.one('dreams', $stateParams.id).get().then(function(d){
+        vm.loadDream = loadDream;
     function loadDream() { 
-      vm.dream.$promise.then(function(data) {
-        vm.dream = data;
-        for (var i = 0; i < vm.dream.included.length; i++) {
-          vm.dream.included[i].attributes.date = new Date(vm.dream.included[i].attributes.date);
-        }
-        vm.dream.data.attributes.lastDate = new Date(vm.dream.data.attributes.lastDate);
-      });
+      for (var i = 0; i < vm.steps.length; i++) {
+        vm.steps[i].attributes.date = new Date(vm.steps[i].attributes.date);
+      }
+      
+        vm.d = d;
+      
+      vm.d.attributes.lastDate = new Date(vm.d.attributes.lastDate);
     };
+    vm.loadDream();
+    });
 
     function rmStep (step) {
-      vm.dream.included.splice(vm.dream.included.indexOf(step), 1);
-
+      step.remove();
+      vm.steps.splice(vm.steps.indexOf(step), 1);
     };
 
-    vm.loadDream();
-  });
+    
+  //});
 };
 
 })();

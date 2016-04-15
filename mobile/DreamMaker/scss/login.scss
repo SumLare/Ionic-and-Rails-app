@@ -1,6 +1,6 @@
 @mixin footerLogin{
   position:absolute;
-  bottom:20px;
+  bottom:1.4em;
   font-size: 1.15em;
 }
 .logIn{
@@ -9,24 +9,24 @@
   background-size: cover;
 }
 .formLogIn{
-  padding: 20px;
-  margin-top:130px;
+  padding: 1.5em;
+  margin-top:10em;
 }
 .mdInput {
   width: auto !important;
   input {
-    padding: 10px !important;
-    height: 40px !important;
+    padding: 0.5em !important;
+    height: 2.9em !important;
   }
 }
 .butLogIn{
   position:relative;
   padding:0;
-  top:40px;
+  top:2.1em;
   background: #00bfa5;
-  border-radius:25px;
+  border-radius:2em;
   color: white;
-  height:47px;
+  height:2.7em;
   font-weight: normal;
   font-size: 18px;
   line-height: 1.42857;
@@ -41,8 +41,9 @@
 }
 .social{
   position:relative;
-  top:50px;
+  top:4em;
   padding:20px;
+  box-shadow:none !important;
 }
 .footerForget{
   @include footerLogin;

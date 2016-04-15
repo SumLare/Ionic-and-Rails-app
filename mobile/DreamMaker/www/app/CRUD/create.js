@@ -4,32 +4,41 @@
         .module('starter.create')
         .controller('DreamCreate', DreamCreate);
 
-  function DreamCreate($rootScope, $state, $stateParams, $ionicHistory, Restangular, Dream, Step) {
+  function DreamCreate($rootScope, $state, $stateParams, $ionicHistory, Restangular) {
     var vm = this;
     vm.addStep = addStep;
     vm.rmStep = rmStep;
     vm.createDream = createDream;
-    //vm.dream = new Dream();
+    //vm.date = new Date().toISOString().split("T")[0];
+    vm.steps = [step];
 
-    vm.date = new Date().toISOString().split("T")[0];
-    vm.step = new Step();
-    vm.steps = [{}];
     function addStep() {
-      angular.forEach(vm.step, function(el){
-        vm.steps.push(el);
-      })
+      vm.steps.push(step);
     };
+
     function rmStep(step) {
       vm.steps.splice(vm.steps.indexOf(step), 1);
     };
 
+      var step = {
+        title: vm.stepTitle,
+        description: vm.stepDesc,
+        date: vm.stepDate,
+      }
     function createDream(){
-      Restangular.all('dreams').post();
-        $ionicHistory.nextViewOptions({
+      var dream = {
+        title: vm.title,
+        lastDate: vm.lastDate
+      }
+      Restangular.all('dreams').post(dream).then(
+        function(res){
+          Restangular.all('steps').post(step);
+          $ionicHistory.nextViewOptions({
             disableBack: true
           });
           $state.go('app.dreams');
-      
+        }
+      );      
     };
 };
 

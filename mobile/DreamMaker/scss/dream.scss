@@ -39,10 +39,6 @@
 .dreamItem label.checkboxDream{
   width: auto !important;
 }
-.addStep{
-  text-align:center;
-  background-color: #33CD5F;
-}
 .addBut::before{
   margin-top:6px !important;
 }
@@ -57,19 +53,10 @@
   padding-bottom:50px;
 }
 .addStep{
+  text-align:center;
+  background-color: #33CD5F;
   overflow-y: hidden;
   max-height: 200px; 
-  transition-property: all;
-  transition-duration: 1s;
-  transition-timing-function: cubic-bezier(0, 1, 0.5, 1);
-  .ng-enter{
-    position: absolute;
-    bottom: 100px;
-  }
-  .ng-enter.ng-enter-active {
-    position: relative;
-    bottom: 0px;
-  }
 }
 .lastDate{
   text-align: center;

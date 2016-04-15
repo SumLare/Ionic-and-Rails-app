@@ -5,6 +5,7 @@ RSpec.describe Dream, type: :model do
   
   it { expect(dream).to respond_to(:title) }
   it { expect(dream).to respond_to(:lastDate) }
+  it { expect(dream).to respond_to(:rate) }
 
   it { expect(dream).to validate_presence_of(:title) }
   it { expect(dream).to validate_presence_of(:lastDate) }

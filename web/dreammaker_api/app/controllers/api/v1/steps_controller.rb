@@ -1,9 +1,11 @@
 class Api::V1::StepsController < ApplicationController
   respond_to :json
-  before_filter :find_step, only: [:show, :update, :destroy]
+  before_filter :find_step, only: [:show, :destroy]
+  before_filter :find_dream, only: [:create, :update]
 
   def index
-    respond_with Step.all
+    @steps =  Step.where(dream_id: params[:dream_id])
+    render json: @steps
   end
 
   def show
@@ -11,7 +13,7 @@ class Api::V1::StepsController < ApplicationController
   end
 
   def create
-    @step = Step.new(step_params)
+    @step = @dream.steps.build(step_params)
     if @step.save
       render json: @step, status: :created, location: [:api, @step]
     else
@@ -20,9 +22,9 @@ class Api::V1::StepsController < ApplicationController
   end
 
   def update
-    @step = Step.update(step_params)
-    if @step.save
-      render json: @step, status: :created, location: [:api, @step]
+    @step = @dream.steps.find(params[:id])
+    if @step.update(step_params)
+      render json: @step, status: :created, location: [:api, @dream, @step]
     else
       render json: { errors: @step.errors }, status: 422
     end
@@ -39,8 +41,12 @@ class Api::V1::StepsController < ApplicationController
       @step = Step.find(params[:id])
     end
 
-    def step_param
-      params.require(:data).permit(:id, attributes: [:title, :date, :description])
+    def find_dream
+      @dream = Dream.find(params[:dream_id])
+    end
+
+    def step_params
+      params.permit(:id, attributes: [:title, :date, :description, :finished])
     end
     
 end

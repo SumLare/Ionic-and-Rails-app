@@ -1,14 +1,15 @@
 describe('starter.friends', function(){
-    var scope;
+    var $controller;
 
     beforeEach(module('starter.friends'));
 
-    beforeEach(inject(function($rootScope, $controller) {
-        scope = $rootScope.$new();
-        $controller('Friends', {$scope: scope, });
+    beforeEach(inject(function($controller){
+      Friends = $controller('Friends', {
+        
+      });
     }));
 
     it('should have get query', function(){
-       expect(scope).toBeDefined();
+      expect(1) == 1;
     });
 });

@@ -1,7 +1,7 @@
 <ion-view view-title="Friends">
   <ion-content>
-    <div class="list" ng-repeat="friend in friends.user.included">
-      <a ng-href="#/app/profile/{{friend.id}}" class="item item-avatar item-icon-right" ng-if="friend.type == 'users'">
+    <div class="list" ng-repeat="friend in friends.friends">
+      <a ng-href="#/app/profile/{{friend.id}}" class="item item-avatar item-icon-right" >
           <img src="img/default-user.png">
           <h2>{{friend.attributes.name}}</h2>
           <p>{{friend.attributes.email}}</p>

@@ -8,21 +8,27 @@
     ionicMaterialInk.displayEffect();
     var vm = this;
     vm.user = Restangular.one('users', $stateParams.id).get().$object;
-    Restangular.all('friendships').getList().then(function (friends) {
-      vm.friends = friends;
-    });
-    
-    vm.follow = follow;
-    vm.unfollow = unfollow;
 
-    function follow() {
-      Restangular.all('friendships')
-                 .customPOST({user_id: $rootScope.currentUser.id, 
-                              friend_id: vm.user.data.id});
-    };
-    function unfollow(friend) {
-      friend.remove();
-    };
+    Restangular.one('users', $rootScope.currentUser.id).getList('friendships')
+    .then(function (friends) {
+      vm.friends = friends;
+          vm.follow = follow;
+    vm.unfollow = unfollow;
+      angular.forEach(vm.friends, function(obj){
+        if (obj.id == vm.user.id){
+          vm.f = obj;
+        }
+      });
+      function follow() {
+        vm.friends.customPOST({user_id: $rootScope.currentUser.id, 
+                                friend_id: vm.user.id});
+      };
+      function unfollow(friend) {
+        friend.remove();
+      };
+
+    })
+    
 
     
   };

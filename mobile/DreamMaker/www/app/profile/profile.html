@@ -1,31 +1,24 @@
 <ion-view view-title="Profile">
     <ion-content scroll="false">
         <div class="hero" style="background-image: url('img/background-profile.jpg');">
-                <div ng-repeat="f in profile.friends" >
-                 <div>
-                  <button ng-hide="currentUser.id == profile.user.data.id" class="followBut" ng-click="f.attributes['friend-id'] == profile.user.data.id ? profile.unfollow(f) : profile.follow()">{{f.attributes["friend-id"] == profile.user.data.id ? 'Unfollow' : 'Follow'}}</button>
-                 </div>
-                </div>
-                <div ng-if="profile.friends.length == 0" >
-                  <button class="button button-balanced-100 followBut" ng-click="profile.follow(profile.friends)">Follow</button>
-                </div>
-            <div class="content">
-                <div class="avatar" style="background-image: url('img/default-user.png');"></div>
-                <h3><a class="light">{{profile.user.data.attributes.name}}</a></h3>
-                <h4>short text</h4>
-            </div>
+          <div class="content">
+              <button ng-hide="currentUser.id == profile.user.id" class="followBut" ng-click="profile.f.id == profile.user.id ? profile.unfollow(profile.f) : profile.follow()">{{profile.f.id == profile.user.id ? 'Unfollow' : 'Follow'}}</button>
+              <div class="avatar" style="background-image: url('img/default-user.png');"></div>
+              <h3><a class="light">{{profile.user.attributes.name}}</a></h3>
+              <h4>short text</h4>
+
+          </div>
         </div>
+
         <div class="tabs tabs-dark tabs-icon-top static">
-          <a ui-sref="app.activity" class="tab-item">
+
+          <a class="tab-item">
               <i class="icon ion-arrow-graph-up-right"></i> Activity
           </a>
-          <a href="#/app/friends/{{profile.user.data.id}}" class="tab-item">
+          <a href="#/app/profile/{{profile.user.id}}/friends" class="tab-item">
               <i class="icon ion-android-people"></i> Friends
           </a>
         </div>
-    </ion-content>
-    <ion-content>
-
-
+        
     </ion-content>
 </ion-view>

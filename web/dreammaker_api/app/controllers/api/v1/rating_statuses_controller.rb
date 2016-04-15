@@ -2,12 +2,7 @@ class Api::V1::RatingStatusesController < ApplicationController
   respond_to :json
 
   def index
-    respond_with RatingStatus.all
-  end
-
-  def show
-    @status = RatingStatus.find(params[:id])
-    render json: @status
+    respond_with RatingStatus.where(dream_id: params[:dream_id])
   end
 
   def create
@@ -20,9 +15,10 @@ class Api::V1::RatingStatusesController < ApplicationController
   end
 
   def update
-    @status = RatingStatus.find(params[:id])
-    if @status.update_attribute(:status, params[:attributes][:status])
-      render json: @status, status: 200, location: [:api, @status]
+    @dream = Dream.find(params[:dream_id])
+    @status = @dream.rating_statuses.find(params[:id])
+    if @status.update(status_params)
+      render json: @status, status: 200, location: [:api, @dream, @status]
     else
       render json: { errors: @status.errors }, status: 422
     end
@@ -30,7 +26,7 @@ class Api::V1::RatingStatusesController < ApplicationController
 private
 
   def status_params
-    params.permit(:id, :status, :user_id, :dream_id)
+    params.permit(:id, attributes: [:status, :user_id, :dream_id])
   end
 
 end
