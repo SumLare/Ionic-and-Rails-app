@@ -6,8 +6,11 @@
 
   function Friends($rootScope, $stateParams, Restangular) {
     var vm = this;
-    vm.friends = Restangular.one('users', $stateParams.id)
-                            .getList('friendships').$object;
+    Restangular.all('users').getList().then(function (friends) {
+      vm.friends = friends;
+    
+      
+    });
   };
 
 })();

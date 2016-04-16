@@ -3,12 +3,11 @@ class Api::V1::UsersController < ApplicationController
   before_filter :find_user, only: [:show, :update, :destroy]
   
   def index
-    @users = User.all
-    render json: @users, include: ['dreams', 'friends']
+    respond_with User.all
   end
 
   def show
-    render json: @user, include: ['dreams', 'friends']
+    render json: @user
   end
 
   def create

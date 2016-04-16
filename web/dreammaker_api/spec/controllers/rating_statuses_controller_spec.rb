@@ -1,5 +1,5 @@
 require 'rails_helper'
 
-RSpec.describe RatingStatusesController, type: :controller do
+RSpec.describe Api::V1::RatingStatusesController, type: :controller do
 
 end

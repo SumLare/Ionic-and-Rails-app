@@ -2,7 +2,7 @@
     <ion-content scroll="false">
         <div class="hero" style="background-image: url('img/background-profile.jpg');">
           <div class="content">
-              <button ng-hide="currentUser.id == profile.user.id" class="followBut" ng-click="profile.f.id == profile.user.id ? profile.unfollow(profile.f) : profile.follow()">{{profile.f.id == profile.user.id ? 'Unfollow' : 'Follow'}}</button>
+              <button ng-hide="currentUser.id == profile.user.id" class="followBut" ng-click="profile.f.attributes['friend-id'] == profile.user.id ? profile.unfollow(profile.f) : profile.follow()">{{profile.f.attributes["friend-id"] == profile.user.id ? 'Unfollow' : 'Follow'}}</button>
               <div class="avatar" style="background-image: url('img/default-user.png');"></div>
               <h3><a class="light">{{profile.user.attributes.name}}</a></h3>
               <h4>short text</h4>

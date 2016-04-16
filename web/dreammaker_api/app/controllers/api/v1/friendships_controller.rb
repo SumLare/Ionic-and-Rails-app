@@ -2,7 +2,7 @@ class Api::V1::FriendshipsController < ApplicationController
   respond_to :json
     before_filter :find_friend, only: [:show, :destroy]
   def index
-    respond_with User.find(params[:user_id]).friends
+    respond_with Friendship.where(user_id: params[:user_id])
   end
 
   def show
@@ -20,7 +20,7 @@ class Api::V1::FriendshipsController < ApplicationController
   end
 
   def destroy
-    @frienship.destroy
+    @friendship.destroy
     head 204
   end
 private

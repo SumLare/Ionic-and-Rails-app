@@ -4,7 +4,7 @@
 angular.module('starter')
 .config(function($ionicConfigProvider, $authProvider, RestangularProvider) {
     $ionicConfigProvider.tabs.position('bottom');
-    $ionicConfigProvider.form.toggle('large').checkbox('circle');
+    $ionicConfigProvider.form.toggle('large');
     $ionicConfigProvider.navBar.alignTitle('center');
     RestangularProvider.setBaseUrl('http://api.dreammaker_api.dev:3000/');
     RestangularProvider.addResponseInterceptor(function(data, operation) {
@@ -79,6 +79,16 @@ angular.module('starter')
     views: {
       'menuContent': {
         templateUrl: 'app/settings/settings.html',
+        controller: 'Settings',
+        controllerAs: 'settings'
+      }
+    }
+  })
+  .state('app.confidentiality', {
+    url: '/settings/confidentiality',
+    views: {
+      'menuContent': {
+        templateUrl: 'app/settings/confidentiality.html',
         controller: 'Settings',
         controllerAs: 'settings'
       }

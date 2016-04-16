@@ -9914,6 +9914,13 @@ i.icon::before {
   .footerSignUp:active {
     color: #FDF9ED; }
 
+.settingsCheckBox {
+  border: none;
+  float: right;
+  position: absolute;
+  right: -28em;
+  top: 0; }
+
 .followBut {
   position: absolute !important;
   float: right;
