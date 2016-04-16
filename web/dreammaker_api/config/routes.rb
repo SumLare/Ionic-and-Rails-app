@@ -8,6 +8,7 @@ Rails.application.routes.draw do
         resources :steps, except: [:edit, :new]
       end
       resources :users, except: [:edit, :new] do
+        resources :settings, only: [:index, :create, :update]
         resources :friendships, only: [:create, :index, :show, :destroy]
       end
     end

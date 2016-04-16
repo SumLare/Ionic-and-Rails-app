@@ -75,7 +75,7 @@ angular.module('starter')
     }
   })
   .state('app.settings', {
-    url: '/settings',
+    url: '/users/:id/settings',
     views: {
       'menuContent': {
         templateUrl: 'app/settings/settings.html',
@@ -85,7 +85,7 @@ angular.module('starter')
     }
   })
   .state('app.confidentiality', {
-    url: '/settings/confidentiality',
+    url: '/users/:id/settings/confidentiality',
     views: {
       'menuContent': {
         templateUrl: 'app/settings/confidentiality.html',

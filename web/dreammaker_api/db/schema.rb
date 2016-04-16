@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160410202314) do
+ActiveRecord::Schema.define(version: 20160416122804) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -47,6 +47,17 @@ ActiveRecord::Schema.define(version: 20160410202314) do
 
   add_index "rating_statuses", ["dream_id"], name: "index_rating_statuses_on_dream_id", using: :btree
   add_index "rating_statuses", ["user_id"], name: "index_rating_statuses_on_user_id", using: :btree
+
+  create_table "settings", force: :cascade do |t|
+    t.integer  "user_id"
+    t.boolean  "friendsRating"
+    t.boolean  "friendsViewProfile"
+    t.boolean  "notifications"
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+  end
+
+  add_index "settings", ["user_id"], name: "index_settings_on_user_id", using: :btree
 
   create_table "steps", force: :cascade do |t|
     t.string   "title"

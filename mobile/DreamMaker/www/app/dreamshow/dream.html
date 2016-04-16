@@ -20,7 +20,6 @@
         <ion-item ng-repeat="step in dreamshow.steps" class="dreamItem">
         
           <ion-checkbox ng-show="currentUser.id == dreamshow.dream.relationships.user.data.id" ng-model="step.attributes.finished" ng-click="dreamshow.updateStepStatus(step)" class="checkbox-balanced checkboxDream" >Сделано</ion-checkbox>
-        
           Шаг {{$index+1}}</br>
           Название: {{step.attributes.title}}</br>
           Дата окончания: {{step.attributes.date}}</br>
