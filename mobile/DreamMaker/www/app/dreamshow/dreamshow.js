@@ -7,11 +7,14 @@
 function DreamShow($rootScope, ionicMaterialInk, $stateParams, $ionicPopup, Restangular) {
   ionicMaterialInk.displayEffect();
   var vm = this;
-
+  vm.friends = Restangular.one('users', 1).getList('friendships').$object;
   vm.rate = Restangular.one('dreams', $stateParams.id).getList('rating_statuses').$object;
   vm.steps = Restangular.one('dreams', $stateParams.id).getList('steps').$object;
+  vm.settings = Restangular.one('users', 1).getList('settings').$object;
   Restangular.one('dreams', $stateParams.id).get().then(function(dream) {
     vm.dream = dream;
+    vm.userDreamId = vm.dream.relationships.user.data.id;
+    console.log(vm.userDreamId);
     vm.getProgress = getProgress;
     vm.deleteStep = deleteStep;
     vm.rateUp = rateUp;
@@ -21,6 +24,11 @@ function DreamShow($rootScope, ionicMaterialInk, $stateParams, $ionicPopup, Rest
       if ($rootScope.currentUser.id == obj.attributes["user-id"] && 
           vm.dream.id == obj.attributes["dream-id"]){
         vm.star = obj;
+      }
+    });
+    angular.forEach(vm.friends, function (val) {
+      if ($rootScope.currentUser.id == val.attributes["friend-id"]){
+        vm.friend = val;
       }
     });
 
@@ -65,8 +73,7 @@ function DreamShow($rootScope, ionicMaterialInk, $stateParams, $ionicPopup, Rest
     };
 
     function newRateUp() {
-      Restangular.all('rating_statuses').customPOST({user_id: $rootScope.currentUser.id, 
-                                dream_id: vm.dream.id, 
+      vm.dream.customPOST({},"rating_statuses", {user_id: $rootScope.currentUser.id, 
                                 status: true});
         vm.dream.attributes.rate++;
         vm.dream.put();

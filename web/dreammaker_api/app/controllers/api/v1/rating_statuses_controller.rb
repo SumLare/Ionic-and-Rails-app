@@ -6,7 +6,8 @@ class Api::V1::RatingStatusesController < ApplicationController
   end
 
   def create
-    @status = RatingStatus.new(status_params)
+    @dream = Dream.find(params[:dream_id])
+    @status = @dream.rating_statuses.build(status_params)
     if @status.save
       render json: @status, status: :created, location: [:api, @status]
     else

@@ -15,8 +15,8 @@
               clockwise="true" responsive="false" duration="800"
               animation="easeOutCubic" animation-delay="0" offset="0">
         </div>
-        <i class="icon ion-star star" ng-class="{activeStar : dreamshow.star.attributes.status}" ng-click="dreamshow.star ? dreamshow.rateUp() : dreamshow.newRateUp()">{{dreamshow.dream.attributes.rate}}</i>
-</ion-item>
+        <div ng-if="dreamshow.settings['0'].attributes.friendsRating"><i ng-if="dreamshow.friend" class="icon ion-star star" ng-class="{activeStar : dreamshow.star.attributes.status}" ng-click="dreamshow.star ? dreamshow.rateUp() : dreamshow.newRateUp()">{{dreamshow.dream.attributes.rate}}</i></div>
+      </ion-item>
         <ion-item ng-repeat="step in dreamshow.steps" class="dreamItem">
         
           <ion-checkbox ng-show="currentUser.id == dreamshow.dream.relationships.user.data.id" ng-model="step.attributes.finished" ng-click="dreamshow.updateStepStatus(step)" class="checkbox-balanced checkboxDream" >Сделано</ion-checkbox>

@@ -11,31 +11,22 @@
     Restangular.one('users', $stateParams.id).getList('settings').then(function(settings){
       vm.settings = settings[0];
       vm.signOut = signOut;
-      vm.friendRating = friendRating;
-      vm.friendViewProfile = friendViewProfile;
-      vm.notifications = notifications;
+      vm.updateSettings = updateSettings;
       function signOut(){
         $ionicPopup.confirm({
           title: 'Точно выйти?',
         }).then(function(res) {
             if(res) {
-             $auth.signOut()
-                .then(function(resp) {
-                  $state.go('app.login');
-                });
+              $auth.signOut().then(function(resp) {
+                $state.go('app.login');
+              });
           }
         }
       )};
-      function notifications(){
-        vm.settings.put();
-      }
-      function friendRating(){
+      function updateSettings(){
         vm.settings.put();
       };
 
-      function friendViewProfile() {
-        vm.settings.put();
-      }
     });
   };
 
