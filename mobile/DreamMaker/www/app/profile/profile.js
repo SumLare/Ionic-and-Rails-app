@@ -21,8 +21,7 @@
       });
 
       function follow() {
-        vm.friends.customPOST({user_id: $rootScope.currentUser.id, 
-                                friend_id: vm.user.id});
+        vm.friends.customPOST({friend_id: vm.user.id});
       };
       function unfollow(friend) {
         friend.remove();

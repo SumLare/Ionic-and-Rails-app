@@ -14,7 +14,6 @@ function DreamShow($rootScope, ionicMaterialInk, $stateParams, $ionicPopup, Rest
   Restangular.one('dreams', $stateParams.id).get().then(function(dream) {
     vm.dream = dream;
     vm.userDreamId = vm.dream.relationships.user.data.id;
-    console.log(vm.userDreamId);
     vm.getProgress = getProgress;
     vm.deleteStep = deleteStep;
     vm.rateUp = rateUp;
@@ -73,10 +72,9 @@ function DreamShow($rootScope, ionicMaterialInk, $stateParams, $ionicPopup, Rest
     };
 
     function newRateUp() {
-      vm.dream.customPOST({},"rating_statuses", {user_id: $rootScope.currentUser.id, 
-                                status: true});
-        vm.dream.attributes.rate++;
-        vm.dream.put();
+      vm.dream.customPOST({user_id: $rootScope.currentUser.id, status: true});
+      vm.dream.attributes.rate++;
+      vm.dream.put();
     };
 
     function updateStepStatus(step) {

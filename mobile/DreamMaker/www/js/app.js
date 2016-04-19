@@ -50,7 +50,7 @@ angular.module('starter')
         'menuContent': {
           templateUrl: 'app/profile/profile.html',
           controller: 'Profile',
-          controllerAs: 'profile'
+          controllerAs: 'vm'
         }
       }
     })
@@ -60,7 +60,7 @@ angular.module('starter')
       'menuContent': {
         templateUrl: 'app/login/login.html',
         controller: 'Login',
-        controllerAs: 'login'
+        controllerAs: 'vm'
       }
     }
   })
@@ -70,7 +70,7 @@ angular.module('starter')
       'menuContent': {
         templateUrl: 'app/registration/registration.html',
         controller: 'Registration',
-        controllerAs: 'reg'
+        controllerAs: 'vm'
       }
     }
   })
@@ -80,7 +80,7 @@ angular.module('starter')
       'menuContent': {
         templateUrl: 'app/settings/settings.html',
         controller: 'Settings',
-        controllerAs: 'settings'
+        controllerAs: 'vm'
       }
     }
   })
@@ -90,7 +90,15 @@ angular.module('starter')
       'menuContent': {
         templateUrl: 'app/settings/confidentiality.html',
         controller: 'Settings',
-        controllerAs: 'settings'
+        controllerAs: 'vm'
+      }
+    }
+  })
+  .state('app.reference', {
+    url: '/reference',
+    views: {
+      'menuContent': {
+        templateUrl: 'app/settings/reference.html',
       }
     }
   })
@@ -100,7 +108,7 @@ angular.module('starter')
         'menuContent': {
           templateUrl: 'app/friends/friends.html',
           controller: 'Friends',
-          controllerAs: 'friends'
+          controllerAs: 'vm'
         }
       }
     })
@@ -110,7 +118,7 @@ angular.module('starter')
         'menuContent': {
           templateUrl: 'app/dreamlist/dreams.html',
           controller: 'DreamList',
-          controllerAs: 'dreamlist'
+          controllerAs: 'vm'
         }
       }
     })
@@ -120,7 +128,7 @@ angular.module('starter')
       'menuContent': {
         templateUrl: 'app/dreamshow/dream.html',
         controller: 'DreamShow',
-        controllerAs: 'dreamshow'
+        controllerAs: 'vm'
       }
     }
   })
@@ -130,7 +138,7 @@ angular.module('starter')
       'menuContent': {
         templateUrl: 'app/CRUD/create.html',
         controller: 'DreamCreate',
-        controllerAs: 'dreamcreate'
+        controllerAs: 'vm'
       }
     }
   })
@@ -140,15 +148,19 @@ angular.module('starter')
       'menuContent': {
         templateUrl: 'app/CRUD/update.html',
         controller: 'DreamUpdate',
-        controllerAs: 'dreamupdate'
+        controllerAs: 'vm'
       }
     }
   })
-  .state('search',{
+  .state('app.search',{
     url: '/search',
-    templateUrl: 'app/dreamlist/search.html',
-    controller: 'DreamList',
-    controllerAs: 'dreamlist'
+    views: {
+      'menuContent': {
+        templateUrl: 'app/dreamlist/search.html',
+        controller: 'DreamList',
+        controllerAs: 'vm'
+      }
+    }
   });
   
  $urlRouterProvider.otherwise('/app/login');

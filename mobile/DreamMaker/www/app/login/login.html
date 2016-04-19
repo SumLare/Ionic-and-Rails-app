@@ -1,9 +1,9 @@
 <ion-view hide-nav-bar="true">
   <ion-content class="logIn">
-    <form ng-submit="login.doLogin()" class="formLogIn">
+    <form ng-submit="vm.doLogin()" class="formLogIn">
       <div class="list">
-          <ion-md-input class="mdInput"  placeholder="Email" highlight-color="balanced" type="email" ng-model="login.loginForm.email" ng-required="loginForm.email"></ion-md-input>
-          <ion-md-input class="mdInput" placeholder="Password" highlight-color="energized" type="password" ng-model="login.loginForm.password" ng-required="loginForm.password"></ion-md-input>
+          <ion-md-input class="mdInput"  placeholder="Email" highlight-color="balanced" type="email" ng-model="vm.loginForm.email" ng-required="loginForm.email"></ion-md-input>
+          <ion-md-input class="mdInput" placeholder="Password" highlight-color="energized" type="password" ng-model="vm.loginForm.password" ng-required="loginForm.password"></ion-md-input>
       </div>
       <div class="padding">
           <button class="button-block butLogIn" type="submit">Login</button>

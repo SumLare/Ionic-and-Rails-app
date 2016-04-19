@@ -1,11 +1,11 @@
 <ion-view view-title="Dream Maker">
   <ion-content >
-    <ion-refresher on-refresh ="dreamlist.refresh()" spinner="bubbles">
+    <ion-refresher on-refresh ="vm.refresh()" spinner="bubbles">
     </ion-refresher>
     <ion-list class="dreamList">
-      <ion-item ng-show="currentUser.id == dream.relationships.user.data.id" ng-repeat="dream in dreamlist.dreams" href="#/app/dreams/{{dream.id}}" class="dreamItem">
+      <ion-item ng-show="currentUser.id == dream.relationships.user.data.id" ng-repeat="dream in vm.dreams" href="#/app/dreams/{{dream.id}}" class="dreamItem">
         {{dream.attributes.title}}
-        <ion-option-button class="deleteBut icon ion-close" ng-click="dreamlist.deleteDream(dream)">
+        <ion-option-button class="deleteBut icon ion-close" ng-click="vm.deleteDream(dream)">
         </ion-option-button>
       </ion-item>
     </ion-list>

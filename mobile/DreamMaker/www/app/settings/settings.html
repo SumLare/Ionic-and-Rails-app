@@ -4,7 +4,7 @@
       <ion-item class="item item-toggle">
        Присылать оповещения
        <label class="toggle toggle-balanced">
-         <input type="checkbox" ng-model="settings.settings.attributes.notifications" ng-click="settings.updateSettings()">
+         <input type="checkbox" ng-model="vm.settings.attributes.notifications" ng-click="vm.updateSettings()">
          <div class="track">
            <div class="handle"></div>
          </div>
@@ -13,7 +13,7 @@
       <ion-item href="#/app/users/{{currentUser.id}}/settings/confidentiality">
         Конфиденциальность
       </ion-item>
-      <ion-item href="#" ng-click="settings.signOut()">
+      <ion-item href="#" ng-click="vm.signOut()">
         Выход
       </ion-item>
       </div>
