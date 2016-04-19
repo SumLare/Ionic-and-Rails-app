@@ -8,7 +8,7 @@ class Api::V1::DreamsController < ApplicationController
   end
 
   def show
-    render json: @dream, include:  ['steps'] 
+    render json: @dream
   end
 
   def create

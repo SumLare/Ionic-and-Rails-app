@@ -1,11 +1,11 @@
 <ion-view hide-nav-bar="true">
 <ion-content class="logIn">
-  <form ng-submit="reg.handleRegBtnClick()" class="formLogIn" >
+  <form ng-submit="vm.handleRegBtnClick()" class="formLogIn" >
     <div class="list">
-      <ion-md-input class="mdInput"  placeholder="Username" highlight-color="positive" type="text" ng-model="reg.registrationForm.name" ng-required="reg.registrationForm.name"></ion-md-input>
-        <ion-md-input class="mdInput"  placeholder="Email" highlight-color="balanced" type="email" ng-model="reg.registrationForm.email" ng-required="reg.registrationForm.email"></ion-md-input>
-        <ion-md-input class="mdInput" placeholder="Password" highlight-color="energized" type="password" ng-model="reg.registrationForm.password" ng-required="reg.registrationForm.password"></ion-md-input>
-      <ion-md-input class="mdInput" placeholder="Password Confirmation" highlight-color="energized" type="password" ng-model="reg.registrationForm.password_confirmation" ng-required="reg.registrationForm.password_confirmation"></ion-md-input>
+      <ion-md-input class="mdInput"  placeholder="Username" highlight-color="positive" type="text" ng-model="vm.registrationForm.name" ng-required="vm.registrationForm.name"></ion-md-input>
+        <ion-md-input class="mdInput"  placeholder="Email" highlight-color="balanced" type="email" ng-model="vm.registrationForm.email" ng-required="vm.registrationForm.email"></ion-md-input>
+        <ion-md-input class="mdInput" placeholder="Password" highlight-color="energized" type="password" ng-model="vm.registrationForm.password" ng-required="vm.registrationForm.password"></ion-md-input>
+      <ion-md-input class="mdInput" placeholder="Password Confirmation" highlight-color="energized" type="password" ng-model="vm.registrationForm.password_confirmation" ng-required="vm.registrationForm.password_confirmation"></ion-md-input>
       <div >
         <button class="button-block butLogIn" type="submit">Sign Up</button>
       </div>

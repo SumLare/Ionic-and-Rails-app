@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
-  namespace :api, defaults: { format: :json },
-      constraints: { subdomain: 'api' }, path: '/' do
+  namespace :api, defaults: { format: :json }, path: '/' do
     scope module: :v1 do
       
       resources :dreams, except: [:edit, :new] do
@@ -8,6 +7,7 @@ Rails.application.routes.draw do
         resources :steps, except: [:edit, :new]
       end
       resources :users, except: [:edit, :new] do
+        resources :settings, only: [:index, :create, :update]
         resources :friendships, only: [:create, :index, :show, :destroy]
       end
     end

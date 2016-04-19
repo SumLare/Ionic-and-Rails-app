@@ -9823,6 +9823,9 @@ a.button {
 .activeStar {
   color: #ffc900; }
 
+.tabsContent {
+  margin-top: 3em; }
+
 .platform-android ion-content {
   overflow-y: hidden; }
 
@@ -9846,10 +9849,10 @@ i.icon::before {
   left: 2em;
   border-bottom: 1px solid #ccc !important;
   top: 0.35em;
-  z-index: 9999; }
+  z-index: 9999;
+  color: #fff !important; }
   .searchInput:focus {
-    border-bottom: 1px solid #fff !important;
-    color: #fff; }
+    border-bottom: 1px solid #fff !important; }
 
 .logIn {
   margin: 0 auto;

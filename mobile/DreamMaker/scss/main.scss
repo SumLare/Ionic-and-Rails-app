@@ -13,7 +13,6 @@ ion-popover-view{
 i.icon::before {
   font-size: 20px;
 }
-
 .searchInput{
   float:left;
   width: 80%;
@@ -23,9 +22,9 @@ i.icon::before {
   border-bottom: 1px solid #ccc !important;
   top:0.35em;
   z-index: 9999;
+  color:#fff !important;
   &:focus{
     border-bottom: 1px solid #fff !important;
-    color:#fff;
   }
 }
 
