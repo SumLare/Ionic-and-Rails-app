@@ -12,9 +12,7 @@ class Api::V1::DreamsController < ApplicationController
   end
 
   def create
-    @dream = Dream.new(dream_params)
-    @dream.rate = 0
-   # @dream.user_id = current_api_user.id
+    @dream = current_api_user.dreams.build(dream_params)
     if @dream.save
       render json: @dream, status: :created, location: [:api, @dream]
     else

@@ -11,11 +11,11 @@ class Api::V1::FriendshipsController < ApplicationController
 
   def create
     @user = User.find(params[:user_id])
-    @frienship = @user.friendships.build(friend_params)
-    if @frienship.save
-      render json: @frienship, status: :created, location: [:api, @user, @frienship]
+    @friendship = @user.friendships.build(friend_params)
+    if @friendship.save
+      render json: @friendship, status: :created, location: [:api, @user, @friendship]
     else
-      render json: { errors: @frienship.errors }, status: 422
+      render json: { errors: @friendship.errors }, status: 422
     end
   end
 
