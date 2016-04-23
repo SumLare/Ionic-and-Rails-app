@@ -224,6 +224,7 @@ DEPENDENCIES
   active_model_serializers!
   capybara
   database_cleaner
+  devise
   devise_token_auth
   factory_girl_rails
   foreman

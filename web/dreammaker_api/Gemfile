@@ -10,6 +10,7 @@ gem 'spring', :group => :development
 gem 'rack-cors', :require => 'rack/cors'
 gem 'pg'
 gem 'active_model_serializers', git: 'git://github.com/rails-api/active_model_serializers.git', branch: 'master'
+gem 'devise'
 gem 'devise_token_auth'
 gem 'omniauth'
 gem 'foreman'
