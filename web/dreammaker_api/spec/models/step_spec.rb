@@ -10,6 +10,7 @@ RSpec.describe Step, type: :model do
   it { expect(step).to validate_presence_of(:title) }
   it { expect(step).to validate_presence_of(:date) }
   it { expect(step).to respond_to(:description) }  
+  it { expect(step.finished).to eq false }
 
   it { expect(step).to be_valid }
 
