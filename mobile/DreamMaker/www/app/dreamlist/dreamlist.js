@@ -12,6 +12,9 @@
       vm.dreams = dreams;
       vm.deleteDream = deleteDream;
       vm.refresh = refresh;
+      for (var i = 1; i < vm.users.length; i++) {
+        vm.settings = Restangular.one('users', i).getList('settings').$object;
+      }
       function deleteDream(dream){
         $ionicPopup.confirm({
           title: 'Отказываешься от своей мечты?',
@@ -29,9 +32,7 @@
           $scope.$broadcast('scroll.refreshComplete'); 
         });
       }
-    }).catch(function(err) {
-      handleMyError(err);
-  });
+    });
 };
 
 })();

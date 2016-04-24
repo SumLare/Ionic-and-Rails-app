@@ -1,5 +1,5 @@
 <ion-view hide-back-button="true" >
-  <ion-nav-bar class="button-balanced-900">
+  <ion-nav-bar class="button-calm-900">
     <input type="text" placeholder="Поиск..." class="searchInput" ng-model="vm.query">
     <ion-nav-buttons side="right">
       <button class="button button-icon button-clear ion-ios-search" ng-click="">
@@ -26,7 +26,7 @@
     <ion-tab title="Люди">
       <ion-content class="tabsContent">
          <div class="list" ng-repeat="user in vm.users | filter: vm.query ">
-          <a ng-href="#/app/profile/{{user.id}}" class="item item-avatar item-icon-right" >
+          <a ng-if="vm.settings['0'].attributes.friendsViewProfile" ng-href="#/app/profile/{{user.id}}" class="item item-avatar item-icon-right" >
               <img src="img/default-user.png">
               <h2>{{user.attributes.name}}</h2>
               <p>{{user.attributes.email}}</p>

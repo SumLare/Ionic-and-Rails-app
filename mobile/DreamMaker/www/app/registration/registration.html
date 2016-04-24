@@ -2,6 +2,11 @@
 <ion-content class="logIn">
   <form ng-submit="vm.handleRegBtnClick()" class="formLogIn" >
     <div class="list">
+      <div ng-repeat="error in vm.errors.full_messages" class="errors" ng-if="vm.errors">
+            {{error}}
+            <i class="icon ion-close" style="float:right;" ng-click="vm.rmError(error)"></i>
+      </div>
+
       <ion-md-input class="mdInput"  placeholder="Username" highlight-color="positive" type="text" ng-model="vm.registrationForm.name" ng-required="vm.registrationForm.name"></ion-md-input>
         <ion-md-input class="mdInput"  placeholder="Email" highlight-color="balanced" type="email" ng-model="vm.registrationForm.email" ng-required="vm.registrationForm.email"></ion-md-input>
         <ion-md-input class="mdInput" placeholder="Password" highlight-color="energized" type="password" ng-model="vm.registrationForm.password" ng-required="vm.registrationForm.password"></ion-md-input>

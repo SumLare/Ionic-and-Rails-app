@@ -2,35 +2,47 @@
   <form  role="form" ng-submit="vm.createDream()">
     <ion-content>
       <div class="list createList">
+        <div ng-repeat="error in vm.errors.title" class="errors" ng-if="vm.errors">
+            {{error}}
+            <i class="icon ion-close" style="float:right;" ng-click="vm.rmTitleError(error)"></i>
+        </div>
         <label class="item item-input">
-          <input type="text" placeholder="Название.." ng-model="vm.title">
+          <input type="text" placeholder="Название.." ng-model="vm.title" >
         </label>
         <ion-list>
           <ion-item ng-repeat="step in vm.steps" class="addStep"><i class="icon ion-close closeStep" ng-click="vm.rmStep($index)"></i>
           Шаг {{$index+1}}
             <label class="item item-input ">
-              <input type="text" placeholder="Название шага" ng-model="step.stepTitle">
+              <input type="text" placeholder="Название шага" ng-model="vm.stepTitle">
             </label>
             <label class="item item-input">
-              <input type="text" placeholder="Краткое описание.." ng-model="step.stepDesc"></input>
+              <input type="text" placeholder="Краткое описание.." ng-model="vm.stepDescription"></input>
             </label>
             <label class="item item-input">
               <span class="input-label">Дата окончания</span>
-              <input type="date" ng-model="step.stepDate" min="{{date}}">
+              <input type="date" ng-model="vm.stepDate">
             </label>
           </ion-item>
         </ion-list>
         <div class="addStep">
-          <a class="button button-clear button-dark " ng-click="vm.addStep()" >
-             Добавить шаг
+          <a class="button button-clear button-positive" ng-click="vm.addStep()" >
+             Следующий шаг
           </a>
+        </div>
+        <div ng-repeat="error in vm.errors.lastDate" class="errors" ng-if="vm.errors">
+            {{error}}
+            <i class="icon ion-close" style="float:right;" ng-click="vm.rmDateError(error)"></i>
         </div>
         <label class="item item-input">
           <span class="input-label">Дата окончания</span>
           <input type="date" ng-model="vm.lastDate">
         </label>
-      </div>
+      </div> 
     </ion-content>
-    <input class="tabs tabs-balanced createBut" type="submit" value="Записать цель">
+    <div style="position: absolute; bottom: 0px; width: 100%">
+        <div style="text-align: center">
+          <button style="width: 100%" class="button button-raised button-positive createBut" type="submit">Записать цель</button>
+        </div>
+    </div>
     </form>
 </ion-view>

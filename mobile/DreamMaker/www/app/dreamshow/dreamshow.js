@@ -7,10 +7,11 @@
 function DreamShow($rootScope, ionicMaterialInk, $stateParams, $ionicPopup, Restangular) {
   ionicMaterialInk.displayEffect();
   var vm = this;
-  vm.friends = Restangular.one('users', 1).getList('friendships').$object;
+  vm.friends = Restangular.one('users', 1).getList('friendships').$object; // заменить на userDreamId
+  vm.settings = Restangular.one('users', 1).getList('settings').$object; // заменить на userDreamId
   vm.rate = Restangular.one('dreams', $stateParams.id).getList('rating_statuses').$object;
   vm.steps = Restangular.one('dreams', $stateParams.id).getList('steps').$object;
-  vm.settings = Restangular.one('users', 1).getList('settings').$object;
+
   Restangular.one('dreams', $stateParams.id).get().then(function(dream) {
     vm.dream = dream;
     vm.userDreamId = vm.dream.relationships.user.data.id;

@@ -21,7 +21,7 @@
 
     function updateDream() {
       vm.dream.put();
-      vm.steps.put();
+      Restangular.one('dreams', vm.dream.id).put(step);
       $ionicHistory.nextViewOptions({
         disableBack: true
       });

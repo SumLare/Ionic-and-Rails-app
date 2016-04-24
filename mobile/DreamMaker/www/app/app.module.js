@@ -1,11 +1,12 @@
 (function () {
   'use strict';
-  angular.module('starter', [ 'ionic', 
+  angular.module('starter', [ 'ionic',
+                              'ngCordova',
                               'ionic-material',
                               'angular-svg-round-progress', 
                               'countTo',
                               'ionMdInput',
-                              'ngResource', 
+                              'ui.router',
                               'ng-token-auth',
                               'restangular',
                               'starter.app',

@@ -2,6 +2,10 @@
   <ion-content class="logIn">
     <form ng-submit="vm.doLogin()" class="formLogIn">
       <div class="list">
+        <div ng-repeat="error in vm.errors" class="errors" ng-if="vm.errors">
+            {{error}}
+            <i class="icon ion-close" style="float:right;" ng-click="vm.rmError(error)"></i>
+        </div>
           <ion-md-input class="mdInput"  placeholder="Email" highlight-color="balanced" type="email" ng-model="vm.loginForm.email" ng-required="loginForm.email"></ion-md-input>
           <ion-md-input class="mdInput" placeholder="Password" highlight-color="energized" type="password" ng-model="vm.loginForm.password" ng-required="loginForm.password"></ion-md-input>
       </div>
@@ -11,7 +15,7 @@
     </form>
     <div class="button-bar social-login social" >
       <button class="button button-small button-border icon-left ion-social-twitter button-calm-900">Twitter</button>
-      <button class="button button-small button-border icon-left ion-social-facebook button-positive-900">Facebook</button>
+      <button class="button button-small button-border icon-left ion-social-facebook button-positive-900" ng-click="vm.loginFacebook()">Facebook</button>
     </div>
     <a href="#" class="footerForget">Forget Password?</a>
     <div class="footerLogInRight">No Account? 
