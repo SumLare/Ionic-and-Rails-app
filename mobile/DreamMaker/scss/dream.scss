@@ -40,24 +40,18 @@
   width: auto !important;
 }
 .addBut::before{
-  margin-top:6px !important;
-}
-.createBut{
-  font-size:1.2em;
-  cursor: pointer;
-  &:active{
-    background-color:green;
-  }
-}
-.createList{
-  padding-bottom:50px;
+  position: relative !important;
+  top:0.15em;
 }
 .addStep{
   text-align:center;
-  background-color: #33CD5F;
+  background-color: #fff;
   overflow-y: hidden;
   max-height: 200px; 
-}
+    a{
+      width: 100%;
+    }
+  }
 .lastDate{
   text-align: center;
   position:relative;
@@ -97,4 +91,13 @@
 }
 .tabsContent{
   margin-top:3em;
+}
+.errors{
+  padding:0.5em;
+  margin:0.7em;
+  background-color:red;
+  color:#fff;
+  position: relative;
+  border-radius: 6px;
+  text-align: center;
 }
