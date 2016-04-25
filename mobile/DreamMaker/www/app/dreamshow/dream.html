@@ -15,7 +15,7 @@
               clockwise="true" responsive="false" duration="800"
               animation="easeOutCubic" animation-delay="0" offset="0">
         </div>
-        <div ng-if="vm.settings['0'].attributes.friendsRating"><i ng-if="vm.friend" class="icon ion-star star" ng-class="{activeStar : vm.star.attributes.status}" ng-click="vm.star ? vm.rateUp() : vm.newRateUp()">{{vm.dream.attributes.rate}}</i></div>
+        <i ng-hide="vm.settings['0'].attributes.friendsRating && !vm.friend" class="icon ion-star star" ng-class="{activeStar : vm.star.attributes.status}" ng-click="vm.star ? vm.rateUp() : vm.newRateUp()">{{vm.dream.attributes.rate}}</i>
       </ion-item>
         <ion-item ng-repeat="step in vm.steps" class="dreamItem">
         

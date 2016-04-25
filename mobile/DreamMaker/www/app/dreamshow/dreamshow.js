@@ -7,14 +7,21 @@
 function DreamShow($rootScope, ionicMaterialInk, $stateParams, $ionicPopup, Restangular) {
   ionicMaterialInk.displayEffect();
   var vm = this;
-  vm.friends = Restangular.one('users', 1).getList('friendships').$object; // заменить на userDreamId
-  vm.settings = Restangular.one('users', 1).getList('settings').$object; // заменить на userDreamId
-  vm.rate = Restangular.one('dreams', $stateParams.id).getList('rating_statuses').$object;
-  vm.steps = Restangular.one('dreams', $stateParams.id).getList('steps').$object;
-
   Restangular.one('dreams', $stateParams.id).get().then(function(dream) {
     vm.dream = dream;
     vm.userDreamId = vm.dream.relationships.user.data.id;
+    Restangular.one('users', vm.userDreamId).getList('friendships').then(function(friends) {
+      vm.friends = friends;
+      angular.forEach(vm.friends, function (val) {
+        if ($rootScope.currentUser.id == val.attributes["friend-id"]){
+          vm.friend = val;
+        }
+      });
+    }); 
+    vm.settings = Restangular.one('users', vm.userDreamId).getList('settings').$object; 
+    vm.rate = Restangular.one('dreams', $stateParams.id).getList('rating_statuses').$object;
+    vm.steps = Restangular.one('dreams', $stateParams.id).getList('steps').$object;
+
     vm.getProgress = getProgress;
     vm.deleteStep = deleteStep;
     vm.rateUp = rateUp;
@@ -24,11 +31,6 @@ function DreamShow($rootScope, ionicMaterialInk, $stateParams, $ionicPopup, Rest
       if ($rootScope.currentUser.id == obj.attributes["user-id"] && 
           vm.dream.id == obj.attributes["dream-id"]){
         vm.star = obj;
-      }
-    });
-    angular.forEach(vm.friends, function (val) {
-      if ($rootScope.currentUser.id == val.attributes["friend-id"]){
-        vm.friend = val;
       }
     });
 

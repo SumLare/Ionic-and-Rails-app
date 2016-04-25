@@ -48,6 +48,7 @@
           });
           $state.go('app.dreams');
       }, function(res) {
+          console.log(res);
           vm.errors = res.data.errors;
           vm.rmTitleError = rmTitleError;
           vm.rmDateError = rmDateError;

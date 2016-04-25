@@ -17,10 +17,10 @@
           title: 'Точно выйти?',
         }).then(function(res) {
             if(res) {
-              $cordovaFacebook.logout();
               $auth.signOut().then(function(resp) {
                 $state.go('app.login');
               });
+              $cordovaFacebook.logout();
           }
         }
       )};

@@ -19,11 +19,13 @@ module.exports = function(config) {
     '../lib/angular/angular.js',
     '../lib/angular-mocks/angular-mocks.js',
     '../lib/ionic/js/ionic.bundle.js',
-    '../lib/angular-local-storage/dist/angular-local-storage.js',
-    '../lib/ngCordova/dist/ng-cordova.js',
-    '../lib/ionic/js/angular-ui/angular-ui-router.js',
+    '../lib/restangular/dist/restangular.js',
+    '../lib/lodash/dist/lodash.js',
+    '../lib/ng-token-auth/dist/ng-token-auth.js',
+    '../lib/angular-ui-router/release/angular-ui-router.js',
     '../lib/angular-animate/angular-animate.js',
     '../lib/angular-sanitize/angular-sanitize.js',
+    '../lib/angular-cookie/angular-cookie.js',
 
     //App code
     '../app/*.js',

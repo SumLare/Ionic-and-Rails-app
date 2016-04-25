@@ -6,24 +6,27 @@ angular.module('starter')
     $ionicConfigProvider.tabs.position('bottom');
     $ionicConfigProvider.form.toggle('large');
     $ionicConfigProvider.navBar.alignTitle('center');
-    RestangularProvider.setBaseUrl('http://api.dreammaker_api.dev:3000/');
+    RestangularProvider.setBaseUrl('http://dmapi.herokuapp.com');
     RestangularProvider.addResponseInterceptor(function(data, operation) {
       var extractedData = data.data;
       return extractedData;
     });
     $authProvider.configure({
-    apiUrl: 'http://api.dreammaker_api.dev:3000/api/v1',
+    apiUrl: 'http://dmapi.herokuapp.com/api/v1',
     storage: 'localStorage',
     handleLoginResponse: function(resp) {
         return resp.data;
     },
   });
 })
-.run(['$rootScope', '$location', '$ionicPlatform', function($rootScope, $location, $ionicPlatform) {
+.run(['$rootScope', '$location', '$ionicPlatform', function($rootScope, $location, $ionicPlatform, $cordovaSplashScreen) {
   $rootScope.$on('auth:login-success', function() {
     $location.path('/');
   });
   $ionicPlatform.ready(function() {
+    setTimeout(function() {
+      $cordovaSplashScreen.hide()
+    }, 5000);
     if (window.cordova && window.cordova.plugins.Keyboard) {
       cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
       cordova.plugins.Keyboard.disableScroll(true);
@@ -163,7 +166,7 @@ angular.module('starter')
     }
   });
   
- $urlRouterProvider.otherwise('/app/login');
+ $urlRouterProvider.otherwise('/app/dreams');
 
 });
 })();

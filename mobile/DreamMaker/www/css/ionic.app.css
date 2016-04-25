@@ -9717,7 +9717,7 @@ a.button {
 
 .sideList {
   padding-top: 40px;
-  background-color: #3A4852 !important; }
+  background-color: #263238 !important; }
 
 .sideItem {
   background-color: transparent;
@@ -9771,22 +9771,16 @@ a.button {
   width: auto !important; }
 
 .addBut::before {
-  margin-top: 6px !important; }
-
-.createBut {
-  font-size: 1.2em;
-  cursor: pointer; }
-  .createBut:active {
-    background-color: green; }
-
-.createList {
-  padding-bottom: 50px; }
+  position: relative !important;
+  top: 0.15em; }
 
 .addStep {
   text-align: center;
-  background-color: #33CD5F;
+  background-color: #fff;
   overflow-y: hidden;
   max-height: 200px; }
+  .addStep a {
+    width: 100%; }
 
 .lastDate {
   text-align: center;
@@ -9825,6 +9819,15 @@ a.button {
 
 .tabsContent {
   margin-top: 3em; }
+
+.errors {
+  padding: 0.5em;
+  margin: 0.7em;
+  background-color: red;
+  color: #fff;
+  position: relative;
+  border-radius: 6px;
+  text-align: center; }
 
 .platform-android ion-content {
   overflow-y: hidden; }
