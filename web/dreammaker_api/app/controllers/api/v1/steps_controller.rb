@@ -15,7 +15,7 @@ class Api::V1::StepsController < ApplicationController
   def create
     @step = @dream.steps.build(step_params)
     if @step.save
-      render json: @step, status: :created, location: [:api, @step]
+      render json: @step, status: :created, location: [:api, @dream, @step]
     else
       render json: { errors: @step.errors }, status: 422
     end
@@ -24,7 +24,7 @@ class Api::V1::StepsController < ApplicationController
   def update
     @step = @dream.steps.find(params[:id])
     if @step.update(step_params)
-      render json: @step, status: :created, location: [:api, @dream, @step]
+      render json: @step, status: 200, location: [:api, @dream, @step]
     else
       render json: { errors: @step.errors }, status: 422
     end
@@ -46,7 +46,7 @@ class Api::V1::StepsController < ApplicationController
     end
 
     def step_params
-      params.permit(:id, attributes: [:title, :date, :description, :finished])
+      params.permit(:id, :dream_id, :title, :date, :description, :finished)
     end
     
 end
