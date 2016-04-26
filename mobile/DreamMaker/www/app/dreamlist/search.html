@@ -25,8 +25,8 @@
     </ion-tab>
     <ion-tab title="Люди">
       <ion-content class="tabsContent">
-         <div class="list" ng-repeat="user in vm.users | filter: vm.query ">
-          <a ng-if="vm.settings['0'].attributes.friendsViewProfile" ng-href="#/app/profile/{{user.id}}" class="item item-avatar item-icon-right" >
+         <div class="list" ng-repeat="user in vm.users | filter: vm.query " >
+          <a ng-hide="vm.settings[$index]" ng-href="#/app/profile/{{user.id}}" class="item item-avatar item-icon-right" >
               <img src="img/default-user.png">
               <h2>{{user.attributes.name}}</h2>
               <p>{{user.attributes.email}}</p>

@@ -4,17 +4,25 @@
         .module('starter.dreamlist')
         .controller('DreamList', DreamList);
 
-  function DreamList($scope, ionicMaterialInk, $ionicPopup, Restangular) {
+  function DreamList($rootScope, $scope, ionicMaterialInk, $ionicPopup, Restangular) {
     ionicMaterialInk.displayEffect();
     var vm = this;
-    vm.users = Restangular.all('users').getList().$object;
+    Restangular.all('users').getList().then(function (resp) {
+      vm.users = resp;
+      vm.settings = [];
+      angular.forEach(vm.users, function (val) {
+        val.getList('settings').then(function(resp) {
+          var settings = resp[0].attributes.friendsViewProfile;
+          vm.settings.push(settings);
+        });
+      });
+
+    });
     Restangular.all('dreams').getList().then(function(dreams) {
       vm.dreams = dreams;
       vm.deleteDream = deleteDream;
       vm.refresh = refresh;
-      for (var i = 1; i < vm.users.length; i++) {
-        vm.settings = Restangular.one('users', i).getList('settings').$object;
-      }
+
       function deleteDream(dream){
         $ionicPopup.confirm({
           title: 'Отказываешься от своей мечты?',

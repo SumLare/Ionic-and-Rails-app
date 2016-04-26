@@ -9748,10 +9748,12 @@ a.button {
 
 .checkboxDream {
   border: none;
-  float: right;
   position: absolute;
-  right: -3em;
-  top: 0; }
+  right: 0;
+  top: 1em; }
+  .checkboxDream div.item-content {
+    margin: 0 auto;
+    padding: 0; }
 
 .progressBar {
   padding: 0;
@@ -9828,6 +9830,9 @@ a.button {
   position: relative;
   border-radius: 6px;
   text-align: center; }
+
+.finishedDream {
+  background-color: #ffc900 !important; }
 
 .platform-android ion-content {
   overflow-y: hidden; }

@@ -6,13 +6,15 @@ angular.module('starter')
     $ionicConfigProvider.tabs.position('bottom');
     $ionicConfigProvider.form.toggle('large');
     $ionicConfigProvider.navBar.alignTitle('center');
-    RestangularProvider.setBaseUrl('http://dmapi.herokuapp.com');
+    $ionicConfigProvider.form.toggle('large').checkbox('circle');
+    RestangularProvider.setBaseUrl('http://api.dreammaker_api.dev:3000');
     RestangularProvider.addResponseInterceptor(function(data, operation) {
       var extractedData = data.data;
       return extractedData;
     });
+
     $authProvider.configure({
-    apiUrl: 'http://dmapi.herokuapp.com/api/v1',
+    apiUrl: 'http://api.dreammaker_api.dev:3000/api/v1',
     storage: 'localStorage',
     handleLoginResponse: function(resp) {
         return resp.data;

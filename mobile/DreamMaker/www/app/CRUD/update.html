@@ -1,5 +1,4 @@
 <ion-view view-title="Edit">
-
   <form role="form" ng-submit="vm.updateDream()">
     <ion-content>
       <div class="list createList">
@@ -23,8 +22,8 @@
           </ion-item>
         </ion-list>
         <div class="addStep">
-          <a class="button button-clear button-dark " ng-click="vm.addStep()" >
-             Добавить шаг
+          <a class="button button-clear button-positive" ng-click="vm.addStep()" >
+             Следующий шаг
           </a>
         </div>
         <label class="item item-input">
@@ -33,7 +32,10 @@
         </label>
       </div>
     </ion-content>
-    <input class="tabs tabs-balanced createBut" type="submit" value="Изменить">
-        
+      <div style="position: absolute; bottom: 0px; width: 100%">
+          <div style="text-align: center">
+            <button style="width: 100%" class="button button-raised button-positive createBut" type="submit">Изменить цель</button>
+          </div>
+      </div>
     </form>
 </ion-view>

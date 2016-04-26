@@ -3,7 +3,7 @@
     <ion-refresher on-refresh ="vm.refresh()" spinner="bubbles">
     </ion-refresher>
     <ion-list class="dreamList">
-      <ion-item ng-show="currentUser.id == dream.relationships.user.data.id" ng-repeat="dream in vm.dreams" href="#/app/dreams/{{dream.id}}" class="dreamItem">
+      <ion-item ng-show="currentUser.id == dream.relationships.user.data.id" ng-repeat="dream in vm.dreams" href="#/app/dreams/{{dream.id}}" class="dreamItem" ng-class="{finishedDream : dream.attributes.finished}">
         {{dream.attributes.title}}
         <ion-option-button class="deleteBut icon ion-close" ng-click="vm.deleteDream(dream)">
         </ion-option-button>

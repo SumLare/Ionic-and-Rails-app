@@ -25,18 +25,17 @@
     function createDream(){
 
       var step = {
-        title: vm.stepTitle,
-        date: vm.stepDate,
-        description: vm.stepDescription
+        title: vm.attributes.stepTitle,
+        date: vm.attributes.stepDate,
+        description: vm.attributes.stepDescription
       };
 
       var dream = {
         title: vm.title,
-        lastDate: vm.lastDate,
-        user_id: $rootScope.currentUser.id
+        lastDate: vm.lastDate
       };
       baseDreams.post(dream).then(function(res) {
-        vm.dream = res;
+        vm.dream = res.data;
         Restangular.one('dreams', vm.dream.id).post('steps', step).then(function(res) {
           
         }, function (res) {
