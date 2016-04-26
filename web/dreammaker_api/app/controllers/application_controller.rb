@@ -4,7 +4,9 @@ class ApplicationController < ActionController::API
   include Devise::Controllers::Helpers
   
   before_action :configure_permitted_parameters, if: :devise_controller?
-  
+  def current_user
+    User.where(confirmation_token: session[:confirmation_token]).first
+  end
   protected
 
   def configure_permitted_parameters

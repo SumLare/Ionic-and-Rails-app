@@ -1,6 +1,6 @@
 class Dream < ActiveRecord::Base
 
-  before_create :set_rate
+  before_create :set_init
 
   has_many :steps, dependent: :destroy
   belongs_to :user
@@ -10,7 +10,8 @@ class Dream < ActiveRecord::Base
   validates :lastDate, presence: true, date: { :after_or_equal_to => Date.today}
 protected
 
-  def set_rate
+  def set_init
+    self.finished = false
     self.rate = 0
   end
   

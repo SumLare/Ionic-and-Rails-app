@@ -4,7 +4,7 @@ class Api::V1::DreamsController < ApplicationController
   before_filter :find_dream, only: [:show, :update, :destroy]
   
   def index
-    respond_with Dream.all, include:  ['user']
+    respond_with Dream.all
   end
 
   def show
@@ -12,7 +12,7 @@ class Api::V1::DreamsController < ApplicationController
   end
 
   def create
-    @dream = Dream.new(dream_params)
+    @dream = current_user.dreams.build(dream_params)
     if @dream.save
       render json: @dream, status: :created, location: [:api, @dream]
     else
@@ -41,7 +41,7 @@ private
   end
 
   def dream_params
-    params.permit(:id, :title, :lastDate, :rate, :user_id)
+    params.permit(:id, :user_id, attributes: [:title, :lastDate, :finished, :rate], relationships:[])
   end
 
 end
