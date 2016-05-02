@@ -46,7 +46,6 @@ class Api::V1::StepsController < ApplicationController
     end
 
     def step_params
-      #ActiveModelSerializers::Deserialization.jsonapi_parse!(params)
       params.permit(:id, :dream_id, attributes: [:title, :date, :description, :finished], relationships:[])
     end
     
