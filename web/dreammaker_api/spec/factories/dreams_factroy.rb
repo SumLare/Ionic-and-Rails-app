@@ -11,6 +11,7 @@ FactoryGirl.define do
     lastDate nil
     rate 0
     finished false
+
   end
 
 end

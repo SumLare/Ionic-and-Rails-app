@@ -5,4 +5,4 @@ ruby:
   -2.2.1
 env:
   -DB=postgresql
-script: "bundle exec rake test"
+script: cd web/dreammaker_api
