@@ -1,0 +1,49 @@
+ru:
+  errors:
+    format: "%{message}"
+    messages:
+      not_email:
+        "Укажите правильный email"
+      validate_sign_up_params:
+        "Заполните поля ниже"
+  activerecord:
+    errors:
+      models:
+        dream:
+          attributes:
+            title:
+              blank:
+                "Дайте вашей цели название"
+            lastDate:
+              blank:
+                "Назначте дэдлайн"
+              not_a_date:
+               "Укажите дату"
+        step:
+          attributes:
+            title:
+              blank:
+                "Придумайте название для вашего шага"
+            description:
+              blank:
+                "Придумайте описание для вашего шага"
+            date:
+              blank:
+                "Назначте дэдлайн для вашего шага"
+        user:
+          attributes:
+            password:
+              blank: "Укажите пароль"
+              too_short:
+                "Придумайте пароль подлинее"
+            password_confirmation:
+              confirmation:
+                "Пароли не соответствуют"
+              blank:
+                "Повторите пароль"
+            email:
+              blank:
+                "Укажите email"
+            name:
+              blank:
+                "Укажите имя"

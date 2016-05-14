@@ -20,4 +20,14 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  activerecord:
+    errors:
+      models:
+        dream:
+          attributes:
+            title:
+              blank:
+                "Give a title for your goal"
+            lastDate:
+              blank:
+                "Put a finish date"
